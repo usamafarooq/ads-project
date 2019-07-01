@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller {
 	public function is_login()
 	{
 		if (!$this->session->userdata('user_id')) {
-			redirect("login");
+			redirect("admin/login");
 		}
 	}
 
@@ -33,7 +33,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_module($module_name,$fileds,$tablename)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/crud/application/models/'.ucfirst($module_name).'.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/models/'.ucfirst($module_name).'.php';
 		if(!is_file($file)){
 		    $contents = '<?php
 		    ';
@@ -80,7 +80,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_controller($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/crud/application/admin/controllers/'.ucfirst($controller_name).'.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/controllers/admin/'.ucfirst($controller_name).'.php';
 		if(!is_file($file)){
 		    $contents = '<?php
 		    ';
@@ -285,7 +285,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_folder($url)
     {
-    	$directoryName = $_SERVER['DOCUMENT_ROOT'].'/crud/application/admin/views/'.$url;
+    	$directoryName = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/views/admin/'.$url;
 		if(!is_dir($directoryName)){
 		    mkdir($directoryName, 0755);
 		}
@@ -293,7 +293,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_main_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/crud/application/admin/views/'.$controller_name.'/index.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/views/admin/'.$controller_name.'/index.php';
 		if(!is_file($file)){
 		    include 'create_index.php';
 		    $contents = str_replace("%","$",$contents);
@@ -306,7 +306,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_create_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/crud/application/admin/views/'.$controller_name.'/create.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/views/admin/'.$controller_name.'/create.php';
 		if(!is_file($file)){
 		    include 'create_create.php';
 		    $contents = str_replace("%","$",$contents);
@@ -319,7 +319,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_edit_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/crud/application/admin/views/'.$controller_name.'/edit.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/ads-project/application/views/admin/'.$controller_name.'/edit.php';
 		if(!is_file($file)){
 		    include 'create_edit.php';
 		    $contents = str_replace("%","$",$contents);
@@ -329,5 +329,9 @@ class MY_Controller extends CI_Controller {
 			echo '1';
 		}
     }
+
+}
+
+class Front_Controller extends CI_Controller {
 
 }

@@ -196,7 +196,7 @@
                       <li class="nav-heading "> <span>Main Navigation&nbsp;&nbsp;&nbsp;&nbsp;------</span></li>
                       <?php 
                         foreach ($menus as $menu) {
-                          echo '<li><a href="'.base_url($menu['url']).'" class="material-ripple"><i class="material-icons">'.$menu['icon'].'</i> '.$menu['name'].'</a></li>';
+                          echo '<li><a href="'.base_url('admin/'.$menu['url']).'" class="material-ripple"><i class="material-icons">'.$menu['icon'].'</i> '.$menu['name'].'</a></li>';
                         }
                       ?>
                     </ul>
