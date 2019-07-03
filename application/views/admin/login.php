@@ -24,7 +24,7 @@
 
                 <!-- <h1 class="logo-name"><img src="<?php echo base_url() ?>assets/logo.png"></h1> -->
                 <h1 class="logo-name">
-                	<img src="<?php echo base_url() ?>admin_assets/images/logo.png" alt="logo" /></h1>
+                	<img src="<?php echo base_url() ?>admin_assets/images/logo.png" width="300" alt="logo" /></h1>
 
             </div>
             <h3>Welcome to PharmEvo</h3>

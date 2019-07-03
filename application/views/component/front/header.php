@@ -47,7 +47,13 @@
                 </div>
                 <div class="collapse navbar-collapse" id="main-navbar">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?php echo base_url() ?>">Home</a>
+                        </li>
+                        <li class="nav-item <?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>">
+                            <a class="nav-link " href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item active" href="index.html">Home 1</a>
@@ -90,7 +96,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="sign-in">
                         <li class="nav-item dropdown">
@@ -107,14 +113,20 @@
                             </div>
                         </li>
                     </ul>
-                    <a class="tg-btn" href="post-ads.html">
+                    <!-- <a class="tg-btn" href="post-ads.html">
                         <i class="lni-pencil-alt"></i> Post An Ad
-                    </a>
+                    </a> -->
                 </div>
             </div>
 
             <ul class="mobile-menu">
                 <li>
+                    <a class="<?php echo (base_url(uri_string()) == base_url()) ? 'active' : '' ?>" href="<?php echo base_url() ?>">Home</a>
+                </li>
+                <li>
+                    <a class="<?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>" href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
+                </li>
+                <!-- <li>
                     <a class="active" href="#">Home</a>
                     <ul class="dropdown">
                         <li><a class="active" href="index.html">Home 1</a></li>
@@ -157,8 +169,8 @@
                 </li>
                 <li>
                     <a href="contact.html">Contact Us</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a>My Account</a>
                     <ul class="dropdown">
                         <li><a href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a></li>
@@ -170,12 +182,12 @@
                         <li><a href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a></li>
                         <li><a href="account-close.html"><i class="lni-close"></i>Account close</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
 
         </nav>
 
-        <div id="hero-area">
+        <!-- <div id="hero-area">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
@@ -230,6 +242,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </header>
