@@ -12,6 +12,7 @@ class Home extends Front_Controller {
 	public function index()
 	{
 		$this->data['title'] = 'Dashboard';
+		$this->data['slider'] = true;
 		$this->load->front_template('home',$this->data);
 	}
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 09:23 PM
+-- Generation Time: Jul 05, 2019 at 10:58 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -44,7 +44,8 @@ INSERT INTO `modules` (`id`, `name`, `main_name`, `sort`, `icon`, `url`, `user_i
 (2, 'Dashboard', 'dashboard', 1, 'home', 'home', 4),
 (3, 'Modules', 'modules', 4, 'home', 'modules', 4),
 (5, 'Role/Permission', 'role', 2, 'home', 'role', 4),
-(7, 'Users', 'user', 3, 'home', 'users', 2);
+(7, 'Users', 'user', 3, 'home', 'users', 2),
+(20, 'Pricing Plan', 'pricing_plan', 5, 'home', 'pricing_plan', 2);
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,37 @@ INSERT INTO `modules_fileds` (`id`, `name`, `type`, `filed_type`, `options`, `le
 (11, 'Title', 'VARCHAR', 'input', '', 255, 1, 18, 0, NULL, NULL, NULL),
 (12, 'Description', 'TEXT', 'textarea', '', 500, 1, 18, 0, NULL, NULL, NULL),
 (13, 'category', 'INT', 'input', '', 11, 1, 18, 1, 'id', 'blog_category', 'Name'),
-(14, 'image', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 18, 0, NULL, NULL, NULL);
+(14, 'image', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 18, 0, NULL, NULL, NULL),
+(15, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(16, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(17, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(18, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(19, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(20, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
+(21, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(22, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(23, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(24, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(25, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(26, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
+(27, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(28, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(29, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(30, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(31, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
+(32, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
+(33, 'Name', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(34, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(35, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(36, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(37, 'Amount', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(38, 'Duration', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(39, 'Name', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(40, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(41, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(42, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(43, 'Amount', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
+(44, 'Duration', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,18 +142,38 @@ CREATE TABLE `permission` (
 --
 
 INSERT INTO `permission` (`id`, `module_id`, `user_id`, `user_type_id`, `view`, `view_all`, `created`, `edit`, `deleted`, `disable`) VALUES
-(28, 2, 2, 13, 1, 0, 0, 0, 0, 0),
-(29, 3, 2, 13, 0, 1, 0, 1, 0, 0),
-(30, 5, 2, 13, 0, 0, 1, 0, 0, 0),
-(35, 2, 2, 14, 1, 0, 0, 0, 0, 0),
-(36, 3, 2, 14, 0, 0, 0, 0, 0, 0),
-(37, 5, 2, 14, 0, 0, 0, 0, 0, 0),
-(188, 2, 2, 1, 1, 1, 1, 1, 1, 1),
-(189, 3, 2, 1, 1, 1, 1, 1, 1, 1),
-(190, 5, 2, 1, 1, 1, 1, 1, 1, 1),
-(191, 7, 2, 1, 1, 1, 1, 1, 1, 1),
-(192, 17, 2, 1, 1, 1, 1, 1, 1, 1),
-(193, 18, 2, 1, 1, 1, 1, 1, 1, 1);
+(194, 2, 2, 1, 1, 1, 1, 1, 1, 1),
+(195, 3, 2, 1, 1, 1, 1, 1, 1, 1),
+(196, 5, 2, 1, 1, 1, 1, 1, 1, 1),
+(197, 7, 2, 1, 1, 1, 1, 1, 1, 1),
+(198, 20, 2, 1, 1, 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pricing_plan`
+--
+
+CREATE TABLE `pricing_plan` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Click_Price` varchar(100) NOT NULL,
+  `Refer_Click_Price` varchar(100) NOT NULL,
+  `Daily_Ads` varchar(100) NOT NULL,
+  `Amount` varchar(100) NOT NULL,
+  `Duration` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pricing_plan`
+--
+
+INSERT INTO `pricing_plan` (`id`, `Name`, `Click_Price`, `Refer_Click_Price`, `Daily_Ads`, `Amount`, `Duration`, `user_id`, `created_at`) VALUES
+(1, 'Silver', '1.20', '0.20', '100', '2000', '6', 2, '2019-07-02 18:21:11'),
+(2, 'Standard', '1.50', '0.30', '130', '3000', '6', 2, '2019-07-02 18:22:45'),
+(3, 'Platinum ', '1.70', '0.40', '170', '5000', '6', 2, '2019-07-02 18:23:56');
 
 -- --------------------------------------------------------
 
@@ -180,9 +231,7 @@ CREATE TABLE `user_type` (
 --
 
 INSERT INTO `user_type` (`id`, `name`, `user_id`) VALUES
-(1, 'Admin', 2),
-(13, 'Company', 2),
-(14, 'Distribution', 2);
+(1, 'Admin', 2);
 
 --
 -- Indexes for dumped tables
@@ -207,6 +256,12 @@ ALTER TABLE `permission`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pricing_plan`
+--
+ALTER TABLE `pricing_plan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -228,17 +283,22 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `modules_fileds`
 --
 ALTER TABLE `modules_fileds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+--
+-- AUTO_INCREMENT for table `pricing_plan`
+--
+ALTER TABLE `pricing_plan`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -248,7 +308,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
