@@ -53,6 +53,9 @@
                         <li class="nav-item <?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>">
                             <a class="nav-link " href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
                         </li>
+                        <li class="nav-item <?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>">
+                            <a class="nav-link " href="<?php echo base_url('clickads') ?>">Click Ads</a>
+                        </li>
                         <!-- <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
                             <div class="dropdown-menu">
@@ -100,8 +103,14 @@
                     </ul>
                     <ul class="sign-in">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a>
-                            <div class="dropdown-menu">
+                            <?php if (!$this->session->userdata('id')): ?>
+                            <a class="nav-link" href="<?php echo base_url('user/login') ?>"> Login</a>
+                            <a class="nav-link" href="<?php echo base_url('user/signup') ?>"> Signup</a>
+                            <?php else: ?>
+                            <a class="nav-link" href="<?php echo base_url('user/logout') ?>"> Logout</a>
+
+                            <!-- <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a> -->
+                            <!-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
                                 <a class="dropdown-item" href="account-myads.html"><i class="lni-wallet"></i> My Ads</a>
                                 <a class="dropdown-item" href="account-favourite-ads.html"><i class="lni-heart"></i> Favourite ads</a>
@@ -110,7 +119,9 @@
                                 <a class="dropdown-item" href="signup.html"><i class="lni-user"></i> Signup</a>
                                 <a class="dropdown-item" href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a>
                                 <a class="dropdown-item" href="account-close.html"><i class="lni-close"></i>Account close</a>
-                            </div>
+                            </div> -->
+                            <?php endif ?>
+
                         </li>
                     </ul>
                     <!-- <a class="tg-btn" href="post-ads.html">

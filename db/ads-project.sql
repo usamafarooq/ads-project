@@ -1,60 +1,72 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Jul 05, 2019 at 10:58 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+Source Server         : localhost
+Source Server Version : 50505
+Source Host           : localhost:3306
+Source Database       : ads-project
 
+Target Server Type    : MYSQL
+Target Server Version : 50505
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+Date: 2019-07-07 06:04:01
+*/
 
---
--- Database: `ads-project`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for `ads`
+-- ----------------------------
+DROP TABLE IF EXISTS `ads`;
+CREATE TABLE `ads` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `click` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Table structure for table `modules`
---
+-- ----------------------------
+-- Records of ads
+-- ----------------------------
+INSERT INTO `ads` VALUES ('1', 'Moiz', 'https://www.facebook.com', null, '123', '2', '2019-07-07 06:02:15');
+INSERT INTO `ads` VALUES ('2', 'Second company', 'https://www.facebook.com', '/uploads/18519754_524358311288210_2605788100714528157_n.jpg', null, '2', '2019-07-07 03:48:55');
 
+-- ----------------------------
+-- Table structure for `modules`
+-- ----------------------------
+DROP TABLE IF EXISTS `modules`;
 CREATE TABLE `modules` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `main_name` varchar(100) NOT NULL,
   `sort` int(11) NOT NULL,
   `icon` varchar(100) NOT NULL,
   `url` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `modules`
---
+-- ----------------------------
+-- Records of modules
+-- ----------------------------
+INSERT INTO `modules` VALUES ('2', 'Dashboard', 'dashboard', '1', 'home', 'home', '4');
+INSERT INTO `modules` VALUES ('3', 'Modules', 'modules', '4', 'home', 'modules', '4');
+INSERT INTO `modules` VALUES ('5', 'Role/Permission', 'role', '2', 'home', 'role', '4');
+INSERT INTO `modules` VALUES ('7', 'Users', 'user', '3', 'home', 'users', '2');
+INSERT INTO `modules` VALUES ('20', 'Pricing Plan', 'pricing_plan', '5', 'home', 'pricing_plan', '2');
+INSERT INTO `modules` VALUES ('21', 'Ads', 'ads', '6', 'home', 'ads', '2');
 
-INSERT INTO `modules` (`id`, `name`, `main_name`, `sort`, `icon`, `url`, `user_id`) VALUES
-(2, 'Dashboard', 'dashboard', 1, 'home', 'home', 4),
-(3, 'Modules', 'modules', 4, 'home', 'modules', 4),
-(5, 'Role/Permission', 'role', 2, 'home', 'role', 4),
-(7, 'Users', 'user', 3, 'home', 'users', 2),
-(20, 'Pricing Plan', 'pricing_plan', 5, 'home', 'pricing_plan', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `modules_fileds`
---
-
+-- ----------------------------
+-- Table structure for `modules_fileds`
+-- ----------------------------
+DROP TABLE IF EXISTS `modules_fileds`;
 CREATE TABLE `modules_fileds` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `filed_type` varchar(100) NOT NULL,
@@ -65,67 +77,67 @@ CREATE TABLE `modules_fileds` (
   `is_relation` int(11) NOT NULL,
   `relation_column` varchar(100) DEFAULT NULL,
   `relation_table` varchar(100) DEFAULT NULL,
-  `value_column` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `value_column` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `modules_fileds`
---
+-- ----------------------------
+-- Records of modules_fileds
+-- ----------------------------
+INSERT INTO `modules_fileds` VALUES ('1', 'name', 'VARCHAR', 'input', '', '100', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('2', 'gender', 'VARCHAR', 'radio', 'male,female', '100', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('3', 'relationship_status', 'VARCHAR', 'select', 'single,married,divorced,widowed', '100', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('4', 'image', 'VARCHAR', 'file', 'jpg,png,jpeg,gif', '100', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('5', 'education', 'VARCHAR', 'checkbox', 'matric,inter,bachlor', '255', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('6', 'message', 'TEXT', 'textarea', '', '255', '1', '15', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('7', 'Name', 'VARCHAR', 'input', '', '100', '1', '16', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('8', 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', '255', '1', '16', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('9', 'Name', 'VARCHAR', 'input', '', '100', '1', '17', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('10', 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', '255', '1', '17', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('11', 'Title', 'VARCHAR', 'input', '', '255', '1', '18', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('12', 'Description', 'TEXT', 'textarea', '', '500', '1', '18', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('13', 'category', 'INT', 'input', '', '11', '1', '18', '1', 'id', 'blog_category', 'Name');
+INSERT INTO `modules_fileds` VALUES ('14', 'image', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', '255', '1', '18', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('15', 'Name', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('16', 'Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('17', 'Refer_Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('18', 'Daily_Ads', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('19', 'Amount', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('20', 'Months', 'VARCHAR', 'input', '', '10', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('21', 'Name', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('22', 'Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('23', 'Refer_Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('24', 'Daily_Ads', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('25', 'Amount', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('26', 'Months', 'VARCHAR', 'input', '', '10', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('27', 'Name', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('28', 'Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('29', 'Refer_Click_Price', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('30', 'Daily_Ads', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('31', 'Amount', 'VARCHAR', 'input', '', '100', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('32', 'Months', 'VARCHAR', 'input', '', '10', '1', '19', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('33', 'Name', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('34', 'Click_Price', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('35', 'Refer_Click_Price', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('36', 'Daily_Ads', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('37', 'Amount', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('38', 'Duration', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('39', 'Name', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('40', 'Click_Price', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('41', 'Refer_Click_Price', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('42', 'Daily_Ads', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('43', 'Amount', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('44', 'Duration', 'VARCHAR', 'input', '', '100', '1', '20', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('45', 'Name', 'VARCHAR', 'input', '', '255', '1', '21', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('46', 'link', 'VARCHAR', 'input', '', '255', '1', '21', '0', null, null, null);
+INSERT INTO `modules_fileds` VALUES ('47', 'image', 'VARCHAR', 'file', 'file', '255', '0', '21', '0', null, null, null);
 
-INSERT INTO `modules_fileds` (`id`, `name`, `type`, `filed_type`, `options`, `length`, `required`, `module_id`, `is_relation`, `relation_column`, `relation_table`, `value_column`) VALUES
-(1, 'name', 'VARCHAR', 'input', '', 100, 1, 15, 0, NULL, NULL, NULL),
-(2, 'gender', 'VARCHAR', 'radio', 'male,female', 100, 1, 15, 0, NULL, NULL, NULL),
-(3, 'relationship_status', 'VARCHAR', 'select', 'single,married,divorced,widowed', 100, 1, 15, 0, NULL, NULL, NULL),
-(4, 'image', 'VARCHAR', 'file', 'jpg,png,jpeg,gif', 100, 1, 15, 0, NULL, NULL, NULL),
-(5, 'education', 'VARCHAR', 'checkbox', 'matric,inter,bachlor', 255, 1, 15, 0, NULL, NULL, NULL),
-(6, 'message', 'TEXT', 'textarea', '', 255, 1, 15, 0, NULL, NULL, NULL),
-(7, 'Name', 'VARCHAR', 'input', '', 100, 1, 16, 0, NULL, NULL, NULL),
-(8, 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 16, 0, NULL, NULL, NULL),
-(9, 'Name', 'VARCHAR', 'input', '', 100, 1, 17, 0, NULL, NULL, NULL),
-(10, 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 17, 0, NULL, NULL, NULL),
-(11, 'Title', 'VARCHAR', 'input', '', 255, 1, 18, 0, NULL, NULL, NULL),
-(12, 'Description', 'TEXT', 'textarea', '', 500, 1, 18, 0, NULL, NULL, NULL),
-(13, 'category', 'INT', 'input', '', 11, 1, 18, 1, 'id', 'blog_category', 'Name'),
-(14, 'image', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 18, 0, NULL, NULL, NULL),
-(15, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(16, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(17, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(18, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(19, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(20, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
-(21, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(22, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(23, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(24, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(25, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(26, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
-(27, 'Name', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(28, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(29, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(30, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(31, 'Amount', 'VARCHAR', 'input', '', 100, 1, 19, 0, NULL, NULL, NULL),
-(32, 'Months', 'VARCHAR', 'input', '', 10, 1, 19, 0, NULL, NULL, NULL),
-(33, 'Name', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(34, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(35, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(36, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(37, 'Amount', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(38, 'Duration', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(39, 'Name', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(40, 'Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(41, 'Refer_Click_Price', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(42, 'Daily_Ads', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(43, 'Amount', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL),
-(44, 'Duration', 'VARCHAR', 'input', '', 100, 1, 20, 0, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permission`
---
-
+-- ----------------------------
+-- Table structure for `permission`
+-- ----------------------------
+DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `module_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `user_type_id` int(11) NOT NULL,
@@ -134,28 +146,47 @@ CREATE TABLE `permission` (
   `created` int(11) DEFAULT '0',
   `edit` int(11) NOT NULL DEFAULT '0',
   `deleted` int(11) NOT NULL DEFAULT '0',
-  `disable` int(11) NOT NULL DEFAULT '0'
+  `disable` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of permission
+-- ----------------------------
+INSERT INTO `permission` VALUES ('199', '2', '2', '2', '0', '0', '0', '0', '0', '0');
+INSERT INTO `permission` VALUES ('200', '3', '2', '2', '0', '0', '0', '0', '0', '0');
+INSERT INTO `permission` VALUES ('201', '5', '2', '2', '0', '0', '0', '0', '0', '0');
+INSERT INTO `permission` VALUES ('202', '7', '2', '2', '0', '0', '0', '0', '0', '0');
+INSERT INTO `permission` VALUES ('203', '20', '2', '2', '0', '0', '0', '0', '0', '0');
+INSERT INTO `permission` VALUES ('204', '2', '2', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `permission` VALUES ('205', '3', '2', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `permission` VALUES ('206', '5', '2', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `permission` VALUES ('207', '7', '2', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `permission` VALUES ('208', '20', '2', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `permission` VALUES ('209', '21', '2', '1', '1', '1', '1', '1', '1', '1');
+
+-- ----------------------------
+-- Table structure for `plan_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `plan_user`;
+CREATE TABLE `plan_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `pricing_plan_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `permission`
---
+-- ----------------------------
+-- Records of plan_user
+-- ----------------------------
 
-INSERT INTO `permission` (`id`, `module_id`, `user_id`, `user_type_id`, `view`, `view_all`, `created`, `edit`, `deleted`, `disable`) VALUES
-(194, 2, 2, 1, 1, 1, 1, 1, 1, 1),
-(195, 3, 2, 1, 1, 1, 1, 1, 1, 1),
-(196, 5, 2, 1, 1, 1, 1, 1, 1, 1),
-(197, 7, 2, 1, 1, 1, 1, 1, 1, 1),
-(198, 20, 2, 1, 1, 1, 1, 1, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pricing_plan`
---
-
+-- ----------------------------
+-- Table structure for `pricing_plan`
+-- ----------------------------
+DROP TABLE IF EXISTS `pricing_plan`;
 CREATE TABLE `pricing_plan` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   `Click_Price` varchar(100) NOT NULL,
   `Refer_Click_Price` varchar(100) NOT NULL,
@@ -163,152 +194,79 @@ CREATE TABLE `pricing_plan` (
   `Amount` varchar(100) NOT NULL,
   `Duration` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pricing_plan`
---
+-- ----------------------------
+-- Records of pricing_plan
+-- ----------------------------
+INSERT INTO `pricing_plan` VALUES ('1', 'Silver', '1.20', '0.20', '100', '2000', '6', '2', '2019-07-02 23:21:11');
+INSERT INTO `pricing_plan` VALUES ('2', 'Standard', '1.50', '0.30', '130', '3000', '6', '2', '2019-07-02 23:22:45');
+INSERT INTO `pricing_plan` VALUES ('3', 'Platinum ', '1.70', '0.40', '170', '5000', '6', '2', '2019-07-02 23:23:56');
 
-INSERT INTO `pricing_plan` (`id`, `Name`, `Click_Price`, `Refer_Click_Price`, `Daily_Ads`, `Amount`, `Duration`, `user_id`, `created_at`) VALUES
-(1, 'Silver', '1.20', '0.20', '100', '2000', '6', 2, '2019-07-02 18:21:11'),
-(2, 'Standard', '1.50', '0.30', '130', '3000', '6', 2, '2019-07-02 18:22:45'),
-(3, 'Platinum ', '1.70', '0.40', '170', '5000', '6', 2, '2019-07-02 18:23:56');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
+-- ----------------------------
+-- Table structure for `users`
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
+  `cnic` varchar(16) DEFAULT NULL,
+  `jazz_no` varchar(16) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `referrer` varchar(11) DEFAULT NULL,
+  `status` enum('Inactive','Pending','Approved') DEFAULT 'Pending',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('2', 'admin', '', '', '', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', '1', '', '', '0', null, 'Approved', '2019-07-06 03:32:45', '2019-07-07 02:45:38', null);
+INSERT INTO `users` VALUES ('3', 'abdul', 'moiz', 'moiz.hanif', '0323423423', 'moiz.hanif786@gmail.com', 'e6e061838856bf47e1de730719fb2609', '2', '234543234323', '09875432', '0', '0', 'Approved', '2019-07-07 02:44:58', '2019-07-07 04:18:19', null);
+INSERT INTO `users` VALUES ('6', 'Abdul', 'Moiz', 'm0zee', '0123123123', 'amoiz.hanif786@gmail.com', 'e6e061838856bf47e1de730719fb2609', '2', '123123123123', '1234567', '0', 'moiz.hanif7', 'Pending', '2019-07-07 04:15:25', '2019-07-07 04:18:20', null);
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
-(2, 'admin', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', 1),
-(4, 'admin1', 'admin1@gmail.com', 'e6e061838856bf47e1de730719fb2609', 1),
-(5, 'Udata', 'Udata@gmail.com', '5327b0d1bfa868acb9baac5a9d901815', 14),
-(6, 'mob', 'admindd@gmail.com', '6cf0a3d27fdc438e4ee601448e452e48', 14),
-(9, 'rtrt', 'adminsdee@milya.com', '532b7cbe070a3579f424988a040752f2', 14),
-(10, 'musa', 'musa@gmail.com', 'c45d99e5638d1f9f801b545096003a8d', 14),
-(12, 'rtrteree', 'adminsdeee11@milya.com', '0acf3d81f151df5994a88f039e636228', 14),
-(13, 'musaeeee', 'mus22a@gmail.com', 'dbc4d84bfcfe2284ba11beffb853a8c4', 14),
-(14, 'hero11', 'hero11@milya.com', '0acf3d81f151df5994a88f039e636228', 14),
-(15, 'hero22', 'hero22@gmail.com', 'dbc4d84bfcfe2284ba11beffb853a8c4', 14),
-(16, 'rest11', 'rest11@milya.com', '0acf3d81f151df5994a88f039e636228', 14),
-(17, 'west22', 'hwest22@gmail.com', 'dbc4d84bfcfe2284ba11beffb853a8c4', 14),
-(18, 'opp', 'opp@milya.com', 'e201220da86c13f4d9badaab658fa973', 14),
-(19, 'urrr', 'urrr@gmail.com', '549ce24fb62238d013a6e222cb4d41d8', 14),
-(20, 'DADU', 'DADU@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 14),
-(21, 'AHSAN', 'AHSAN@gmail.com', 'd6a9a933c8aafc51e55ac0662b6e4d4a', 14),
-(22, '21321', 'dasdas', 'd41d8cd98f00b204e9800998ecf8427e', 14),
-(26, 'xyzmg', 'xyzmg@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 14),
-(27, 'mojjojo1', 'mojjojo1@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 14);
+-- ----------------------------
+-- Table structure for `user_package`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_package`;
+CREATE TABLE `user_package` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `package_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of user_package
+-- ----------------------------
+INSERT INTO `user_package` VALUES ('1', '3', '1');
+INSERT INTO `user_package` VALUES ('2', '6', '3');
 
---
--- Table structure for table `user_type`
---
-
+-- ----------------------------
+-- Table structure for `user_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_type`;
 CREATE TABLE `user_type` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user_type`
---
-
-INSERT INTO `user_type` (`id`, `name`, `user_id`) VALUES
-(1, 'Admin', 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `modules`
---
-ALTER TABLE `modules`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `modules_fileds`
---
-ALTER TABLE `modules_fileds`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `permission`
---
-ALTER TABLE `permission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pricing_plan`
---
-ALTER TABLE `pricing_plan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `user_type`
---
-ALTER TABLE `user_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `modules`
---
-ALTER TABLE `modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT for table `modules_fileds`
---
-ALTER TABLE `modules_fileds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
---
--- AUTO_INCREMENT for table `permission`
---
-ALTER TABLE `permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
---
--- AUTO_INCREMENT for table `pricing_plan`
---
-ALTER TABLE `pricing_plan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `user_type`
---
-ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of user_type
+-- ----------------------------
+INSERT INTO `user_type` VALUES ('1', 'Admin', '2');
+INSERT INTO `user_type` VALUES ('2', 'User', '2');

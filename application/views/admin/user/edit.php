@@ -37,7 +37,7 @@
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Name<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" name="name" type="text" value="<?php echo $user['name'] ?>" id="example-text-input" placeholder="" required="">
+                                    <input class="form-control" name="first_name" type="text" value="<?php echo $user['first_name'] ?>" id="example-text-input" placeholder="" required="">
                                 </div>
 
                             </div>

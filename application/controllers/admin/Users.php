@@ -26,6 +26,7 @@ class Users extends MY_Controller {
         elseif ($this->permission['view'] == '1') {
             $this->data['users'] = $this->User_model->get_users($this->id);
         }
+
         $this->data['permission'] = $this->permission;
         $this->load->template('admin/user/index',$this->data);
     }
@@ -105,6 +106,14 @@ class Users extends MY_Controller {
             redirect('admin/home');
         }
         $this->User_model->delete('users',array('id'=>$id));
+        redirect('admin/users');
+    }
+
+    public function status($user_id, $status)
+    {
+        $data = ['status' => ucfirst($status)];
+        $this->User_model->update('users', $data, ['id' => $user_id]);
+        $this->session->set_flashdata('success', 'Successfully updated');
         redirect('admin/users');
     }
 }

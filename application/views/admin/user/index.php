@@ -42,6 +42,13 @@
 													<th>Id</th>
 													<th>Name</th>
 													<th>Email</th>
+													<th>Phone</th>
+													<th>Jazz/Warid no</th>
+													<th>CNIC</th>
+													<th>City</th>
+													<th>Referrer</th>
+													<th>Package</th>
+													<th>Status</th>
 													<th>Role</th>
 													<?php 
 														if ($permission['edit'] == '1' || $permission['deleted'] == '1'){
@@ -56,8 +63,28 @@
 										    	?>
 												<tr>
 													<td><?php echo $user['id'] ?></td>
-													<td><?php echo $user['name'] ?></td>
+													<td><?php echo $user['first_name'].' '. $user['last_name'] ?></td>
 													<td><?php echo $user['email'] ?></td>
+													<td><?php echo $user['phone'] ?></td>
+													<td><?php echo $user['jazz_no'] ?></td>
+													<td><?php echo $user['cnic'] ?></td>
+													<td><?php echo $user['city_id'] ?></td>
+													<td><?php echo $user['referrer'] ?></td>
+													<td><?php echo $user['package'] ?></td>
+													<td>
+														<?php if ($user['status'] == 'Pending'): ?>
+															
+														<a href="<?php echo base_url() ?>admin/users/status/<?php echo $user['id'] ?>/approved" onclick="return confirm('are you sure you want to change status')"><?php echo $user['status'] ?></a>
+														<?php elseif($user['status'] == 'Approved') :?>
+														<a href="<?php echo base_url() ?>admin/users/status/<?php echo $user['id'] ?>/inactive" onclick="return confirm('are you sure you want to change status')"><?php echo $user['status'] ?></a>
+														<?php else: ?>
+														<a href="<?php echo base_url() ?>admin/users/status/<?php echo $user['id'] ?>/approved" onclick="return confirm('are you sure you want to change status')"><?php echo $user['status'] ?></a>
+
+														<?php endif ?>
+
+														<!-- <?php //echo $user['status'] ?> -->
+															
+													</td>
 													<td><?php echo $user['role'] ?></td>
 													<?php 
 														if ($permission['edit'] == '1' || $permission['deleted'] == '1'){
@@ -68,10 +95,11 @@
 														?>
 														<a href="<?php echo base_url() ?>admin/users/edit/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
 														<?php } ?>
+
 														<?php 
 															if ($permission['deleted'] == '1') {
 														?>
-		                                                <a href="<?php echo base_url() ?>admin/users/delete/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
+		                                                <a href="<?php echo base_url() ?>admin/users/delete/<?php echo $user['id'] ?>" onclick="return confirm('are you sure you want to delete?')"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
 		                                                <?php } ?>
 	                                                </td>
 	                                                <?php } ?>

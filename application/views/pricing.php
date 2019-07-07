@@ -51,7 +51,7 @@
                             <li><strong>Daily Ads</strong> <?php echo $value['Daily_Ads'] ?></li>
                             <li><strong>For <?php echo $value['Duration'] ?></strong> Months</li>
                         </ul>
-                        <button class="btn btn-common">Buy Now</button>
+                        <a href="<?php echo base_url('user/signup'.'?plan='.$value['id']) ?>"><button class="btn btn-common">Buy Now</button></a>
                     </div>
                 </div>
                 <?php endforeach; ?>
