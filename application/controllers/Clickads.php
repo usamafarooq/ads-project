@@ -7,6 +7,7 @@ class Clickads extends Front_Controller {
     {
         parent::__construct();
         $this->load->model('Ads_model');
+        $this->load->model('User_model');
     }
 
 	public function index()
@@ -27,7 +28,11 @@ class Clickads extends Front_Controller {
 
 	public function save_view()
 	{
-		
+		$id = $this->input->post('id');
+		$user = $this->User_model->get_users($this->session->userdata('id'));
+		$this->db->set('click', 'click+1', FALSE);
+		$this->db->where('id', $id);
+		$this->db->update('ads');
 	}
 
 

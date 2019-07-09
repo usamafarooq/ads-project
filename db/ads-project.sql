@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-07-10 01:51:32
+Date: 2019-07-10 02:34:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,6 +25,7 @@ CREATE TABLE `ads` (
   `link` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `click` int(11) DEFAULT NULL,
+  `total_clicked` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -33,8 +34,8 @@ CREATE TABLE `ads` (
 -- ----------------------------
 -- Records of ads
 -- ----------------------------
-INSERT INTO `ads` VALUES ('1', 'Moiz', 'https://www.facebook.com', null, '123', '2', '2019-07-07 06:02:15');
-INSERT INTO `ads` VALUES ('2', 'Second company', 'https://www.facebook.com', '/uploads/18519754_524358311288210_2605788100714528157_n.jpg', null, '2', '2019-07-07 03:48:55');
+INSERT INTO `ads` VALUES ('1', 'Moiz', 'https://www.facebook.com', null, '123', null, '2', '2019-07-07 06:02:15');
+INSERT INTO `ads` VALUES ('2', 'Second company', 'https://www.facebook.com', '/uploads/18519754_524358311288210_2605788100714528157_n.jpg', null, null, '2', '2019-07-07 03:48:55');
 
 -- ----------------------------
 -- Table structure for `modules`
@@ -255,24 +256,6 @@ CREATE TABLE `user_ads_view` (
 -- ----------------------------
 -- Records of user_ads_view
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `user_package`
--- ----------------------------
-DROP TABLE IF EXISTS `user_package`;
-CREATE TABLE `user_package` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `package_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of user_package
--- ----------------------------
-INSERT INTO `user_package` VALUES ('1', '3', '1');
-INSERT INTO `user_package` VALUES ('2', '6', '3');
-INSERT INTO `user_package` VALUES ('3', '7', '2');
 
 -- ----------------------------
 -- Table structure for `user_type`

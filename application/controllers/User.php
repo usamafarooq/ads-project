@@ -26,7 +26,7 @@ class User extends Front_Controller {
 			];
 			$this->User_model->insert('plan_user', $data);
 			$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-			// redirect('user/signup','refresh');
+			redirect('user/signup','refresh');
 		}
 		$this->load->front_template('user/signup',$this->data);
 	}
