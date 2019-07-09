@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-07-07 06:04:01
+Date: 2019-07-10 01:51:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -175,11 +175,12 @@ CREATE TABLE `plan_user` (
   `pricing_plan_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of plan_user
 -- ----------------------------
+INSERT INTO `plan_user` VALUES ('1', '10', '1', '2019-07-10 01:36:29');
 
 -- ----------------------------
 -- Table structure for `pricing_plan`
@@ -222,20 +223,38 @@ CREATE TABLE `users` (
   `jazz_no` varchar(16) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `referrer` varchar(11) DEFAULT NULL,
+  `amount` decimal(10,3) DEFAULT NULL,
   `status` enum('Inactive','Pending','Approved') DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('2', 'admin', '', '', '', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', '1', '', '', '0', null, 'Approved', '2019-07-06 03:32:45', '2019-07-07 02:45:38', null);
-INSERT INTO `users` VALUES ('3', 'abdul', 'moiz', 'moiz.hanif', '0323423423', 'moiz.hanif786@gmail.com', 'e6e061838856bf47e1de730719fb2609', '2', '234543234323', '09875432', '0', '0', 'Approved', '2019-07-07 02:44:58', '2019-07-07 04:18:19', null);
-INSERT INTO `users` VALUES ('6', 'Abdul', 'Moiz', 'm0zee', '0123123123', 'amoiz.hanif786@gmail.com', 'e6e061838856bf47e1de730719fb2609', '2', '123123123123', '1234567', '0', 'moiz.hanif7', 'Pending', '2019-07-07 04:15:25', '2019-07-07 04:18:20', null);
+INSERT INTO `users` VALUES ('2', 'admin', '', '', '', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', '1', '', '', '0', null, null, 'Approved', '2019-07-06 03:32:45', '2019-07-07 02:45:38', null);
+INSERT INTO `users` VALUES ('10', 'Abdul', 'Moiz', 'm0zee', '1231231123', 'moiz.hanif786@gmail.com', '4297f44b13955235245b2497399d7a93', '2', '234543234323', '09875432', '0', '', null, 'Approved', '2019-07-10 01:36:29', '2019-07-10 01:38:06', null);
+
+-- ----------------------------
+-- Table structure for `user_ads_view`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_ads_view`;
+CREATE TABLE `user_ads_view` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `ad_id` int(11) NOT NULL,
+  `amount` decimal(10,3) NOT NULL,
+  `referrer_amount` decimal(10,3) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_ads_view
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `user_package`
@@ -246,13 +265,14 @@ CREATE TABLE `user_package` (
   `user_id` int(11) DEFAULT NULL,
   `package_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_package
 -- ----------------------------
 INSERT INTO `user_package` VALUES ('1', '3', '1');
 INSERT INTO `user_package` VALUES ('2', '6', '3');
+INSERT INTO `user_package` VALUES ('3', '7', '2');
 
 -- ----------------------------
 -- Table structure for `user_type`

@@ -17,6 +17,19 @@ class Clickads extends Front_Controller {
 
 	}
 
+	public function view($id)
+	{
+		$this->data['ads'] = $this->Ads_model->get_row_single('ads', ['id' => $id]);
+		$this->data['title'] = $this->data['ads']['Name'];
+		$this->load->front_template('ads/view',$this->data);
+	}
+
+
+	public function save_view()
+	{
+		
+	}
+
 
 
 }

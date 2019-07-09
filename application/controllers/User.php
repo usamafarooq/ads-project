@@ -22,11 +22,11 @@ class User extends Front_Controller {
 			$user_id = $this->User_model->insert('users', $data);
 			$data = [
 				'user_id' => $user_id,
-				'package_id' => $package,
+				'pricing_plan_id' => $package,
 			];
-			$this->User_model->insert('user_package', $data);
+			$this->User_model->insert('plan_user', $data);
 			$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-			redirect('user/signup','refresh');
+			// redirect('user/signup','refresh');
 		}
 		$this->load->front_template('user/signup',$this->data);
 	}

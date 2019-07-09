@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/responsive.css') ?>">
     
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/colors/purple.css') ?>">
+    <script>var base_url = <?php echo base_url() ?></script>
 </head>
 
 <body>
