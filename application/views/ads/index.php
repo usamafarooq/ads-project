@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="breadcrumb-wrapper">
-					<h2 class="product-title">Listings</h2>
+					<h2 class="product-title">Ads List</h2>
 					<ol class="breadcrumb">
 						<li><a href="#">Home /</a></li>
-						<li class="current">Listings</li>
+						<li class="current">Ads List</li>
 					</ol>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 									<?php foreach ($ads as $ad): ?>
 												
 								
-										<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+										<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
 											<div class="featured-box">
 												<figure>
 													
@@ -48,6 +48,12 @@
 
 									<?php endforeach ?>
 
+									<?php else: ?>
+
+
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-danger" >
+											No ad(s) available
+										</div>
 
 								<?php endif ?>
 
@@ -58,7 +64,7 @@
 				</div>
 
 
-				<div class="pagination-bar">
+				<!-- <div class="pagination-bar">
 					<nav>
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link active" href="#">1</a></li>
@@ -67,7 +73,7 @@
 							<li class="page-item"><a class="page-link" href="#">Next</a></li>
 						</ul>
 					</nav>
-				</div>
+				</div> -->
 
 			</div>
 		</div>

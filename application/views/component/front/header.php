@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/responsive.css') ?>">
     
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/colors/purple.css') ?>">
-    <script>var base_url = <?php echo base_url() ?></script>
+    <script>var base_url = '<?php echo base_url() ?>'</script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
                         <span class="lni-menu"></span>
                         <span class="lni-menu"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand"><img src="<?php echo base_url('front_assets/img/logo.png') ?>" alt=""></a>
+                    <a href="<?php echo base_url() ?>" class="navbar-brand"><img src="<?php echo base_url('front_assets/img/logo.png') ?>" alt=""></a>
                 </div>
                 <div class="collapse navbar-collapse" id="main-navbar">
                     <ul class="navbar-nav mr-auto">

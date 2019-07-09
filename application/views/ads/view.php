@@ -5,11 +5,12 @@
 		</div>
 	</div>
 </div>
+<script src="<?php echo base_url() ?>front_assets/js/jquery-min.js"></script>
 
 <script>
 	setTimeout(function(){ 
 		$.ajax({
-		 	url: base_url+'clickads/save_view',
+		 	url: '<?php echo base_url() ?>clickads/save_view',
 		 	type: 'POST',
 		 	dataType: 'json',
 		 	data: {id: '<?php echo $ads["id"] ?>'},
@@ -21,5 +22,5 @@
 		 	}
 		 })
 		  
-	}, 3000);
+	}, 30000);
 </script>
