@@ -7,10 +7,14 @@ class User extends Front_Controller {
     {
         parent::__construct();
         $this->load->model('User_model');
+
     }
 
 	public function signup()
 	{
+		if ($this->session->userdata('role') == 2) {
+        	redirect('/','refresh');
+        }
 		$this->data['title'] = 'Signup';
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 		if ($this->input->post()) {
@@ -34,6 +38,9 @@ class User extends Front_Controller {
 
 	public function login()
 	{
+		if ($this->session->userdata('role') == 2) {
+        	redirect('/','refresh');
+        }
 		$this->data['title'] = 'Login';
 		// $this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 		if ($this->input->post()) {
@@ -55,6 +62,52 @@ class User extends Front_Controller {
 			redirect('/clickads','refresh');
 		}
 		$this->load->front_template('user/login',$this->data);
+	}
+
+	public function edit()
+	{
+		if ($this->session->userdata('role') != 2) {
+        	redirect('/','refresh');
+        }
+		$this->data['title'] = 'Edit Profile';
+		$id = $this->session->userdata('id');
+		if ($this->input->post()) {
+        	$data = $this->input->post();
+        	unset($data['con_password']);
+        	if (!empty($data['password'])) {
+        		$data['password'] = md5($data['password']);
+        	}
+        	else{
+        		unset($data['password']);
+        	}
+        	$this->User_model->update('users',$data,array('id'=>$id));
+        	$this->session->set_flashdata('success', 'profile has been updated');
+        	redirect('user/edit');
+        }
+		$this->data['user'] = $this->User_model->get_row_single('users',array('id'=>$id));
+		$this->load->front_template('user/edit',$this->data);
+	}
+
+	public function referrals()
+	{
+		if ($this->session->userdata('role') != 2) {
+        	redirect('/','refresh');
+        }
+		$email = $this->session->userdata('email');
+		$this->data['title'] = 'My Referrals';
+		$this->data['users'] = $this->User_model->get_referrer($email);
+		$this->load->front_template('user/referrals',$this->data);
+	}
+
+	public function payments()
+	{
+		if ($this->session->userdata('role') != 2) {
+        	redirect('/','refresh');
+        }
+		$id = $this->session->userdata('id');
+		$this->data['title'] = 'Payment History';
+		$this->data['payments'] = $this->User_model->get_rows('withdraw',array('User'=>$id));
+		$this->load->front_template('user/payments',$this->data);
 	}
 
 	public function logout()

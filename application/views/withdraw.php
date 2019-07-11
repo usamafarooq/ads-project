@@ -22,6 +22,7 @@
                     <h2 class="intro-title">MY ACCOUNT - WITHDAW / CASH YOUR EARNINGS</h2>
                     <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
                     <p>Get CASH. You must earn at least Rs.500</p><br>
+                    <p>Your current amount is Rs.<?php echo round($user['amount']) ?></p><br>
                     <?php if($user['amount'] > 500): ?>
                     <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                 <?php endif; ?>

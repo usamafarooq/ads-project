@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2019 at 12:22 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Generation Time: Jul 11, 2019 at 02:16 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -253,7 +255,7 @@ CREATE TABLE `users` (
   `cnic` varchar(16) DEFAULT NULL,
   `jazz_no` varchar(16) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
-  `referrer` varchar(11) DEFAULT NULL,
+  `referrer` varchar(100) DEFAULT NULL,
   `amount` decimal(10,3) DEFAULT NULL,
   `status` enum('Inactive','Pending','Approved') DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -266,8 +268,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `phone`, `email`, `password`, `role`, `cnic`, `jazz_no`, `city_id`, `referrer`, `amount`, `status`, `created_at`, `updated_at`, `updated_by`) VALUES
-(2, 'admin', '', '', '', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', 1, '', '', 0, NULL, NULL, 'Approved', '2019-07-05 22:32:45', '2019-07-06 21:45:38', NULL),
-(10, 'Abdul', 'Moiz', 'm0zee', '1231231123', 'moiz.hanif786@gmail.com', '4297f44b13955235245b2497399d7a93', 2, '234543234323', '09875432', 0, '', '0.000', 'Approved', '2019-07-09 20:36:29', '2019-07-09 22:12:29', NULL);
+(2, 'admin', '', '', '', 'admin@gmail.com', 'e6e061838856bf47e1de730719fb2609', 1, '', '', 0, '', NULL, 'Approved', '2019-07-05 22:32:45', '2019-07-11 10:49:37', NULL),
+(10, 'Abdul', 'Moiz', 'm0zee', '1231231123', 'moiz.hanif786@gmail.com', '4297f44b13955235245b2497399d7a93', 2, '234543234323', '09875432', 0, 'moiz.hanif786@gmail.com', '1.200', 'Approved', '2019-07-09 20:36:29', '2019-07-11 10:49:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -283,6 +285,13 @@ CREATE TABLE `user_ads_view` (
   `referrer_amount` decimal(10,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_ads_view`
+--
+
+INSERT INTO `user_ads_view` (`id`, `user_id`, `ad_id`, `amount`, `referrer_amount`, `created_at`) VALUES
+(1, 10, 1, '1.200', '0.200', '2019-07-11 08:35:59');
 
 -- --------------------------------------------------------
 
@@ -315,16 +324,17 @@ CREATE TABLE `withdraw` (
   `User` int(11) NOT NULL,
   `Amount` varchar(100) NOT NULL,
   `Status` varchar(100) NOT NULL,
+  `approve_date` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `withdraw`
 --
 
-INSERT INTO `withdraw` (`id`, `User`, `Amount`, `Status`, `user_id`, `created_at`) VALUES
-(1, 10, '1000', 'Approve', 0, '2019-07-09 22:21:50');
+INSERT INTO `withdraw` (`id`, `User`, `Amount`, `Status`, `approve_date`, `user_id`, `created_at`) VALUES
+(1, 10, '1000', 'Approve', '2019-07-11 13:59:52', 0, '2019-07-11 11:59:52');
 
 --
 -- Indexes for dumped tables
@@ -400,51 +410,62 @@ ALTER TABLE `withdraw`
 --
 ALTER TABLE `ads`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `modules_fileds`
 --
 ALTER TABLE `modules_fileds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+
 --
 -- AUTO_INCREMENT for table `plan_user`
 --
 ALTER TABLE `plan_user`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `pricing_plan`
 --
 ALTER TABLE `pricing_plan`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `user_ads_view`
 --
 ALTER TABLE `user_ads_view`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `withdraw`
 --
 ALTER TABLE `withdraw`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

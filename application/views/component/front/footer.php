@@ -16,9 +16,9 @@
                         <div class="widget">
                             <h3 class="block-title">Help & Support</h3>
                             <ul class="menu">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Contact us</a></li>
+                                <li><a href="<?php echo base_url('about') ?>">About Us</a></li>
+                                <li><a href="<?php echo base_url('terms') ?>">Terms</a></li>
+                                <li><a href="<?php echo base_url('contact') ?>">Contact us</a></li>
                             </ul>
                         </div>
                     </div>

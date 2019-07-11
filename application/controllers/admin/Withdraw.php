@@ -64,7 +64,7 @@
 		}
 		public function approve($id)
 		{
-			$id = $this->Withdraw_model->update('withdraw',array('Status'=>'Approve'),array('id'=>$id));
+			$id = $this->Withdraw_model->update('withdraw',array('Status'=>'Approve', 'approve_date'=>date('Y-m-d H:i:s')),array('id'=>$id));
 			if ($id) {
 				redirect('admin/withdraw');
 			}

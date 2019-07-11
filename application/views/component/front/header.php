@@ -51,11 +51,19 @@
                         <li class="nav-item ">
                             <a class="nav-link" href="<?php echo base_url() ?>">Home</a>
                         </li>
+                        <?php if ($this->session->userdata('role') != 2) { ?>
                         <li class="nav-item <?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>">
                             <a class="nav-link " href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
                         </li>
+                        <?php } ?>
                         <li class="nav-item <?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>">
                             <a class="nav-link " href="<?php echo base_url('clickads') ?>">Click Ads</a>
+                        </li>
+                        <li class="nav-item <?php echo (base_url(uri_string()) == base_url('about')) ? 'active' : '' ?>">
+                            <a class="nav-link " href="<?php echo base_url('about') ?>">About Us</a>
+                        </li>
+                        <li class="nav-item <?php echo (base_url(uri_string()) == base_url('contact')) ? 'active' : '' ?>">
+                            <a class="nav-link " href="<?php echo base_url('contact') ?>">Contact Us</a>
                         </li>
                         <!-- <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
@@ -108,19 +116,23 @@
                             <a class="nav-link" href="<?php echo base_url('user/login') ?>"> Login</a>
                             <a class="nav-link" href="<?php echo base_url('user/signup') ?>"> Signup</a>
                             <?php else: ?>
-                            <a class="nav-link" href="<?php echo base_url('user/logout') ?>"> Logout</a>
+                            <!-- <a class="nav-link" href="<?php echo base_url('user/logout') ?>"> Logout</a> -->
 
-                            <!-- <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a> -->
-                            <!-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a>
+                                <a class="dropdown-item" href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a>
+                                <a class="dropdown-item" href="<?php echo base_url('payments') ?>"><i class="lni-sort-amount-asc"></i> Payment History</a>
+                                <a class="dropdown-item" href="<?php echo base_url('user/logout') ?>"> <i class="lni-close"></i>Logout</a>
+                                <!-- <a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
                                 <a class="dropdown-item" href="account-myads.html"><i class="lni-wallet"></i> My Ads</a>
                                 <a class="dropdown-item" href="account-favourite-ads.html"><i class="lni-heart"></i> Favourite ads</a>
                                 <a class="dropdown-item" href="account-archived-ads.html"><i class="lni-folder"></i> Archived</a>
                                 <a class="dropdown-item" href="login.html"><i class="lni-lock"></i> Log In</a>
                                 <a class="dropdown-item" href="signup.html"><i class="lni-user"></i> Signup</a>
                                 <a class="dropdown-item" href="forgot-password.html"><i class="lni-reload"></i> Forgot Password</a>
-                                <a class="dropdown-item" href="account-close.html"><i class="lni-close"></i>Account close</a>
-                            </div> -->
+                                <a class="dropdown-item" href="account-close.html"><i class="lni-close"></i>Account close</a> -->
+                            </div>
                             <?php endif ?>
 
                         </li>

@@ -14,4 +14,16 @@ class User_model extends MY_Model
 		}
 		return $this->db->get()->result_array();
 	}
+
+	public function get_referrer($email)
+	{
+		$this->db->select('u.username,u.status, count(ua.id) as visit,sum(ua.amount) as earning, date(pu.created_at) as date, p.Duration')
+				 ->from('users u')
+				 ->join('user_ads_view ua', 'ua.user_id = u.id', 'left')
+				 ->join('plan_user pu', 'pu.user_id = u.id', 'left')
+				 ->join('pricing_plan p', 'pu.pricing_plan_id = p.id', 'left')
+				 ->group_by('u.id')
+				 ->where('u.email', $email);
+		return $this->db->get()->result_array();
+	}
 }

@@ -7,6 +7,9 @@ class Pricing extends Front_Controller {
     {
         parent::__construct();
         $this->load->model('Pricing_plan_model');
+        if ($this->session->userdata('role') == 2) {
+        	redirect('/','refresh');
+        }
     }
 
 	public function index()
