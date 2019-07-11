@@ -28,4 +28,15 @@ class Ads_model extends MY_Model{
 		$result = $this->db->get()->result_array();
 		return $result;
 	}
+
+
+
+	public function checkViewedAds($user_id, $date)
+	{
+		$this->db->select()
+		->from('user_ads_view')
+		->where(['user_id' => $user_id]);
+		$result = $this->db->get()->result_array();
+		return $result;
+	}
 }

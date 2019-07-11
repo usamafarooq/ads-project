@@ -28,6 +28,8 @@
     
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/colors/purple.css') ?>">
     <script>var base_url = '<?php echo base_url() ?>'</script>
+    
+    <script src="<?php echo base_url('front_assets/js/jquery-min.js') ?>"></script>
 </head>
 
 <body>

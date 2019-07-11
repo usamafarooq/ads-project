@@ -62,5 +62,14 @@ class Clickads extends Front_Controller {
 	}
 
 
+	public function checkViewedAds()
+	{
+		$user_id = $this->session->userdata('id');
+		$response = $this->Ads_model->checkViewedAds($user_id, date('Y-m-d'));
+		echo json_encode(['status' => 200, 'data' => $response]);
+		
+	}
+
+
 
 }

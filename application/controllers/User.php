@@ -7,6 +7,7 @@ class User extends Front_Controller {
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->library('form_validation');
 
     }
 
@@ -15,9 +16,84 @@ class User extends Front_Controller {
 		if ($this->session->userdata('role') == 2) {
         	redirect('/','refresh');
         }
+
+
 		$this->data['title'] = 'Signup';
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
-		if ($this->input->post()) {
+
+		 $rules =
+		 	[
+		        [
+	                'field' => 'first_name',
+	                'label' => 'First name',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'last_name',
+	                'label' => 'Last name',
+	                'rules' => 'required'
+		        ],
+
+		        [
+	                'field' => 'username',
+	                'label' => 'Username',
+	                'rules' => 'required|is_unique[users.username]'
+		        ],
+		        [
+	                'field' => 'phone',
+	                'label' => 'Mobile No',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'email',
+	                'label' => 'Email',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 're_email',
+	                'label' => 'Re-Type Email',
+	                'rules' => 'required|matches[email]'
+		        ],
+		        [
+	                'field' => 'password',
+	                'label' => 'Password',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'con_password',
+	                'label' => 'Confirm Password',
+	                'rules' => 'required|matches[password]'
+		        ],
+
+		        [
+	                'field' => 'cnic',
+	                'label' => 'CNIC',
+	                'rules' => 'required|matches[password]'
+		        ],
+		        [
+	                'field' => 'jazz_no',
+	                'label' => 'jazz Cash',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'city_id',
+	                'label' => 'city',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'package',
+	                'label' => 'package',
+	                'rules' => 'required'
+		        ],
+		        [
+	                'field' => 'terms',
+	                'label' => 'terms',
+	                'rules' => 'required'
+		        ],
+		    ];
+
+		$this->form_validation->set_rules($rules);
+		if ($this->form_validation->run()) {
 			$package = $this->input->post('package');
 			$data = $this->input->post();
 			unset($data['package'], $data['re_email'], $data['con_password'], $data['terms']);

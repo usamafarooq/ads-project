@@ -1,3 +1,10 @@
+<style>
+	.strike-through{
+		text-decoration: overline line-through underline;
+		color: #ab47bc !important;
+	}
+</style>
+
 <div class="page-header" style="background: url(assets/img/banner1.jpg);">
 	<div class="container">
 		<div class="row">
@@ -31,7 +38,7 @@
 									<?php foreach ($ads as $ad): ?>
 												
 								
-										<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+										<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2" data-id="<?php echo $ad['id'] ?>">
 											<div class="featured-box">
 												<figure>
 													
@@ -40,7 +47,7 @@
 												<div class="feature-content">
 													<hr>
 													
-													<h4><a target="__blank" href="<?php echo base_url('clickads/view/'.$ad['id']) ?>"><?php echo $ad['Name'] ?></a></h4>
+													<h4><a target="__blank" class="highlight" href="<?php echo base_url('clickads/view/'.$ad['id']) ?>"><?php echo $ad['Name'] ?></a></h4>
 													
 												</div>
 											</div>
@@ -79,3 +86,36 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+window.setInterval(function() {
+		$.ajax({
+			url: base_url+'clickads/checkViewedAds',
+			type: 'GET',
+			dataType: 'json',
+			success:function(res){
+				if (res.status == 200 && res.data.length > 0) {
+					$.each(res.data, function(i, v) {
+						$this = $('div [data-id='+v.ad_id+']');
+						if ($this.length > 0) 
+						{
+							$($this).find('.highlight').addClass('strike-through');
+							anchor = $($this).find('a');
+							if (anchor.length > 0) 
+							{
+								$.each(anchor, function(index, val) {
+									$(val).attr('href', '#');
+								});
+							}
+						}
+					});
+				}
+			}
+		});
+		
+	}, 3000);
+	
+
+	
+</script>
