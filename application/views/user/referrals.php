@@ -42,9 +42,9 @@
                                     <tr data-category="active">
                                         <td><?php echo ($key + 1) ?></td>
                                         <td data-title="Title"><h3><?php echo $user['username'] ?></h3></td>
-                                        <td><?php echo $user['username'] ?></td>
                                         <td><?php echo $user['visit'] ?></td>
                                         <td><?php echo $user['earning'] ?></td>
+                                        <td><?php echo $user['paid'] ?></td>
                                         <td><?php echo date('d M, Y', strtotime($user['date'])) ?></td>
                                         <td><?php echo date('d M, Y', strtotime($user['date'].' +'.$user['Duration'].' month')) ?></td>
                                         <!-- <td><?php echo $user['username'] ?></td> -->

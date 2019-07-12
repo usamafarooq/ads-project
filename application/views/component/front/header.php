@@ -152,6 +152,15 @@
                 <li>
                     <a class="<?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>" href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
                 </li>
+                <li>
+                    <a class="<?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>" href="<?php echo base_url('clickads') ?>">Click Ads</a>
+                </li>
+                <li>
+                    <a class="<?php echo (base_url(uri_string()) == base_url('about')) ? 'active' : '' ?>" href="<?php echo base_url('about') ?>">About Us</a>
+                </li>
+                <li>
+                    <a class="<?php echo (base_url(uri_string()) == base_url('contact')) ? 'active' : '' ?>" href="<?php echo base_url('contact') ?>">Contact Us</a>
+                </li>
                 <!-- <li>
                     <a class="active" href="#">Home</a>
                     <ul class="dropdown">
@@ -196,6 +205,15 @@
                 <li>
                     <a href="contact.html">Contact Us</a>
                 </li> -->
+                <li>
+                    <a>My Account</a>
+                    <ul class="dropdown">
+                        <li><a href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a></li>
+                        <li><a href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a></li>
+                        <li><a href="<?php echo base_url('payments') ?>"><i class="lni-sort-amount-asc"></i> Payment History</a></li>
+                        <li><a href="<?php echo base_url('user/logout') ?>"> <i class="lni-close"></i>Logout</a></li>
+                    </ul>
+                </li>
                 <!-- <li>
                     <a>My Account</a>
                     <ul class="dropdown">

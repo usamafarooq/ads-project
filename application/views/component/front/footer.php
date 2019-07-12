@@ -74,7 +74,11 @@
         </div>
 
     </footer>
-
+    <style type="text/css">
+        .help-block.with-errors {
+            color: #dc3545!important;
+        }
+    </style>
     <a href="#" class="back-to-top">
         <i class="lni-chevron-up"></i>
     </a>
