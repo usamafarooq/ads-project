@@ -22,18 +22,18 @@
 
 <script>
 	setTimeout(function(){
-		// $.ajax({
-		//  	url: '<?php echo base_url() ?>clickads/save_view',
-		//  	type: 'POST',
-		//  	dataType: 'json',
-		//  	data: {id: '<?php echo $ads["id"] ?>'},
-		//  	success: function(res){
-		//  		if (res.status == 200) 
-		//  		{
-		//  			window.top.close();
-		//  		}
-		//  	}
-		//  })
+		$.ajax({
+		 	url: '<?php echo base_url() ?>clickads/save_view',
+		 	type: 'POST',
+		 	dataType: 'json',
+		 	data: {id: '<?php echo $ads["id"] ?>'},
+		 	success: function(res){
+		 		if (res.status == 200) 
+		 		{
+		 			window.top.close();
+		 		}
+		 	}
+		 })
 		  
 	}, 30000);
 	time = 30; 

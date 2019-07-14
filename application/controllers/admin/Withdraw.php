@@ -68,7 +68,7 @@
 			if ($id) {
 
 				$withdraw = $this->User_model->get_row_single('withdraw',array('id'=>$id));
-				$user = $this->User_model->get_row_single('users',array('id'=>$withdraw['User']);
+				$user = $this->User_model->get_row_single('users',array('id'=>$withdraw['User']));
 				$template = $this->load->view('email/withdraw_request_approved', $user, TRUE);
 				send_mail(NULL, $user['email'], 'Withdraw request Approved', $template);
 				

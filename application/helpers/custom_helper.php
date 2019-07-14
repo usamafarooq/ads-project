@@ -26,15 +26,16 @@ if (!function_exists('convertToBase64'))
 		    'mailtype'  => 'html', 
 		    'charset'   => 'iso-8859-1'
 		];
-		$this->load->library('email', $config);
+		$ci = & get_instance();
+		$ci->load->library('email', $config);
 		
-		$this->email->from($from, $data['name']);
-		$this->email->to($to);
+		$ci->email->from($from, $data['name']);
+		$ci->email->to($to);
 		
-		$this->email->subject($subject);
-		$this->email->message($template);
+		$ci->email->subject($subject);
+		$ci->email->message($template);
 		
-		$this->email->send();
+		$ci->email->send();
 		return true;
 		
 		// echo $this->email->print_debugger();

@@ -31,6 +31,7 @@ class User extends Front_Controller {
 				unset($data['package'], $data['re_email'], $data['con_password'], $data['terms']);
 				$data['password'] = md5($data['password']);
 				$data['role'] = 2;
+				$user_data = $data;
 				$user_id = $this->User_model->insert('users', $data);
 				$data = [
 					'user_id' => $user_id,
@@ -38,7 +39,7 @@ class User extends Front_Controller {
 				];
 				$this->User_model->insert('plan_user', $data);
 				$template = $this->load->view('email/signup', $data, TRUE);
-				send_mail(NULL, $data['email'], 'Signup', $template);
+				send_mail(NULL, $user_data['email'], 'Signup', $template);
 				$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
 				redirect('user/signup','refresh');
 			}
