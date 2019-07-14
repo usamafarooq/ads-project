@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" name="phone" placeholder="Mobile/WhatsApp No.">
+                                        <input type="text" class="form-control" required="" name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No.">
                                     </div>
                                     <?php //if (form_error('phone')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('phone') ?></div>
@@ -120,7 +120,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" required="" name="cnic" placeholder="CNIC">
+                                        <input type="text" class="form-control" required="" data-inputmask="'mask': '99999-9999999-9'" name="cnic" placeholder="CNIC">
                                     </div>
                                     <?php //if (form_error('cnic')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('cnic') ?></div>
@@ -129,7 +129,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" name="jazz_no" placeholder="Jazz/Warid Cash No.">
+                                        <input type="text" class="form-control" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No.">
                                     </div>
                                     <?php //if (form_error('jazz_no')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('jazz_no') ?></div>
@@ -144,10 +144,9 @@
                                     <div class="input-icon">
                                         <select class="form-control select100" required="" name="city_id" id="city">
                                             <option value="">Select City</option>
-                                            <option value="Islamabad">Islamabad</option>
-                                            <option value="Karachi">Karachi</option>
-                                            <option value="Lahore">Lahore</option>
-                                            <option value="Faislabad">Faislabad</option>
+                                            <?php foreach ($cities as $city): ?>
+                                            <option value="<?php echo $city['name'] ?>"><?php echo $city['name'] ?></option>
+                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                     <?php //if (form_error('city_id')): ?>
@@ -157,7 +156,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" id="referrer" name="referrer" placeholder="Not Have? Leave Blank">
+                                        <input type="email" class="form-control" id="referrer" name="referrer" placeholder="Not Have? Leave Blank">
                                     </div>
                                     <?php //if (form_error('referrer')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('referrer') ?></div>
@@ -207,3 +206,6 @@
             </div>
         </div>
     </section>
+<script>
+    $(":input").inputmask();
+</script>

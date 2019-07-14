@@ -35,6 +35,7 @@ if (!function_exists('convertToBase64'))
 		$this->email->message($template);
 		
 		$this->email->send();
+		return true;
 		
 		// echo $this->email->print_debugger();
 	}

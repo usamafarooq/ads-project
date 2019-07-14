@@ -30,6 +30,8 @@
     <script>var base_url = '<?php echo base_url() ?>'</script>
     
     <script src="<?php echo base_url('front_assets/js/jquery-min.js') ?>"></script>
+    <script src="<?php echo base_url('front_assets/js/jquery.inputmask.min.js') ?>"></script>
+    <!-- <script src="https://raw.githubusercontent.com/RobinHerbots/Inputmask/5.x/dist/inputmask.js"></script> -->
 </head>
 
 <body>

@@ -16,28 +16,32 @@ class User extends Front_Controller {
 		if ($this->session->userdata('role') == 2) {
         	redirect('/','refresh');
         }
-
+        $this->data['cities'] = $this->db->where_in('state_id', ['2723', '2724', '2725', '2726', '2727', '2728', '2729'])->get('cities')->result_array();
+        
 
 		$this->data['title'] = 'Signup';
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
-
+		$this->form_validation->set_rules('username', 'Username', 'is_unique[users.username]');
+		$this->form_validation->set_rules('email', 'Email', 'is_unique[users.email]');
+		if ($this->form_validation->run()) {
 		
-		if ($this->input->post()) {
-			$package = $this->input->post('package');
-			$data = $this->input->post();
-			unset($data['package'], $data['re_email'], $data['con_password'], $data['terms']);
-			$data['password'] = md5($data['password']);
-			$data['role'] = 2;
-			$user_id = $this->User_model->insert('users', $data);
-			$data = [
-				'user_id' => $user_id,
-				'pricing_plan_id' => $package,
-			];
-			$this->User_model->insert('plan_user', $data);
-			$template = $this->load->view('email/signup', $data, TRUE);
-			send_mail(NULL, $data['email'], 'Signup', $template);
-			$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-			// redirect('user/signup','refresh');
+			if ($this->input->post()) {
+				$package = $this->input->post('package');
+				$data = $this->input->post();
+				unset($data['package'], $data['re_email'], $data['con_password'], $data['terms']);
+				$data['password'] = md5($data['password']);
+				$data['role'] = 2;
+				$user_id = $this->User_model->insert('users', $data);
+				$data = [
+					'user_id' => $user_id,
+					'pricing_plan_id' => $package,
+				];
+				$this->User_model->insert('plan_user', $data);
+				$template = $this->load->view('email/signup', $data, TRUE);
+				send_mail(NULL, $data['email'], 'Signup', $template);
+				$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
+				redirect('user/signup','refresh');
+			}
 		}
 		$this->load->front_template('user/signup',$this->data);
 	}
@@ -83,6 +87,7 @@ class User extends Front_Controller {
 		if ($this->session->userdata('role') != 2) {
         	redirect('/','refresh');
         }
+        $this->data['cities'] = $this->db->where_in('state_id', ['2723', '2724', '2725', '2726', '2727', '2728', '2729'])->get('cities')->result_array();
 		$this->data['title'] = 'Edit Profile';
 		$id = $this->session->userdata('id');
 		if ($this->input->post()) {
