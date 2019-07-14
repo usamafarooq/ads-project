@@ -57,11 +57,18 @@ class Clickads extends Front_Controller {
 		$this->db->set('total_clicked', 'total_clicked+1', FALSE);
 		$this->db->where('id', $id);
 		$this->db->update('ads');
+		$referrer_amount = 0;
+		if (!empty($user[0]['referrer'])) {
+			$referrer = $this->User_model->get_referer_user_data( $user[0]['referrer'] );
+			$referrer_amount = $referrer['Refer_Click_Price'];
+		}
+
+		
 		$data = [
 			'user_id' => $user_id,
 			'ad_id' => $id,
 			'amount' => $user[0]['Click_Price'],
-			'referrer_amount' => $user[0]['Refer_Click_Price']
+			'referrer_amount' => $referrer_amount
 		];
 		
 		$this->db->set('amount', 'amount+'.$user[0]['Click_Price'], FALSE);
@@ -70,7 +77,7 @@ class Clickads extends Front_Controller {
 
 		if (!empty($user[0]['referrer'])) {
 			$this->db->set('amount', 'amount+'.$user[0]['Refer_Click_Price'], FALSE);
-			$this->db->where('id', $user_id);
+			$this->db->where('email', $user[0]['referrer']);
 			$this->db->update('users');
 		}
 

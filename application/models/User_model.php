@@ -27,4 +27,16 @@ class User_model extends MY_Model
 				 ->where('u.referrer', $email);
 		return $this->db->get()->result_array();
 	}
+
+
+	public function get_referer_user_data($referrer_email)
+	{
+		$this->db->select('u.*, pp.Refer_Click_Price')
+		->from('users u')
+		->join('plan_user pu', 'pu.user_id = u.id')
+		->join('pricing_plan pp', 'pp.id = pu.pricing_plan_id')
+		->where('u.email', $referrer_email);
+		$result = $this->db->get()->row_array();
+		return $result;
+	}
 }
