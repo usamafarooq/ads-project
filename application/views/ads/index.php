@@ -33,6 +33,17 @@
 					<div class="tab-content">
 						<div id="grid-view" class="tab-pane fade active show">
 							<div class="row">
+								<div class="col md-6">
+									<ul>
+										<li> Daily Ads Limit : <span class="ads_limit"><?php echo $user['Daily_Ads'] ?></span> </li>
+										<li> Available Limit : <span class="ads_limit"><?php echo $limit ?></span> </li>
+										<li> Account Status : <span class="ads_limit"><?php echo $user['status'] ?></span> </li>
+									</ul>
+									
+									
+								</div>
+							</div>
+							<div class="row">
 
 								<?php if (!empty($ads)): ?>
 									<?php foreach ($ads as $ad): ?>

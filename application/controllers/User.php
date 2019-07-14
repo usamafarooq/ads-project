@@ -21,79 +21,8 @@ class User extends Front_Controller {
 		$this->data['title'] = 'Signup';
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 
-		 $rules =
-		 	[
-		        [
-	                'field' => 'first_name',
-	                'label' => 'First name',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'last_name',
-	                'label' => 'Last name',
-	                'rules' => 'required'
-		        ],
-
-		        [
-	                'field' => 'username',
-	                'label' => 'Username',
-	                'rules' => 'required|is_unique[users.username]'
-		        ],
-		        [
-	                'field' => 'phone',
-	                'label' => 'Mobile No',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'email',
-	                'label' => 'Email',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 're_email',
-	                'label' => 'Re-Type Email',
-	                'rules' => 'required|matches[email]'
-		        ],
-		        [
-	                'field' => 'password',
-	                'label' => 'Password',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'con_password',
-	                'label' => 'Confirm Password',
-	                'rules' => 'required|matches[password]'
-		        ],
-
-		        [
-	                'field' => 'cnic',
-	                'label' => 'CNIC',
-	                'rules' => 'required|matches[password]'
-		        ],
-		        [
-	                'field' => 'jazz_no',
-	                'label' => 'jazz Cash',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'city_id',
-	                'label' => 'city',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'package',
-	                'label' => 'package',
-	                'rules' => 'required'
-		        ],
-		        [
-	                'field' => 'terms',
-	                'label' => 'terms',
-	                'rules' => 'required'
-		        ],
-		    ];
-
-		$this->form_validation->set_rules($rules);
-		if ($this->form_validation->run()) {
+		
+		if ($this->input->post()) {
 			$package = $this->input->post('package');
 			$data = $this->input->post();
 			unset($data['package'], $data['re_email'], $data['con_password'], $data['terms']);
@@ -105,8 +34,10 @@ class User extends Front_Controller {
 				'pricing_plan_id' => $package,
 			];
 			$this->User_model->insert('plan_user', $data);
+			$template = $this->load->view('email/signup', $data, TRUE);
+			send_mail(NULL, $data['email'], 'Signup', $template);
 			$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-			redirect('user/signup','refresh');
+			// redirect('user/signup','refresh');
 		}
 		$this->load->front_template('user/signup',$this->data);
 	}
@@ -126,7 +57,14 @@ class User extends Front_Controller {
 				$this->session->set_flashdata('error', $message);
 				redirect('user/login','refresh');
 			}
-			if ($user['status'] == 'Pending') $message = 'Your account will be active when admin will approve your account';
+			if ($user['status'] == 'Pending'){
+				$created_at = date_create(date('Y-m-d', strtotime($user['created_at'])));
+				$today = date_create(date('Y-m-d'));
+
+				if (date_diff($created_at, $today)->days > 5 ) {
+					$message = 'Your account will be active when admin will approve your account';
+				}
+			} 
 			if ($user['status'] == 'Inactive') $message = 'Your account is Inactive please contact admin to active your account';
 			if ($user['password'] != md5($this->input->post('password'))) $message = 'Incorrect Password';
 			if (!empty($message)) {

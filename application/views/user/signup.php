@@ -22,26 +22,26 @@
                         <h3>
                             Signup
                         </h3>
-                        <form class="login-form" method="POST">
+                        <form class="login-form validate-signup" method="POST">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                                        <input type="text" class="form-control" required="" name="first_name" placeholder="First Name">
                                     </div>
-                                    <?php if (form_error('first_name')): ?>
+                                    <?php //if (form_error('first_name')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('first_name') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="last_name" placeholder="Last Name">
+                                        <input type="text"class="form-control" required="" name="last_name" placeholder="Last Name">
                                     </div>
-                                    <?php if (form_error('last_name')): ?>
+                                    <?php //if (form_error('last_name')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('last_name') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -51,20 +51,20 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" id="Name" class="form-control" name="username" placeholder="Username">
+                                        <input type="text" class="form-control" required="" name="username" placeholder="Username">
                                     </div>
-                                    <?php if (form_error('username')): ?>
+                                    <?php //if (form_error('username')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('username') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="phone" placeholder="Mobile/WhatsApp No.">
+                                        <input type="text" class="form-control" required="" name="phone" placeholder="Mobile/WhatsApp No.">
                                     </div>
-                                    <?php if (form_error('phone')): ?>
+                                    <?php //if (form_error('phone')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('phone') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -74,20 +74,20 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" name="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" required="" name="email" placeholder="Email">
                                     </div>
-                                    <?php if (form_error('email')): ?>
+                                    <?php //if (form_error('email')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('email') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="re_email" placeholder="Re-type Email">
+                                        <input type="email" class="form-control" required="" name="re_email" placeholder="Re-type Email">
                                     </div>
-                                    <?php if (form_error('re_email')): ?>
+                                    <?php //if (form_error('re_email')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('re_email') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -97,20 +97,20 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="password" id="Name" class="form-control" name="password" placeholder="Password">
+                                        <input type="password" id="password" class="form-control" required="" name="password" placeholder="Password">
                                     </div>
-                                    <?php if (form_error('password')): ?>
+                                    <?php //if (form_error('password')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('password') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="password" id="sender-email" class="form-control" name="con_password" placeholder="Confirm Password">
+                                        <input type="password" class="form-control" required="" id="c-password" name="con_password" placeholder="Confirm Password">
                                     </div>
-                                    <?php if (form_error('con_password')): ?>
+                                    <?php //if (form_error('con_password')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('con_password') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -120,20 +120,20 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" id="Name" class="form-control" name="cnic" placeholder="CNIC">
+                                        <input type="text" class="form-control" required="" name="cnic" placeholder="CNIC">
                                     </div>
-                                    <?php if (form_error('cnic')): ?>
+                                    <?php //if (form_error('cnic')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('cnic') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="jazz_no" placeholder="Jazz/Warid Cash No.">
+                                        <input type="text" class="form-control" required="" name="jazz_no" placeholder="Jazz/Warid Cash No.">
                                     </div>
-                                    <?php if (form_error('jazz_no')): ?>
+                                    <?php //if (form_error('jazz_no')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('jazz_no') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <select class="form-control select100" name="city_id" id="city">
+                                        <select class="form-control select100" required="" name="city_id" id="city">
                                             <option value="">Select City</option>
                                             <option value="Islamabad">Islamabad</option>
                                             <option value="Karachi">Karachi</option>
@@ -150,18 +150,18 @@
                                             <option value="Faislabad">Faislabad</option>
                                         </select>
                                     </div>
-                                    <?php if (form_error('city_id')): ?>
+                                    <?php //if (form_error('city_id')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('city_id') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" id="sender-email" class="form-control" name="referrer" placeholder="Not Have? Leave Blank">
+                                        <input type="text" class="form-control" required="" id="referrer" name="referrer" placeholder="Not Have? Leave Blank">
                                     </div>
-                                    <?php if (form_error('referrer')): ?>
+                                    <?php //if (form_error('referrer')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('referrer') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <select class="form-control" name="package">
+                                        <select class="form-control" required="" name="package">
                                             <option value="">Select Package</option>
                                             <?php if ($pricing_plan) : ?>
                                                 <?php foreach ($pricing_plan as $pricing): ?>
@@ -179,21 +179,21 @@
                                             <?php endif ?>
                                         </select>
                                     </div>
-                                    <?php if (form_error('package')): ?>
+                                    <?php //if (form_error('package')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('package') ?></div>
-                                    <?php endif ?>
+                                    <?php //endif ?>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-3 col-md-6">
                                 <div class="checkbox">
-                                    <input type="checkbox" name="terms">
+                                    <input type="checkbox" required="" name="terms">
                                     <label>By registering, you accept our Terms & Conditions</label>
                                 </div>
-                                <?php if (form_error('terms')): ?>
+                                <?php //if (form_error('terms')): ?>
                                     <div class="help-block text-danger"><?php echo form_error('terms') ?></div>
-                                <?php endif ?>
+                                <?php //endif ?>
                             </div>
                             
                             

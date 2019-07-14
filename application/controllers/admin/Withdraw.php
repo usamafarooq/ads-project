@@ -66,6 +66,13 @@
 		{
 			$id = $this->Withdraw_model->update('withdraw',array('Status'=>'Approve', 'approve_date'=>date('Y-m-d H:i:s')),array('id'=>$id));
 			if ($id) {
+
+				$withdraw = $this->User_model->get_row_single('withdraw',array('id'=>$id));
+				$user = $this->User_model->get_row_single('users',array('id'=>$withdraw['User']);
+				$template = $this->load->view('email/withdraw_request_approved', $user, TRUE);
+				send_mail(NULL, $user['email'], 'Withdraw request Approved', $template);
+				
+				$this->session->set_flashdata('success', 'Record updated');
 				redirect('admin/withdraw');
 			}
 		}

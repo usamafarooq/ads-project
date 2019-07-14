@@ -103,6 +103,8 @@
     <script src="<?php echo base_url('front_assets/js/form-validator.min.js') ?>"></script>
     <script src="<?php echo base_url('front_assets/js/contact-form-script.min.js') ?>"></script>
     <script src="<?php echo base_url('front_assets/js/summernote.js') ?>"></script>
+    <script src="<?php echo base_url('front_assets/js/validation.js') ?>"></script>
+    <script src="<?php echo base_url('front_assets/js/custom-validation.js') ?>"></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ class User_model extends MY_Model
 				 ->join('pricing_plan p', 'pu.pricing_plan_id = p.id', 'left')
 				 ->join('withdraw w', 'w.User = u.id and w.Status = "Approve"', 'left')
 				 ->group_by('u.id')
-				 ->where('u.email', $email);
+				 ->where('u.referrer', $email);
 		return $this->db->get()->result_array();
 	}
 }

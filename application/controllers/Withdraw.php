@@ -29,6 +29,10 @@ class Withdraw extends Front_Controller {
 		);
 		$withdraw_id = $this->User_model->insert('withdraw', $data);
 		$this->User_model->update('users',array('amount'=>0),array('id'=>$id));
+
+		$template = $this->load->view('email/withdraw_request', $user, TRUE);
+		send_mail(NULL, $user['email'], 'Withdraw request', $template);
+		$this->session->set_flashdata('success', 'Your withdraw request generated successfully');
 		redirect('withdraw');
 	}
 

@@ -8,23 +8,40 @@ class Clickads extends Front_Controller {
         parent::__construct();
         $this->load->model('Ads_model');
         $this->load->model('User_model');
-        if ($this->session->userdata('role') != 2) {
+        if ($this->session->userdata('role') != 2 ) {
         	redirect('/','refresh');
         }
     }
 
 	public function index()
 	{
+		
 		$user_id = $this->session->userdata('id');
-		$user = $this->User_model->get_users($user_id);
+		$user = $this->User_model->get_users($user_id)[0];
+		$this->db->select('ad_id')
+		        ->from('user_ads_view')
+		        ->where('user_id', $user['id'])
+		        ->where('created_at >=', date('Y-m-d'))
+		        ->where('created_at <=', date('Y-m-d 23:59:59'));
+		$query = $this->db->get()->result();
+
+		$limit = $user['Daily_Ads'] - count($query);
+		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
+
+
+		$this->data['user'] = $user;
 		$this->data['title'] = 'Ads List';
-		$this->data['ads'] = $this->Ads_model->get_available_for_user($user[0]);
+		$this->data['ads'] = $this->Ads_model->get_available_for_user($user, $this->data['limit']);
 		$this->load->front_template('ads/index',$this->data);
 
 	}
 
 	public function view($id)
 	{
+		if ($this->session->userdata('status') != 'Approved') {
+			$this->session->set_flashdata('error', 'Your account is not approved');
+			redirect('/clickads');
+		}
 		$this->data['ads'] = $this->Ads_model->get_row_single('ads', ['id' => $id]);
 		$this->data['title'] = $this->data['ads']['Name'];
 		$this->load->view('ads/view', $this->data);
