@@ -6,7 +6,9 @@ class Login extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $this->is_login();
+        if ($this->uri->segment(3) != 'logout') {
+        	$this->is_login();
+        }
         $this->load->model('Login_model');
     }
 
@@ -35,5 +37,11 @@ class Login extends CI_Controller {
 			$this->session->set_flashdata('error', 'Email and Password do not match');
 			redirect("admin/login");
 		}
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('/admin','refresh');
 	}
 }

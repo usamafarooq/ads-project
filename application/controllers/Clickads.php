@@ -76,7 +76,7 @@ class Clickads extends Front_Controller {
 		$this->db->update('users');
 
 		if (!empty($user[0]['referrer'])) {
-			$this->db->set('amount', 'amount+'.$user[0]['Refer_Click_Price'], FALSE);
+			$this->db->set('amount', 'amount+'.$referrer_amount, FALSE);
 			$this->db->where('email', $user[0]['referrer']);
 			$this->db->update('users');
 		}
@@ -89,8 +89,11 @@ class Clickads extends Front_Controller {
 	public function checkViewedAds()
 	{
 		$user_id = $this->session->userdata('id');
+		$user = $this->User_model->get_users($user_id)[0];
+		$this->session->set_userdata('status', $user['status']);
 		$response = $this->Ads_model->checkViewedAds($user_id, date('Y-m-d'));
-		echo json_encode(['status' => 200, 'data' => $response]);
+		$available_limit = $user['Daily_Ads'] - count($response);
+		echo json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]);
 		
 	}
 

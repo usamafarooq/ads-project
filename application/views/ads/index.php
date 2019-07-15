@@ -35,9 +35,9 @@
 							<div class="row">
 								<div class="col md-6">
 									<ul>
-										<li> Daily Ads Limit : <span class="ads_limit"><?php echo $user['Daily_Ads'] ?></span> </li>
+										<li> Daily Ads Limit : <span><?php echo $user['Daily_Ads'] ?></span> </li>
 										<li> Available Limit : <span class="ads_limit"><?php echo $limit ?></span> </li>
-										<li> Account Status : <span class="ads_limit"><?php echo $user['status'] ?></span> </li>
+										<li> Account Status : <span><?php echo $user['status'] ?></span> </li>
 									</ul>
 									
 									
@@ -107,6 +107,7 @@ window.setInterval(function() {
 			dataType: 'json',
 			success:function(res){
 				if (res.status == 200 && res.data.length > 0) {
+					$('.ads_limit').text(res.available_limit);
 					$.each(res.data, function(i, v) {
 						$this = $('div [data-id='+v.ad_id+']');
 						if ($this.length > 0) 

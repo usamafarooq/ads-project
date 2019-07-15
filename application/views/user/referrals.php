@@ -32,6 +32,7 @@
                                         <th width="5%">Visits</th>
                                         <th width="15%">Earning</th>
                                         <th width="15%">Total Paid</th>
+                                        <th width="15%">My Earning</th>
                                         <th width="15%">Premium Date</th>
                                         <th width="15%">Expiry Date</th>
                                         <th width="15%">Account Status</th>
@@ -45,30 +46,10 @@
                                         <td><?php echo $user['visit'] ?></td>
                                         <td><?php echo $user['earning'] ?></td>
                                         <td><?php echo $user['paid'] ?></td>
+                                        <td><?php echo $user['my_earning'] ?></td>
                                         <td><?php echo date('d M, Y', strtotime($user['date'])) ?></td>
                                         <td><?php echo date('d M, Y', strtotime($user['date'].' +'.$user['Duration'].' month')) ?></td>
-                                        <!-- <td><?php echo $user['username'] ?></td> -->
                                         <td><?php echo $user['status'] ?></td>
-                                        <!-- <td>
-                                            1
-                                        </td>
-                                        <td class="photo"><img class="img-fluid" src="assets/img/product/img1.jpg" alt=""></td>
-                                        <td data-title="Title">
-                                            <h3>HP Laptop 6560b core i3 3nd generation</h3>
-                                            <span>Ad ID: ng3D5hAMHPajQrM</span>
-                                        </td>
-                                        <td data-title="Category"><span class="adcategories">Laptops & PCs</span></td>
-                                        <td data-title="Ad Status"><span class="adstatus adstatusactive">active</span></td>
-                                        <td data-title="Price">
-                                            <h3>139$</h3>
-                                        </td>
-                                        <td data-title="Action">
-                                            <div class="btns-actions">
-                                                <a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
-                                                <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-                                                <a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
-                                            </div>
-                                        </td> -->
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

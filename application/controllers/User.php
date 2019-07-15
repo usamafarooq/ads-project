@@ -54,7 +54,6 @@ class User extends Front_Controller {
         	redirect('/','refresh');
         }
 		$this->data['title'] = 'Login';
-		// $this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 		if ($this->input->post()) {
 			$user = $this->User_model->get_row_single('users', ['email' => $this->input->post('email')]);
 			if (empty($user)) {
@@ -72,10 +71,27 @@ class User extends Front_Controller {
 			} 
 			if ($user['status'] == 'Inactive') $message = 'Your account is Inactive please contact admin to active your account';
 			if ($user['password'] != md5($this->input->post('password'))) $message = 'Incorrect Password';
+			
+
+			$plan = $this->db->select()
+			->from('plan_user pu')
+			->join('pricing_plan pp', 'pp.id = pu.pricing_plan_id')
+			->where('pu.user_id', $user['id'])
+			->get()->row_array();
+
+			$plan_duration = date_create(date('Y-m-d', strtotime($user['created_at'].' +'.$plan['Duration'].' month')));
+			$created_at = date_create($user['created_at']);
+
+			$date_diff = date_diff($created_at, $plan_duration);
+
+			if ($date_diff->days == 0 || $date_diff->invert == 1) 
+				$message = 'Your account is Expire please contact admin';
+
 			if (!empty($message)) {
 				$this->session->set_flashdata('error', $message);
 				redirect('user/login','refresh');
 			}
+
 
 			$this->session->set_userdata($user);
 			redirect('/clickads','refresh');

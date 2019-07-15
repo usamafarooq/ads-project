@@ -17,25 +17,35 @@ if (!function_exists('convertToBase64'))
 
 		if (empty($data['name'])) $data['name'] = 'Click Pay Earn';
 
-		$config = [
-		    'protocol' => 'smtp',
-		    'smtp_host' => 'ssl://smtp.googlemail.com',
-		    'smtp_port' => 465,
-		    'smtp_user' => 'moiz.kingdomvision@gmail.com',
-		    'smtp_pass' => 'karachi@123',
-		    'mailtype'  => 'html', 
-		    'charset'   => 'iso-8859-1'
-		];
-		$ci = & get_instance();
-		$ci->load->library('email', $config);
+		// $config = [
+		//     'protocol' => 'smtp',
+		//     'smtp_host' => 'ssl://smtp.googlemail.com',
+		//     'smtp_port' => 465,
+		//     'smtp_user' => 'moiz.kingdomvision@gmail.com',
+		//     'smtp_pass' => 'karachi@123',
+		//     'mailtype'  => 'html', 
+		//     'charset'   => 'iso-8859-1'
+		// ];
+		// $ci = & get_instance();
+		// $ci->load->library('email', $config);
 		
-		$ci->email->from($from, $data['name']);
-		$ci->email->to($to);
+		// $ci->email->from($from, $data['name']);
+		// $ci->email->to($to);
 		
-		$ci->email->subject($subject);
-		$ci->email->message($template);
+		// $ci->email->subject($subject);
+		// $ci->email->message($template);
 		
-		$ci->email->send();
+		// $ci->email->send();
+
+
+		$headers = "From: " . strip_tags($from) . "\r\n";
+		$headers .= "Reply-To: ". strip_tags($from) . "\r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+		
+
+		mail($to, $subject, $template, $headers);
 		return true;
 		
 		// echo $this->email->print_debugger();

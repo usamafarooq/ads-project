@@ -81,7 +81,7 @@
                     <ul class="nav navbar-nav hidden-xs">
                         <li><a id="fullscreen" href="#"><i class="material-icons">fullscreen</i> </a></li>
                         <!-- /.Fullscreen -->
-                        <li class="hidden-xs">
+                        <!-- <li class="hidden-xs">
                             <a class="search-trigger" href="#">
                                 <i class="material-icons">search</i>
                             </a>
@@ -94,9 +94,9 @@
                                     </form>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <!-- /.Full page search -->
-                        <li><a id="menu-toggle" href="#"><i class="material-icons">apps</i></a></li>
+                        <!-- <li><a id="menu-toggle" href="#"><i class="material-icons">apps</i></a></li> -->
                         <!-- /.Sidebar menu toggle icon -->
                         <!--Start dropdown mega menu-->
 
@@ -155,34 +155,34 @@
                         <!--    </ul>-->
                         <!--</li>-->
                         <li class="dropdown" id="click_notification" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="material-icons">add_alert</i>
-<span class="label label-success" id="count_notification"></span>                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
+<span class="label label-success" id="count_notification"></span>                            </a> -->
+                            <!-- <ul class="dropdown-menu dropdown-alerts">
                                 <li class="rad-dropmenu-header"><a href="#">Your Notifications</a></li>
 
 
                                 <div id="get_notification" style="overflow:auto;height:300px;">
 
                                 </div>
-                            </ul>  <!-- /.dropdown-alerts -->
+                            </ul> -->  <!-- /.dropdown-alerts -->
                             <!-- /.dropdown-alerts -->
                         </li>
                         <!-- /.Dropdown -->
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="material-icons">person_add</i>
-                            </a>
+                            </a> -->
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="profile.html"><i class="ti-user"></i>&nbsp; Profile</a></li>
+                                <!-- <li><a href="profile.html"><i class="ti-user"></i>&nbsp; Profile</a></li>
                                 <li><a href="mailbox.html"><i class="ti-email"></i>&nbsp; My Messages</a></li>
                                 <li><a href="lockscreen.html"><i class="ti-lock"></i>&nbsp; Lock Screen</a></li>
-                                <li><a href="#"><i class="ti-settings"></i>&nbsp; Settings</a></li>
-                                <li><a href="<?php echo base_url() ?>admin/destroy"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
+                                <li><a href="#"><i class="ti-settings"></i>&nbsp; Settings</a></li> -->
+                                <li><a href="<?php echo base_url() ?>admin/login/logout"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
                             </ul><!-- /.dropdown-user -->
                         </li><!-- /.Dropdown -->
                         <li class="log_out">
-                            <a href="<?php echo base_url() ?>admin/destroy">
+                            <a href="<?php echo base_url() ?>admin/login/logout">
                                 <i class="material-icons">power_settings_new</i>
                             </a>
                         </li><!-- /.Log out -->

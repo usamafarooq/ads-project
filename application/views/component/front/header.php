@@ -126,7 +126,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a>
                                 <a class="dropdown-item" href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a>
-                                <a class="dropdown-item" href="<?php echo base_url('withdraw') ?>"><i class="lni-sort-amount-asc"></i> withdraw</a>
+                                <a class="dropdown-item" href="<?php echo base_url('withdraw') ?>"><i class="lni-sort-amount-asc"></i> Withdraw</a>
                                 <a class="dropdown-item" href="<?php echo base_url('payments') ?>"><i class="lni-sort-amount-asc"></i> Payment History</a>
                                 <a class="dropdown-item" href="<?php echo base_url('user/logout') ?>"> <i class="lni-close"></i>Logout</a>
                                 <!-- <a class="dropdown-item" href="account-profile-setting.html"><i class="lni-home"></i> Account Home</a>
@@ -213,6 +213,7 @@
                     <ul class="dropdown">
                         <li><a href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a></li>
                         <li><a href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a></li>
+                        <li><a href="<?php echo base_url('withdraw') ?>"><i class="lni-sort-amount-asc"></i> Withdraw</a></li>
                         <li><a href="<?php echo base_url('payments') ?>"><i class="lni-sort-amount-asc"></i> Payment History</a></li>
                         <li><a href="<?php echo base_url('user/logout') ?>"> <i class="lni-close"></i>Logout</a></li>
                     </ul>

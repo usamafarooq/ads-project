@@ -27,7 +27,7 @@ class Ads_model extends MY_Model{
 	{
 		$this->db->select()
 		->from('user_ads_view')
-		->where(['user_id' => $user_id]);
+		->where(['user_id' => $user_id, 'DATE(created_at)' => date('Y-m-d')]);
 		$result = $this->db->get()->result_array();
 		return $result;
 	}
