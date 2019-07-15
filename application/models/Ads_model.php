@@ -4,7 +4,9 @@ class Ads_model extends MY_Model{
 
 	public function get_available_for_user($user, $limit)
 	{
-		
+		if ($limit <= 0) {
+			return [];
+		}
 
 		$this->db->select('ad_id')
 		        ->from('user_ads_view')
@@ -14,7 +16,7 @@ class Ads_model extends MY_Model{
 		$subquery = $this->db->get_compiled_select();;
 		$this->db->select()
 		->from('ads a')
-		->where('click >' ,'total_clicked', false)
+		// ->where('click >' ,'total_clicked', false)
 		->where_not_in('a.id', $subquery, false)
 		->limit($limit);
 		$result = $this->db->get()->result_array();

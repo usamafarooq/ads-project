@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No.">
+                                        <input type="text" class="form-control" required="" id="phone" name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No.">
                                     </div>
                                     <?php //if (form_error('phone')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('phone') ?></div>
@@ -120,7 +120,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" required="" data-inputmask="'mask': '99999-9999999-9'" name="cnic" placeholder="CNIC">
+                                        <input type="text" class="form-control" required="" minlength="15" name="cnic" id="cnic" placeholder="CNIC" data-inputmask="'mask': '99999-9999999-9'">
                                     </div>
                                     <?php //if (form_error('cnic')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('cnic') ?></div>
@@ -129,7 +129,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No.">
+                                        <input type="text" class="form-control" id="jazz_no" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No.">
                                     </div>
                                     <?php //if (form_error('jazz_no')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('jazz_no') ?></div>

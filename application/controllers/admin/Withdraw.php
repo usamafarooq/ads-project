@@ -5,6 +5,7 @@
 	    {
 	        parent::__construct();
 	        $this->load->model('Withdraw_model');
+	        $this->load->model('User_model');
 	        $this->module = 'withdraw';
 	        $this->user_type = $this->session->userdata('user_type');
 	        $this->id = $this->session->userdata('user_id');

@@ -29,7 +29,7 @@
 										<?php 
 											if ($permission["created"] == "1") {
 										?>
-										<a href="<?php echo base_url("admin/withdraw/create") ?>"><button class="btn btn-info pull-right">Add Withdraw</button></a>
+										<!-- <a href="<?php echo base_url("admin/withdraw/create") ?>"><button class="btn btn-info pull-right">Add Withdraw</button></a> -->
 										<?php } ?>
 									</div>
 								</div>
@@ -60,13 +60,15 @@
 														?>
 														<?php if($module['Status'] == 'Pending'): ?>
 														<a href="<?php echo base_url() ?>admin/withdraw/approve/<?php echo $module["id"] ?>">Approve</a>
+														<?php else: ?>
+															-
 													<?php endif; ?>
-														<a href="<?php echo base_url() ?>admin/withdraw/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<!-- <a href="<?php echo base_url() ?>admin/withdraw/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
 														<?php } ?>
 														<?php 
 															if ($permission["deleted"] == "1") {
 														?>
-		                                                <a href="<?php echo base_url() ?>admin/withdraw/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
+		                                                <a href="<?php echo base_url() ?>admin/withdraw/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a> -->
 		                                                <?php } ?>
 	                                                </td>
 	                                                <?php } ?>

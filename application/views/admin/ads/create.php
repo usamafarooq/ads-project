@@ -42,12 +42,12 @@
                                         <div class="col-sm-9"><input class="form-control" name="link" type="text" value="" id="example-text-input" placeholder="" required=""></div>
 
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Clicks<span class="required">*</span></label>
                                         <div class="col-sm-9"><input class="form-control" name="click" type="number" value="" id="example-text-input" placeholder="" required=""></div>
 
-                                    </div><div class="form-group row">
+                                    </div> --><div class="form-group row">
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Image</label>
                                         <div class="col-sm-9"><input class="form-control" name="image" type="file" value="" id="example-text-input" placeholder="" ></div>

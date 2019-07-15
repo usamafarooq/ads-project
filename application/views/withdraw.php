@@ -23,7 +23,7 @@
                     <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
                     <p>Get CASH. You must earn at least Rs.500</p><br>
                     <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>
-                    <?php if($user['amount'] > 500): ?>
+                    <?php if($user['amount'] >= 500): ?>
                     <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                 <?php endif; ?>
                 </div>

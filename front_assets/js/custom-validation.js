@@ -9,6 +9,13 @@ $.validator.addMethod("phone-number", function(value, element) {
         return 'Please enter a valid phone number.';
 });
 
+
+$.validator.addMethod("cnic", function(value, element) {
+    return this.optional(element) || value == value.match(/^(?=.*[0-9])[- +()0-9]+$/);
+}, function(value, element) {
+        return 'Please enter a valid cnic.';
+});
+
 jQuery.validator.addMethod("notEqual", function(value, element, param) {
  return this.optional(element) || value != $(param).val();
 }, "This has to be different...");
@@ -58,23 +65,25 @@ $(document).ready(function() {
 		})
 	}
 
-	if ($('#Phone').length) {
-		$('#Phone').rules( "add", {
-		  	'phone-number': true,
-		  	maxlength: 15,
-		  	messages: {
-		  		maxlength: 'Please enter 15 digit phone number.',
-		  	}
-		})
-	}
 	if ($('#phone').length) {
 		$('#phone').rules( "add", {
 		  	'phone-number': true,
-		  	maxlength: 15,
-		  	messages: {
-		  		maxlength: 'Please enter 15 digit phone number.',
-		  	}
+		  	// maxlength: 12,
 		})
 	}
+	if ($('#jazz_no').length) {
+		$('#jazz_no').rules( "add", {
+		  	'phone-number': true,
+		  	// maxlength: 12,
+		})
+	}
+	if ($('#cnic').length) {
+		$('#cnic').rules( "add", {
+		  	'cnic': true,
+		  	// maxlength: 12,
+		})
+	}
+	
+
 	
 })

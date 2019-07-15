@@ -60,7 +60,9 @@ class Clickads extends Front_Controller {
 		$referrer_amount = 0;
 		if (!empty($user[0]['referrer'])) {
 			$referrer = $this->User_model->get_referer_user_data( $user[0]['referrer'] );
-			$referrer_amount = $referrer['Refer_Click_Price'];
+			if (!empty($referrer)) {
+				$referrer_amount = $referrer['Refer_Click_Price'];
+			}
 		}
 
 		
@@ -93,6 +95,9 @@ class Clickads extends Front_Controller {
 		$this->session->set_userdata('status', $user['status']);
 		$response = $this->Ads_model->checkViewedAds($user_id, date('Y-m-d'));
 		$available_limit = $user['Daily_Ads'] - count($response);
+		if ($available_limit <= 0) {
+			$available_limit = 0;
+		}
 		echo json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]);
 		
 	}
