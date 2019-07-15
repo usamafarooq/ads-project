@@ -17,7 +17,9 @@
 <div id="content" class="section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
+            <?php $this->load->view('user/user_sidebar'); ?>
+                <div class="col-sm-12 col-md-8 col-lg-9">
+            <!-- <div class="col-sm-12 col-md-12 col-lg-12"> -->
                 <div class="page-content">
                     <div class="inner-box">
                         <div class="dashboard-box">

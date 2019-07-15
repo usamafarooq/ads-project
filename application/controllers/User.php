@@ -41,7 +41,7 @@ class User extends Front_Controller {
 				$template = $this->load->view('email/signup', $data, TRUE);
 				send_mail(NULL, $user_data['email'], 'Signup', $template);
 				$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-				redirect('user/signup','refresh');
+				redirect('user/login','refresh');
 			}
 		}
 		$this->load->front_template('user/signup',$this->data);
@@ -144,6 +144,26 @@ class User extends Front_Controller {
 		$this->data['title'] = 'Payment History';
 		$this->data['payments'] = $this->User_model->get_rows('withdraw',array('User'=>$id));
 		$this->load->front_template('user/payments',$this->data);
+	}
+
+
+	public function dashboard()
+	{
+		$user_id = $this->session->userdata('id');
+		$user = $this->User_model->get_users($user_id)[0];
+		$this->db->select('ad_id')
+		        ->from('user_ads_view')
+		        ->where('user_id', $user['id'])
+		        ->where('created_at >=', date('Y-m-d'))
+		        ->where('created_at <=', date('Y-m-d 23:59:59'));
+		$query = $this->db->get()->result();
+
+		$limit = $user['Daily_Ads'] - count($query);
+		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
+		$this->data['user'] = $user;
+
+		$this->data['title'] = 'dashboard';
+		$this->load->front_template('user/dashboard',  $this->data);
 	}
 
 	public function logout()

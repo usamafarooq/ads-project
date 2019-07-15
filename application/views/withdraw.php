@@ -14,10 +14,24 @@
     </div>
 </div>
 
+<?php if ($this->session->flashdata('error')): ?>
+    <div class="col-md-12 alert alert-danger text-center">
+        <?php echo $this->session->flashdata('error'); ?>
+    </div>
+<?php endif ?>
+<?php if ($this->session->flashdata('success')): ?>
+
+<div class="col-md-12 alert alert-success text-center">
+    <?php echo $this->session->flashdata('success'); ?>
+</div>
+<?php endif ?>
+
 <section id="about" class="section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-xs-12">
+            <?php $this->load->view('user/user_sidebar'); ?>
+                <div class="col-sm-12 col-md-8 col-lg-9">
+            <!-- <div class="col-md-12 col-lg-12 col-xs-12"> -->
                 <div class="about-wrapper">
                     <h2 class="intro-title">MY ACCOUNT - WITHDAW / CASH YOUR EARNINGS</h2>
                     <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>

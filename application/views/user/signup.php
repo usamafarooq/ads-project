@@ -14,6 +14,18 @@
         </div>
     </div>
 
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="col-md-12 alert alert-danger text-center">
+            <?php echo $this->session->flashdata('error'); ?>
+        </div>
+    <?php endif ?>
+    <?php if ($this->session->flashdata('success')): ?>
+
+    <div class="col-md-12 alert alert-success text-center">
+        <?php echo $this->session->flashdata('success'); ?>
+    </div>
+    <?php endif ?>
+
     <section class="register section-padding">
         <div class="container">
             <div class="row justify-content-center">

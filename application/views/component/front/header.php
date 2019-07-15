@@ -122,8 +122,9 @@
                             <?php else: ?>
                             <!-- <a class="nav-link" href="<?php echo base_url('user/logout') ?>"> Logout</a> -->
 
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> My Account</a>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="lni-user"></i> <?php echo $this->session->userdata('first_name') ?></a>
                             <div class="dropdown-menu">
+                                <a class="dropdown-item" href="<?php echo base_url('user/dashboard') ?>"><i class="lni-home"></i> Dashboard</a>
                                 <a class="dropdown-item" href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a>
                                 <a class="dropdown-item" href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a>
                                 <a class="dropdown-item" href="<?php echo base_url('withdraw') ?>"><i class="lni-sort-amount-asc"></i> Withdraw</a>
