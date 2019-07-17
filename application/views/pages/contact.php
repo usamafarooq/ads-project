@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
                 <h2 class="contact-title">Send Message Us</h2>
 
-                <form id="contactForm" class="contact-form" data-toggle="validator" novalidate="true">
+                <form id="contactForm" class="contact-form" method="POST" data-toggle="validator" novalidate="true">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" required="" data-error="Please enter your email">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="" data-error="Please enter your email">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" placeholder="Massage" rows="10" data-error="Write your message" required=""></textarea>
+                                        <textarea class="form-control" placeholder="Message" id="message" name="message" rows="10" data-error="Write your message" required=""></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

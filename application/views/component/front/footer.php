@@ -7,7 +7,7 @@
                         <div class="widget">
                             <h3 class="footer-logo"><img src="<?php echo base_url('front_assets/img/logo.png') ?>" alt=""></h3>
                             <div class="textwidget">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, consectetur eget facilisis sed, auctor ut purus.</p>
+                                <p>Click Pay Earn is a registered and recognized platform for those who want to earn money online. Simply sign up to view ads and earn money or if you’re a business and want to publish your ad, contact us today</p>
                             </div>
                         </div>
                     </div>
@@ -25,12 +25,15 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-mb-12">
                         <div class="widget">
                             <h3 class="block-title">Subscribe us</h3>
-                            <p class="text-sub">We have over 5 years of experience Our suppoer avalable to help you 24 hours a day, seven days week</p>
+                            <p class="text-sub">Subscribe your email address here and stay updated with all the offers and news.</p>
                             <form method="post" id="subscribe-form" name="subscribe-form" class="validate">
                                 <div class="form-group is-empty">
-                                    <input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Email address" required="">
+                                    <input type="email" value="" name="Email" class="form-control" id="sub-email" placeholder="Email address" required="">
                                     <button type="submit" name="subscribe" id="subscribes" class="btn btn-common sub-btn"><i class="lni-check-box"></i></button>
                                     <div class="clearfix"></div>
+                                    <div class="show-message">
+                                        
+                                    </div>
                                 </div>
                             </form>
                             <ul class="footer-social">
@@ -105,6 +108,22 @@
     <script src="<?php echo base_url('front_assets/js/summernote.js') ?>"></script>
     <script src="<?php echo base_url('front_assets/js/validation.js') ?>"></script>
     <script src="<?php echo base_url('front_assets/js/custom-validation.js') ?>"></script>
+    <script>
+        $('#subscribe-form').on('submit', function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: base_url+'home/add_sub',
+                type: 'POST',
+                dataType: 'json',
+                data: {email: $('#sub-email').val()},
+                success:function(res){
+                    $('.show-message').html('<p class="alert alert-success">Subscribe successfully</p>');
+                }
+            })
+        });
+        
+    </script>
 </body>
 
 </html>

@@ -6,6 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<?php echo (!empty($description)) ? $description : 'Earn Easy Money by Viewing Ads | Click Pay Earn' ?>">
     <title><?php echo $title ?></title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/bootstrap.min.css') ?>">
@@ -209,15 +210,23 @@
                 <li>
                     <a href="contact.html">Contact Us</a>
                 </li> -->
+
+                
                 <li>
-                    <a>My Account</a>
+                    <?php if (!$this->session->userdata('id')): ?>
+                    <a class="nav-link" href="<?php echo base_url('user/login') ?>"> Login</a>
+                    <a class="nav-link" href="<?php echo base_url('user/signup') ?>"> Signup</a>
+                    <?php else: ?>
+                    <a><?php echo $this->session->userdata('first_name') ?></a>
                     <ul class="dropdown">
+                        <a href="<?php echo base_url('user/dashboard') ?>"><i class="lni-home"></i> Dashboard</a>
                         <li><a href="<?php echo base_url('user/edit') ?>"><i class="lni-user"></i> Edit Profile</a></li>
                         <li><a href="<?php echo base_url('referrals') ?>"><i class="lni-users"></i> My Referrals</a></li>
                         <li><a href="<?php echo base_url('withdraw') ?>"><i class="lni-sort-amount-asc"></i> Withdraw</a></li>
                         <li><a href="<?php echo base_url('payments') ?>"><i class="lni-sort-amount-asc"></i> Payment History</a></li>
                         <li><a href="<?php echo base_url('user/logout') ?>"> <i class="lni-close"></i>Logout</a></li>
                     </ul>
+                    <?php endif ?>
                 </li>
                 <!-- <li>
                     <a>My Account</a>
@@ -244,7 +253,7 @@
                     <div class="col-md-12 col-lg-12 col-xs-12 text-center">
                         <div class="contents">
                             <h1 class="head-title">Welcome to <span class="year">CLick Pay Earn</span></h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, <br>et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, <br>consectetur eget facilisis sed, auctor ut purus.</p>
+                            <p>Click Pay Earn is here to help those who seek easy ways to earn money online. It is a platform that pays you on each ad you view. Simply sign up now and start making money!</p>
                         </div>
                     </div>
                 </div>

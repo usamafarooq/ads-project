@@ -99,6 +99,58 @@ class User extends Front_Controller {
 		$this->load->front_template('user/login',$this->data);
 	}
 
+
+	public function forgot_passowrd()
+	{
+		if ($this->session->userdata('id')) {
+        	redirect('/','refresh');
+        }
+		$this->data['title'] = 'Forgot Password';
+		if ($this->input->post()) {
+			$user = $this->User_model->get_row_single('users', ['email' => $this->input->post('email')]);
+			if (empty($user)) {
+				$message = 'Incorrect Email address';
+				$this->session->set_flashdata('error', $message);
+				redirect('user/forgot_passowrd','refresh');
+			}
+			else{
+				$token = md5(time());
+
+				$this->User_model->update('users', ['forgot_token' => $token], ['id' => $user['id']]);
+				$data = ['user'=> $user, 'token' => $token];
+				$template = $this->load->view('email/forgot', $data, TRUE);
+				send_mail($from = null, $user['email'], 'Forgot Passowrd Token', $template, $data = []);
+				$this->session->set_flashdata('success', 'We have sent you reset link to change your password please check your email');
+				redirect('user/forgot_passowrd','refresh');
+
+			}
+		}
+		$this->load->front_template('user/forgot',$this->data);
+	}
+
+
+	public function reset($token = null)
+	{
+		$this->data['title'] = 'Reset Passowrd';
+		if ($token == null) {
+			$this->session->set_flashdata('error', 'Incorrect reset token');
+			redirect('user/login','refresh');
+		}
+		$user = $this->User_model->get_row_single('users', ['forgot_token' => $token, 'forgot_token_expire' => 0]);
+		if ($user == null) {
+			$this->session->set_flashdata('error', 'Incorrect reset token');
+			redirect('user/login','refresh');
+		}
+
+		if ($this->input->post()) {
+			$this->User_model->update('users', ['password' => md5($this->input->post('password')), 'forgot_token_expire' => 1], ['forgot_token' => $token] );
+			$this->session->set_flashdata('success', 'Passowrd reset successfully');
+			redirect('user/login','refresh');
+
+		}
+		$this->load->front_template('user/reset',$this->data);
+	}
+
 	public function edit()
 	{
 		if ($this->session->userdata('role') != 2) {
@@ -149,6 +201,9 @@ class User extends Front_Controller {
 
 	public function dashboard()
 	{
+		if ($this->session->userdata('role') != 2) {
+        	redirect('/','refresh');
+        }
 		$user_id = $this->session->userdata('id');
 		$user = $this->User_model->get_users($user_id)[0];
 		$this->db->select('ad_id')

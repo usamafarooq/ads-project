@@ -70,7 +70,8 @@ class Clickads extends Front_Controller {
 			'user_id' => $user_id,
 			'ad_id' => $id,
 			'amount' => $user[0]['Click_Price'],
-			'referrer_amount' => $referrer_amount
+			'referrer_amount' => $referrer_amount,
+			'created_at' => date('Y-m-d H:i:s')
 		];
 		
 		$this->db->set('amount', 'amount+'.$user[0]['Click_Price'], FALSE);

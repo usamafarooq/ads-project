@@ -7,7 +7,7 @@
                             <i class=pe-7s-tools></i>
                         </div>
                         <div class=header-title>
-                            <h1>Dashbaord</h1>
+                            <h1>Dashboard</h1>
                             <small></small>
                             <ol class=breadcrumb>
                                 <li><a href="<?php echo base_url('/admin') ?>"><i class=pe-7s-home></i> Home</a></li>

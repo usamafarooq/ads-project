@@ -51,6 +51,19 @@ $(document).ready(function() {
 		}
 		// errorLabelContainer: '.help-block',
 	})
+
+	$('.validate-reset').validate({
+		errorPlacement: function(error, element) {
+			var placement = $(element).parents('.form-group').find('.help-block');
+			// debugger;
+			if (placement) {
+				$(placement).append(error)
+			} else {
+				error.insertAfter(element);
+			}
+		}
+		// errorLabelContainer: '.help-block',
+	})
 	// $('.validate-forget-form').validate()
 	// $('.validate-login-form').validate()
 	// $('.edit-form').validate()

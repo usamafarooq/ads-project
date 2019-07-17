@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumb-wrapper">
-                    <h2 class="product-title">Login</h2>
+                    <h2 class="product-title">Reset</h2>
                     <ol class="breadcrumb">
                         <li><a href="<?php echo base_url('') ?>">Home /</a></li>
-                        <li class="current">Login</li>
+                        <li class="current">Reset</li>
                     </ol>
                 </div>
             </div>
@@ -32,20 +32,22 @@
             <div class="col-lg-5 col-md-12 col-xs-12">
                 <div class="login-form login-area">
                     <h3>
-                        Login Now
+                        Reset Password
                     </h3>
-                    <form role="form" method="POST" class="login-form">
+                    <form role="form" method="POST" class="login-form validate-reset">
                         <div class="form-group">
                             <div class="input-icon">
-                                <i class="lni-user"></i>
-                                <input type="text" id="sender-email" class="form-control" name="email" placeholder="Email">
+                                <i class="lni-lock"></i>
+                                <input type="password" class="form-control" required="" id="password" name="password" placeholder="Password">
                             </div>
+                            <div class="help-block text-danger"></div>
                         </div>
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-lock"></i>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                <input type="password" class="form-control" id="c-password" name="con_password" required="" placeholder="Confirm Password">
                             </div>
+                            <div class="help-block text-danger"></div>
                         </div>
                         <div class="form-group mb-3">
                             <div class="checkbox" style="visibility: hidden;">
@@ -56,7 +58,7 @@
                                 
                             <span class="float-left">Not a user? <a style="color: #ab47bc" class="" href="<?php echo base_url('user/signup') ?>">Signup</a></span>
                             <!-- </div> -->
-                            <a class="float-right" style="color: #ab47bc" href="<?php echo base_url('user/forgot_passowrd')    ?>">Forgot Password?</a>
+                            <a class="float-right" style="color: #ab47bc" href="<?php echo base_url('user/login')    ?>">Login?</a>
                         </div>
                         <div class="text-center">
                             <button class="btn btn-common log-btn">Submit</button>

@@ -35,9 +35,9 @@
 
                             <div class="form-group row">
 
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Name<span class="required">*</span></label>
+                                <label for="example-text-input" class="col-sm-3 col-form-label">Username<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" name="first_name" type="text" value="" id="example-text-input" placeholder="" required="">
+                                    <input class="form-control" name="username" type="text" value="" id="example-text-input" placeholder="" required="">
                                 </div>
 
                             </div>

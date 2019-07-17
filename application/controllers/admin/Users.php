@@ -49,15 +49,15 @@ class Users extends MY_Controller {
             redirect('admin/home');
         }
         $data = $this->input->post();
-        $username = $this->User_model->get_row_single('users',array('name'=>$data['name']));
+        $username = $this->User_model->get_row_single('users',array('username'=>$data['username']));
         if (!empty($username)) {
             $this->session->set_flashdata('error', 'Username Already Exist');
-            redirect("users/create");
+            redirect("admin/users/create");
         }
         $email = $this->User_model->get_row_single('users',array('email'=>$data['email']));
         if (!empty($email)) {
             $this->session->set_flashdata('error', 'Email Already Exist');
-            redirect("users/create");
+            redirect("admin/users/create");
         }
         $data['password'] = md5($data['password']);
         $id = $this->User_model->insert('users',$data);

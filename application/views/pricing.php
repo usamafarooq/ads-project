@@ -3,10 +3,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-wrapper">
-                        <h2 class="product-title">Pricing Packages</h2>
+                        <h2 class="product-title">Affordable Pricing Packages</h2>
                         <ol class="breadcrumb">
                             <li><a href="<?php echo base_url() ?>">Home /</a></li>
-                            <li class="current">Package</li>
+                            <li class="current">Price Packages</li>
                         </ol>
                     </div>
                 </div>

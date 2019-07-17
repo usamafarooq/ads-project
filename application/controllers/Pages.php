@@ -11,7 +11,8 @@ class Pages extends Front_Controller {
 
 	public function About()
 	{
-		$this->data['title'] = 'About Us';
+		$this->data['title'] = 'Learn About Our Company | Click Pay Earn.';
+		$this->data['description'] = 'Want to Earn easy money online? Contact Click Pay Earn and get paid on each ad you view.';
 		$this->load->front_template('pages/about',$this->data);
 	}
 
@@ -23,6 +24,13 @@ class Pages extends Front_Controller {
 
 	public function Contact()
 	{
+		if ($this->input->post()) {
+			$template = "Name: {$this->input->post('name')} <br>";
+			$template .= "From: {$this->input->post('email')} <br>";
+			$template .= $this->input->post('message');
+			send_mail($from = null, 'moiz.hanif786@gmail.com', $this->input->post('subject').' - Contact Form', $template, $data = []);
+			echo 'success'; die();
+		}
 		$this->data['title'] = 'Contact Us';
 		$this->load->front_template('pages/contact',$this->data);
 	}

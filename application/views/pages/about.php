@@ -20,13 +20,13 @@
             <div class="col-md-6 col-lg-6 col-xs-12">
                 <div class="about-wrapper">
                     <p class="intro-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?
+                    Click Pay Earn is a registered and recognized company that allows businesses to advertise and convey their message to the desired audience by providing them a common platform.
                     </p>
                     <p class="intro-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!
+                    If you’re an individual who wants to earn extra money, just sign up and start viewing our ads to earn money after a simple process.
                     </p>
                     <p class="intro-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!
+                    We also allow companies to reach their audience! You just need to provide your advertisement and get noticed by thousands of people each day.
                     </p>
                     <!-- <h2 class="intro-title">Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit Sed Do</h2>
                     <p class="intro-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum, doloremque quaerat sit tempora eius est reiciendis accusamus magnam quae. Explicabo dolore officia, iure a ullam aliquam nemo excepturi, repellat. uod ut delectus ad tempora.
