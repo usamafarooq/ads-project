@@ -15,7 +15,7 @@ class Clickads extends Front_Controller {
 
 	public function index()
 	{
-		
+		redirect('user/dashboard','refresh');
 		$user_id = $this->session->userdata('id');
 		$user = $this->User_model->get_users($user_id)[0];
 		$this->db->select('ad_id')
@@ -53,6 +53,16 @@ class Clickads extends Front_Controller {
 	{
 		$id = $this->input->post('id');
 		$user_id = $this->session->userdata('id');
+		$ad = $this->db->select('ad_id')
+		        ->from('user_ads_view')
+		        ->where('user_id', $user_id)
+		        ->where('ad_id', $id)
+		        ->where('created_at >=', date('Y-m-d'))
+		        ->where('created_at <=', date('Y-m-d 23:59:59'))->get()->row();
+		if (!empty($ad)) {
+			echo json_encode(['status' => 200]); die();
+		}
+
 		$user = $this->User_model->get_users($user_id);
 		$this->db->set('total_clicked', 'total_clicked+1', FALSE);
 		$this->db->where('id', $id);

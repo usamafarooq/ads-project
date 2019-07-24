@@ -7,6 +7,7 @@ class Home extends Front_Controller {
     {
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Pricing_plan_model');
     }
 
 	public function index()
@@ -14,6 +15,7 @@ class Home extends Front_Controller {
 		$this->data['title'] = 'Earn Easy Money by Viewing Ads | Click Pay Earn';
 		$this->data['description'] = 'Welcome to Click Pay Earn! We’re providing you the opportunity to earn as more money as you can by just viewing ads.';
 		$this->data['slider'] = true;
+		$this->data['pricing_plan'] = $this->Pricing_plan_model->all_rows('pricing_plan');
 		$this->load->front_template('home',$this->data);
 	}
 

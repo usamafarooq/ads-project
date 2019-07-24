@@ -61,9 +61,9 @@
                             <a class="nav-link " href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item <?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>">
+                        <!-- <li class="nav-item <?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>">
                             <a class="nav-link " href="<?php echo base_url('clickads') ?>">Click Ads</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item <?php echo (base_url(uri_string()) == base_url('about')) ? 'active' : '' ?>">
                             <a class="nav-link " href="<?php echo base_url('about') ?>">About Us</a>
                         </li>
@@ -157,9 +157,9 @@
                 <li>
                     <a class="<?php echo (base_url(uri_string()) == base_url('pricing')) ? 'active' : '' ?>" href="<?php echo base_url('pricing') ?>">Pricing PLan</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a class="<?php echo (base_url(uri_string()) == base_url('clickads')) ? 'active' : '' ?>" href="<?php echo base_url('clickads') ?>">Click Ads</a>
-                </li>
+                </li> -->
                 <li>
                     <a class="<?php echo (base_url(uri_string()) == base_url('about')) ? 'active' : '' ?>" href="<?php echo base_url('about') ?>">About Us</a>
                 </li>

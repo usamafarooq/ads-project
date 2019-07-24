@@ -48,6 +48,9 @@
 													<th>City</th>
 													<th>Referrer</th>
 													<th>Package</th>
+													<th>Current Earning</th>
+													<th>Pending withdraw</th>
+													<th>Approved withdraw</th>
 													<th>Status</th>
 													<th>Role</th>
 													<?php 
@@ -71,6 +74,9 @@
 													<td><?php echo $user['city_id'] ?></td>
 													<td><?php echo $user['referrer'] ?></td>
 													<td><?php echo $user['package'] ?></td>
+													<td><?php echo $user['amount'] ?></td>
+													<td><?php echo $user['approve_amount'] ?></td>
+													<td><?php echo $user['pending_amount'] ?></td>
 													<td>
 														<?php if ($user['status'] == 'Pending'): ?>
 															
@@ -93,7 +99,7 @@
 														<?php 
 															if ($permission['edit'] == '1') {
 														?>
-														<a href="<?php echo base_url() ?>admin/users/edit/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>admin/users/edit/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" onclick="return confirm('are you sure you want to delete this user?')" title="View Order" alt="View Order" width="35" height="35"></a>
 														<?php } ?>
 
 														<?php 

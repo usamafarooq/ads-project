@@ -13,8 +13,7 @@ if (!function_exists('convertToBase64'))
 
 	function send_mail($from = null, $to, $subject, $template, $data = [])
 	{
-		if (empty($from)) $from = 'moiz.kingdomvision@gmail.com';
-
+		if (empty($from)) $from = 'info@clickpayearn.com';
 		if (empty($data['name'])) $data['name'] = 'Click Pay Earn';
 
 		// $config = [

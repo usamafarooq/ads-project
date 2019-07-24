@@ -17,7 +17,7 @@
 <section id="content" class="section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h2 class="contact-title">Send Message Us</h2>
 
                 <form id="contactForm" class="contact-form" method="POST" data-toggle="validator" novalidate="true">
@@ -62,7 +62,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+            <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                 <h2 class="contact-title">Get In Touch</h2>
                 <div class="information">
                     <p>Lorem Ipsum Is simply dummy text of the printing and typesetting Industry. Lorem Ipsum has been the Industry's</p>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

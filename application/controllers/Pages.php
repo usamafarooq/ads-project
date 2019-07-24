@@ -28,7 +28,7 @@ class Pages extends Front_Controller {
 			$template = "Name: {$this->input->post('name')} <br>";
 			$template .= "From: {$this->input->post('email')} <br>";
 			$template .= $this->input->post('message');
-			send_mail($from = null, 'moiz.hanif786@gmail.com', $this->input->post('subject').' - Contact Form', $template, $data = []);
+			send_mail($from = null, 'info@clickpayearn.com', $this->input->post('subject').' - Contact Form', $template, $data = []);
 			echo 'success'; die();
 		}
 		$this->data['title'] = 'Contact Us';

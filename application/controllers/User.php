@@ -8,6 +8,7 @@ class User extends Front_Controller {
         parent::__construct();
         $this->load->model('User_model');
         $this->load->library('form_validation');
+        $this->load->model('Ads_model');
 
     }
 
@@ -94,7 +95,7 @@ class User extends Front_Controller {
 
 
 			$this->session->set_userdata($user);
-			redirect('/clickads','refresh');
+			redirect('user/dashboard','refresh');
 		}
 		$this->load->front_template('user/login',$this->data);
 	}
@@ -216,6 +217,7 @@ class User extends Front_Controller {
 		$limit = $user['Daily_Ads'] - count($query);
 		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
 		$this->data['user'] = $user;
+		$this->data['ads'] = $this->Ads_model->get_available_for_user($user, $this->data['limit']);
 
 		$this->data['title'] = 'dashboard';
 		$this->load->front_template('user/dashboard',  $this->data);

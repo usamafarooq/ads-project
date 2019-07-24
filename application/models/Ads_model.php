@@ -10,7 +10,9 @@ class Ads_model extends MY_Model{
 
 		$this->db->select('ad_id')
 		        ->from('user_ads_view')
-		        ->where('user_id', $user['id']);
+		        ->where('user_id', $user['id'])
+		        ->where('created_at >=', date('Y-m-d'))
+		        ->where('created_at <=', date('Y-m-d 23:59:59'));
 
 
 		$subquery = $this->db->get_compiled_select();;

@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
+                                        <i class="lni-user"></i>
                                         <input type="text" class="form-control" required name="last_name" placeholder="Last Name" value="<?php echo $user['last_name'] ?>">
                                     </div>
                                     <div class="help-block text-danger"></div>
@@ -51,14 +51,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-user"></i>
+                                        <i class="lni-envelope"></i>
                                         <input type="text" class="form-control" name="email" readonly="" placeholder="Email" value="<?php echo $user['email'] ?>">
                                     </div>
                                     <div class="help-block text-danger"></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
+                                        <i class="lni-phone-handset"></i>
                                         <input type="text" class="form-control" id="phone" required name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No." value="<?php echo $user['phone'] ?>">
                                     </div>
                                     <div class="help-block text-danger"></div>
@@ -70,14 +70,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-user"></i>
+                                        <i class="lni-key"></i>
                                         <input type="password" id="password" class="form-control" name="password" placeholder="Password">
                                     </div>
                                     <div class="help-block text-danger"></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
+                                        <i class="lni-key"></i>
                                         <input type="password" id="c-password" class="form-control" name="con_password" placeholder="Confirm Password">
                                     </div>
                                     <div class="help-block text-danger"></div>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
+                                        <i class="lni-phone-handset"></i>
                                         <input type="text" id="jazz_no" required data-inputmask="'mask': '0399-9999999'" class="form-control" name="jazz_no" placeholder="Jazz/Warid Cash No." value="<?php echo $user['jazz_no'] ?>">
                                     </div>
                                     <div class="help-block text-danger"></div>

@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" required="" name="first_name" placeholder="First Name">
+                                        <input type="text" class="form-control" required="" name="first_name" placeholder="First Name*">
                                     </div>
                                     <?php //if (form_error('first_name')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('first_name') ?></div>
@@ -49,7 +49,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="text"class="form-control" required="" name="last_name" placeholder="Last Name">
+                                        <input type="text"class="form-control" required="" name="last_name" placeholder="Last Name*">
                                     </div>
                                     <?php //if (form_error('last_name')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('last_name') ?></div>
@@ -62,8 +62,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-user"></i>
-                                        <input type="text" class="form-control" required="" name="username" placeholder="Username">
+                                        <i class="lni-envelope"></i>
+                                        <input type="text" class="form-control" required="" name="username" placeholder="Username*">
                                     </div>
                                     <?php //if (form_error('username')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('username') ?></div>
@@ -71,8 +71,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" required="" id="phone" name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No.">
+                                        <i class="lni-phone-handset"></i>
+                                        <input type="text" class="form-control" required="" id="phone" name="phone" data-inputmask="'mask': '0399-9999999'" placeholder="Mobile/WhatsApp No*">
                                     </div>
                                     <?php //if (form_error('phone')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('phone') ?></div>
@@ -85,8 +85,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-user"></i>
-                                        <input type="email" class="form-control" id="email" required="" name="email" placeholder="Email">
+                                        <i class="lni-envelope"></i>
+                                        <input type="email" class="form-control" id="email" required="" name="email" placeholder="Email*">
                                     </div>
                                     <?php //if (form_error('email')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('email') ?></div>
@@ -95,7 +95,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-envelope"></i>
-                                        <input type="email" class="form-control" required="" name="re_email" placeholder="Re-type Email">
+                                        <input type="email" class="form-control" required="" name="re_email" placeholder="Re-type Email*">
                                     </div>
                                     <?php //if (form_error('re_email')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('re_email') ?></div>
@@ -108,8 +108,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-user"></i>
-                                        <input type="password" id="password" class="form-control" required="" name="password" placeholder="Password">
+                                        <i class="lni-key"></i>
+                                        <input type="password" id="password" class="form-control" required="" name="password" placeholder="Password*">
                                     </div>
                                     <?php //if (form_error('password')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('password') ?></div>
@@ -117,8 +117,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
-                                        <input type="password" class="form-control" required="" id="c-password" name="con_password" placeholder="Confirm Password">
+                                        <i class="lni-key"></i>
+                                        <input type="password" class="form-control" required="" id="c-password" name="con_password" placeholder="Confirm Password*">
                                     </div>
                                     <?php //if (form_error('con_password')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('con_password') ?></div>
@@ -132,7 +132,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="text" class="form-control" required="" minlength="15" name="cnic" id="cnic" placeholder="CNIC" data-inputmask="'mask': '99999-9999999-9'">
+                                        <input type="text" class="form-control" required="" minlength="15" name="cnic" id="cnic" placeholder="CNIC*" data-inputmask="'mask': '99999-9999999-9'">
                                     </div>
                                     <?php //if (form_error('cnic')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('cnic') ?></div>
@@ -140,8 +140,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
-                                        <input type="text" class="form-control" id="jazz_no" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No.">
+                                        <i class="lni-phone-handset"></i>
+                                        <input type="text" class="form-control" id="jazz_no" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No*">
                                     </div>
                                     <?php //if (form_error('jazz_no')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('jazz_no') ?></div>
@@ -155,7 +155,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <select class="form-control select100" required="" name="city_id" id="city">
-                                            <option value="">Select City</option>
+                                            <option value="">Select City*</option>
                                             <?php foreach ($cities as $city): ?>
                                             <option value="<?php echo $city['name'] ?>"><?php echo $city['name'] ?></option>
                                             <?php endforeach ?>
@@ -167,8 +167,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-icon">
-                                        <i class="lni-envelope"></i>
-                                        <input type="email" class="form-control" id="referrer" name="referrer" placeholder="Not Have? Leave Blank">
+                                        <i class="lni-user"></i>
+                                        <input type="email" class="form-control" id="referrer" name="referrer" placeholder="Referral Email">
                                     </div>
                                     <?php //if (form_error('referrer')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('referrer') ?></div>
@@ -182,7 +182,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <select class="form-control" required="" name="package">
-                                            <option value="">Select Package</option>
+                                            <option value="">Select Package*</option>
                                             <?php if ($pricing_plan) : ?>
                                                 <?php foreach ($pricing_plan as $pricing): ?>
                                                     <option value="<?php echo $pricing['id'] ?>"><?php echo $pricing['Name'] ?></option>
