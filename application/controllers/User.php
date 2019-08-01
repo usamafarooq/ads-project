@@ -38,11 +38,12 @@ class User extends Front_Controller {
 					'user_id' => $user_id,
 					'pricing_plan_id' => $package,
 				];
-				$this->User_model->insert('plan_user', $data);
-				$template = $this->load->view('email/signup', $data, TRUE);
-				send_mail(NULL, $user_data['email'], 'Signup', $template);
+				$id = $this->User_model->insert('plan_user', $data);
+				$user = $this->User_model->get_users($id);
+				$template = $this->load->view('email/signup', $user[0], TRUE);
+				send_mail(NULL, $user_data['email'], 'Welcome to Click Pay Earn', $template);
 				$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
-				redirect('user/login','refresh');
+				redirect('thankyou','refresh');
 			}
 		}
 		$this->load->front_template('user/signup',$this->data);
@@ -117,7 +118,7 @@ class User extends Front_Controller {
 			else{
 				$token = md5(time());
 
-				$this->User_model->update('users', ['forgot_token' => $token], ['id' => $user['id']]);
+				$this->User_model->update('users', ['forgot_token' => $token, 'forgot_token_expire' => 0], ['id' => $user['id']]);
 				$data = ['user'=> $user, 'token' => $token];
 				$template = $this->load->view('email/forgot', $data, TRUE);
 				send_mail($from = null, $user['email'], 'Forgot Passowrd Token', $template, $data = []);

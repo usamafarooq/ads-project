@@ -35,4 +35,10 @@ class Pages extends Front_Controller {
 		$this->load->front_template('pages/contact',$this->data);
 	}
 
+	public function thankyou()
+	{
+		$this->data['title'] = 'Thankyou';
+		$this->load->front_template('pages/thankyou',$this->data);
+	}
+
 }

@@ -1,3 +1,10 @@
+<style>
+    .table td, .table th {
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 0px;
+}
+</style>
 <div class="page-header" style="background: url(assets/img/banner1.jpg);">
         <div class="container">
             <div class="row">
@@ -26,6 +33,31 @@
                             </div>
                             <div class="dashboard-wrapper">
                                 <div class="dashboard-sections">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table" cellspacing="0" cellpadding="0" style="border: none;">
+                                                <tr>
+                                                    <td colspan="2">Meezan Bank </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>A/C Title</td>
+                                                    <td>Click Pay Earn</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>A/C num</td>
+                                                    <td>9922 0103888288</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>jazz cash/easy paisa num :</td>
+                                                    <td>03030900542</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Whatsapp num :</td>
+                                                    <td>03030900542</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                             <div class="dashboardbox">
@@ -66,6 +98,19 @@
                                                 </div>
                                             </div>
                                         </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="about-wrapper" style="margin-top: 20px">
+                                                <h5>MY ACCOUNT - WITHDRAW / CASH YOUR EARNINGS</h5>
+                                                <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
+                                                <p>Get CASH. You must earn at least Rs.500</p><br>
+                                                <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>
+                                                <?php if($user['amount'] >= 500): ?>
+                                                <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
+                                            <?php endif; ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +163,8 @@
         $('#watch-ads').on('click', function(e) {
         
             var adsItemm = $('.item');
-            currentAd = adsItemm[Math.floor(Math.random() * 5)];
+            currentAd = adsItemm[Math.floor(Math.random() * adsItemm.length)];
+            if (currentAd == undefined) return;
             var href = $(currentAd).find('a').attr('href');
             window.open(href, '_blank');
         });

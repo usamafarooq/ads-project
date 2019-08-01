@@ -6,7 +6,12 @@
 <body>
 	Dear <?php echo $first_name ?>,
 
-	Your account is approved
+	Your Account at Click Pay Earn has been confirmed. Just visit our Website Log in to your Account and start earning.
+
+	For any further queries and questions, simply contact us on WhatsApp at 0303-0900542.
+	
+	Regards,
+	Team Click Pay Earn
 
 </body>
 </html>

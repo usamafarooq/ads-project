@@ -33,7 +33,7 @@
                 <div class="col-sm-12 col-md-8 col-lg-9">
             <!-- <div class="col-md-12 col-lg-12 col-xs-12"> -->
                 <div class="about-wrapper">
-                    <h2 class="intro-title">MY ACCOUNT - WITHDAW / CASH YOUR EARNINGS</h2>
+                    <h2 class="intro-title">MY ACCOUNT - WITHDRAW / CASH YOUR EARNINGS</h2>
                     <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
                     <p>Get CASH. You must earn at least Rs.500</p><br>
                     <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>

@@ -117,7 +117,7 @@ class Users extends MY_Controller {
         if ($status == 'approved') {
             $user = $this->User_model->get_row_single('users', ['id' => $user_id]);
             $template = $this->load->view('email/approved', $user, TRUE);
-            send_mail(NULL, $user['email'], 'Your account is approved', $template);
+            send_mail(NULL, $user['email'], 'Account Confirmation', $template);
         }
         redirect('admin/users');
     }

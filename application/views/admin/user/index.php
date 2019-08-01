@@ -75,8 +75,8 @@
 													<td><?php echo $user['referrer'] ?></td>
 													<td><?php echo $user['package'] ?></td>
 													<td><?php echo $user['amount'] ?></td>
-													<td><?php echo $user['approve_amount'] ?></td>
 													<td><?php echo $user['pending_amount'] ?></td>
+													<td><?php echo $user['approve_amount'] ?></td>
 													<td>
 														<?php if ($user['status'] == 'Pending'): ?>
 															

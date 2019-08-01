@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['about'] = 'pages/about';
 $route['terms'] = 'pages/terms';
+$route['thankyou'] = 'pages/thankyou';
 $route['contact'] = 'pages/contact';
 $route['referrals'] = 'user/referrals';
 $route['payments'] = 'user/payments';

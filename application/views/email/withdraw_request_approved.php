@@ -6,7 +6,12 @@
 <body>
 	Dear <?php echo $first_name ?>,
 
-	Your withdraw approved successfully
+	Your request of withdrawal has been approved, as per our company’s policy your withdrawal amount will be paid within 7 working days.
+
+	For any further queries and questions, simply contact us on WhatsApp at 0303-0900542.
+
+	Regards,
+	Team Click Pay Earn
 
 </body>
 </html>

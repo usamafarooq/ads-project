@@ -200,7 +200,7 @@
                         <div class="form-group mb-3 col-md-6">
                                 <div class="checkbox">
                                     <input type="checkbox" required="" name="terms">
-                                    <label>By registering, you accept our Terms & Conditions</label>
+                                    <label>By registering, you accept our <a href="<?php echo base_url('terms') ?>" target="_blank">Terms & Conditions</a></label>
                                 </div>
                                 <?php //if (form_error('terms')): ?>
                                     <div class="help-block text-danger"><?php echo form_error('terms') ?></div>
