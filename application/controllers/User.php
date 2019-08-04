@@ -39,7 +39,7 @@ class User extends Front_Controller {
 					'pricing_plan_id' => $package,
 				];
 				$id = $this->User_model->insert('plan_user', $data);
-				$user = $this->User_model->get_users($id);
+				$user = $this->User_model->get_users($user_id);
 				$template = $this->load->view('email/signup', $user[0], TRUE);
 				send_mail(NULL, $user_data['email'], 'Welcome to Click Pay Earn', $template);
 				$this->session->set_flashdata('success', 'Register successfully and waiting for admin approval');
