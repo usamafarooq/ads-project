@@ -9,6 +9,8 @@
     <meta name="description" content="<?php echo (!empty($description)) ? $description : 'Earn Easy Money by Viewing Ads | Click Pay Earn' ?>">
     <title><?php echo $title ?></title>
 
+    <link rel="icon" href="<?php echo base_url('front_assets/img/favicon.png') ?>">
+
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/css/bootstrap.min.css') ?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('front_assets/fonts/line-icons.css') ?>">
