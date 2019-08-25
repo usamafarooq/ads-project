@@ -17,7 +17,7 @@ class User extends Front_Controller {
 		if ($this->session->userdata('role') == 2) {
         	redirect('/','refresh');
         }
-        $this->data['cities'] = $this->db->where_in('state_id', ['2723', '2724', '2725', '2726', '2727', '2728', '2729'])->get('cities')->result_array();
+        $this->data['cities'] = $this->db->where_in('state_id', ['2723', '2724', '2725', '2726', '2727', '2728', '2729'])->order_by('Name')->get('cities')->result_array();
         
 
 		$this->data['title'] = 'Signup';

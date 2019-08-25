@@ -51,7 +51,7 @@ class Clickads extends Front_Controller {
 
 	public function save_view()
 	{
-		$id = $this->input->post('id');
+		$id = $this->input->get('id');
 		$user_id = $this->session->userdata('id');
 		$ad = $this->db->select('ad_id')
 		        ->from('user_ads_view')
@@ -96,7 +96,8 @@ class Clickads extends Front_Controller {
 		}
 
 		$this->User_model->insert('user_ads_view', $data);
-		echo json_encode(['status' => 200]);
+		// echo json_encode(['status' => 200]);
+		echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')';
 	}
 
 
@@ -110,7 +111,8 @@ class Clickads extends Front_Controller {
 		if ($available_limit <= 0) {
 			$available_limit = 0;
 		}
-		echo json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]);
+		echo $_GET['callback'] . '(' . json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]) . ')';
+		// echo json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]);
 		
 	}
 
