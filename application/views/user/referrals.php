@@ -21,7 +21,25 @@
                 <div class="col-sm-12 col-md-8 col-lg-9">
             <!-- <div class="col-sm-12 col-md-12 col-lg-12"> -->
                 <div class="page-content">
-                    <div class="inner-box">
+                    <div class="row">
+                        <div class="col-md-6"><?php 
+                        
+                            $hash =  encrypt_decrypt('encrypt', $this->session->userdata('email'));
+                            $ref_link = base_url('user/signup?ref='.urlencode($hash));
+                         ?>
+                             <input type="text" class="form-control" id="ref_link" readonly value="<?php echo $ref_link ; ?>">
+                         </div>
+                         <div class="col-md-6">
+                             <button class="btn btn-default btn-large" onclick="copyLink()">
+                                 Copy
+                             </button>
+                             <!-- <button>
+                                 
+                                <a href="http://www.facebook.com/sharer.php?s=100&u=<?php echo $ref_link ?>" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;">Share on Facebook</a>
+                             </button> -->
+                         </div>
+                    </div>
+                    <div  class="inner-box">
                         <div class="dashboard-box">
                             <h2 class="dashbord-title">My Referrals</h2>
                         </div>
@@ -63,3 +81,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+    function copyLink() {
+      /* Get the text field */
+      var copyText = document.getElementById("ref_link");
+
+      /* Select the text field */
+      copyText.select(); 
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+      /* Alert the copied text */
+      alert("Referal link copied");
+    }
+</script>

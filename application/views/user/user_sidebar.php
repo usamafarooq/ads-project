@@ -6,7 +6,10 @@
                                     <a href="#"><img src="assets/img/author/img1.jpg" alt=""></a>
                                 </figure>
                                 <div class="usercontent">
-                                    <h3><?php echo $this->session->userdata('first_name').' '. $this->session->userdata('last_name') ?></h3>
+                                    <h3><?php echo $this->session->userdata('first_name').' '. $this->session->userdata('last_name') ?>
+                                    <br>
+                                        <small><?php echo $this->session->userdata('status') ?></small>
+                                    </h3>
                                     <!-- <h4>Administrator</h4> -->
                                 </div>
                             </div>
