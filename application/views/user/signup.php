@@ -1,3 +1,14 @@
+<?php 
+    
+    $ref = '';
+    if ($this->input->get('ref')) {
+        $ref = $this->input->get('ref');
+        $ref = urldecode($ref);
+        $ref = encrypt_decrypt('decrypt', $ref);
+    }
+
+ ?>
+
 <div class="page-header" style="background: url('<?php echo base_url('front_assets/img/banner1.jpg') ?>');">
         <div class="container">
             <div class="row">
@@ -53,6 +64,33 @@
                                     </div>
                                     <?php //if (form_error('last_name')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('last_name') ?></div>
+                                    <?php //endif ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-icon">
+                                        <select class="form-control" required="" id="withrawal_type" name="withrawal_type">
+                                            <option value="">Select Withdrawal Type*</option>
+                                            <option value="Jazzcash">Jazzcash</option>
+                                            <option value="Easypaisa">Easypaisa</option>
+                                            <option value="Meezan Bank">Meezan Bank</option>
+                                        </select>
+                                    </div>
+                                    <?php //if (form_error('first_name')): ?>
+                                        <div class="help-block text-danger"><?php echo form_error('withrawal_type') ?></div>
+                                    <?php //endif ?>
+                                </div>
+                                <div class="col-md-6  account_number_div d-none">
+                                    <div class="input-icon">
+                                        <i class="lni-envelope"></i>
+                                        <input type="text"class="form-control" required="" id="account_number" name="account_number" data-inputmask="'mask': '9999-9999999999'" placeholder="Account Number*">
+                                    </div>
+                                    <?php //if (form_error('last_name')): ?>
+                                        <div class="help-block text-danger"><?php echo form_error('account_number') ?></div>
                                     <?php //endif ?>
                                 </div>
                             </div>
@@ -168,7 +206,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-user"></i>
-                                        <input type="email" class="form-control" id="referrer" name="referrer" placeholder="Referral Email">
+                                        <input type="email" class="form-control" value="<?php echo $ref ?>" id="referrer" name="referrer" placeholder="Referral Email">
                                     </div>
                                     <?php //if (form_error('referrer')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('referrer') ?></div>
@@ -198,7 +236,7 @@
                         </div>
 
                         <div class="form-group mb-3 col-md-6">
-                                <div class="checkbox">
+                            <div class="checkbox">
                                     <input type="checkbox" required="" name="terms">
                                     <label>By registering, you accept our <a href="<?php echo base_url('terms') ?>" target="_blank">Terms & Conditions</a></label>
                                 </div>
@@ -220,4 +258,17 @@
     </section>
 <script>
     $(":input").inputmask();
+    $('#withrawal_type').on('change', function(event) {
+        var withrawal_type = $(this).val();
+        if (withrawal_type == 'Meezan Bank') 
+        {
+            $('#account_number').attr('required');
+            $('.account_number_div').removeClass('d-none');
+
+        }
+        else{
+            $('#account_number').removeAttr('required');
+            $('.account_number_div').addClass('d-none');
+        }
+    });
 </script>

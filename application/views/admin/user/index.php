@@ -48,6 +48,7 @@
 													<th>City</th>
 													<th>Referrer</th>
 													<th>Package</th>
+													<th>Withdrawal Type</th>
 													<th>Current Earning</th>
 													<th>Pending withdraw</th>
 													<th>Approved withdraw</th>
@@ -74,6 +75,10 @@
 													<td><?php echo $user['city_id'] ?></td>
 													<td><?php echo $user['referrer'] ?></td>
 													<td><?php echo $user['package'] ?></td>
+													<td>
+														<?php echo $user['withrawal_type'] ?>
+														<?php echo ($user['withrawal_type'] == 'Meezan Bank') ? '('.$user['account_number'].')' : '' ?>
+													</td>
 													<td><?php echo $user['amount'] ?></td>
 													<td><?php echo $user['pending_amount'] ?></td>
 													<td><?php echo $user['approve_amount'] ?></td>
