@@ -2,6 +2,7 @@
 
         <section class="footer-Content">
             <div class="container">
+
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-mb-12">
                         <div class="widget">
@@ -122,8 +123,38 @@
                 }
             })
         });
-        
     </script>
-</body>
 
+<div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="font-size: 14px">
+                    Click Pay Earn Owns No Website Other Than www.clickpayearn.com, Please Stay Away from Scammers and Frauds. 
+                    <br><span style="font-size: 18px; color: red;">Click Pay Earn is not Responsible for other websites.</span>
+                    <br>
+                    Regards,<br>
+                    <a href="<?php echo base_url('front_assets/img/ntn.jpeg') ?>" target="__blank">(National Tax Certificate NTN)</a><br>
+                    Muhammad Suleman<br>
+                    Owner Click Pay Earn
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        if (document.cookie.indexOf("popupNotify=true") == -1) {
+            document.cookie = "popupNotify=true; max-age=7200"; // 86400: seconds in a day
+        // make the popup show here
+            $('#modalShow').modal('show');
+        }
+    });
+</script>
+
+    
+</body>
 </html>

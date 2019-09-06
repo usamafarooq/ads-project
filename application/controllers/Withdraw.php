@@ -25,7 +25,9 @@ class Withdraw extends Front_Controller {
 		$data = array(
 			'User' => $id,
 			'Amount' => $amount,
-			'Status' =>'Pending'
+			'Status' =>'Pending',
+			'withrawal_type' => $user['withrawal_type'],
+			'account_number' => $user['account_number'],
 		);
 		$withdraw_id = $this->User_model->insert('withdraw', $data);
 		$this->User_model->update('users',array('amount'=>0),array('id'=>$id));

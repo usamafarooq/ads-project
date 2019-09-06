@@ -39,11 +39,21 @@
 										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Id</th><th>First name</th><th>Last name</th><th>Jazz no</th><th>Amount</th><th>Requested At</th><th>Aprroved At</th><th>Status</th>
+													<th>Id</th>
+													<th>First name</th>
+													<th>Last name</th>
+													<th>Jazz no</th>
+													<th>Amount</th>
+													<th>Withdrawal Type</th>
+													<th>Requested At</th>
+													<th>Aprroved At</th>
+													<th>Status</th>
+
 													<?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<th>Action</th>
+
 													<?php } ?>
 												</tr>
 											</thead>
@@ -52,7 +62,25 @@
 										    		foreach ($withdraw as $module) {
 										    	?>
 												<tr>
-													<td><?php echo $module["id"] ?></td><td><?php echo $module["first_name"] ?></td><td><?php echo $module["last_name"] ?></td><td><?php echo $module["jazz_no"] ?></td><td><?php echo $module["Amount"] ?></td><td><?php echo date('d-M-Y', strtotime($module['created_at'])) ?></td><td><?php echo ($module['approve_date'] != '0000-00-00 00:00:00')  ? date('d-M-Y', strtotime($module['approve_date'])) : '-' ?></td><td><?php echo $module["Status"] ?></td>
+													<td><?php echo $module["id"] ?></td>
+													<td><?php echo $module["first_name"] ?></td>
+													<td><?php echo $module["last_name"] ?></td>
+													<td><?php echo $module["jazz_no"] ?></td>
+													<td><?php echo $module["Amount"] ?></td>
+													<td>
+														<?php $prefix = ''; ?>
+														<?php 
+															if (empty($module['withrawal_type'])) 
+																$prefix = 'user_';
+														?>
+															
+														<?php echo $module[$prefix.'withrawal_type'] ?>
+														<?php echo ($module[$prefix.'withrawal_type'] == 'Meezan Bank') ? '('.$module[$prefix.'account_number'].')' : '' ?>
+													</td>
+													<td><?php echo date('d-M-Y', strtotime($module['created_at'])) ?></td>
+													<td><?php echo ($module['approve_date'] != '0000-00-00 00:00:00')  ? date('d-M-Y', strtotime($module['approve_date'])) : '-' ?></td>
+													<td><?php echo $module["Status"] ?></td>
+
 
 													<?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
@@ -74,6 +102,7 @@
 		                                                <a href="<?php echo base_url() ?>admin/withdraw/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a> -->
 		                                                <?php } ?>
 	                                                </td>
+
 	                                                <?php } ?>
 												</tr>
 												<?php } ?>

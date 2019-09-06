@@ -51,6 +51,33 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-icon">
+                                        <select class="form-control" required="" id="withrawal_type" name="withrawal_type">
+                                            <option value="" <?php echo ($user['withrawal_type'] == '') ? 'selected' : '' ?>>Select Withdrawal Type*</option>
+                                            <option value="Jazzcash" <?php echo ($user['withrawal_type'] == 'Jazzcash') ? 'selected' : '' ?>>Jazzcash</option>
+                                            <option value="Easypaisa" <?php echo ($user['withrawal_type'] == 'Easypaisa') ? 'selected' : '' ?>>Easypaisa</option>
+                                            <option value="Meezan Bank" <?php echo ($user['withrawal_type'] == 'Meezan Bank') ? 'selected' : '' ?>>Meezan Bank</option>
+                                        </select>
+                                    </div>
+                                    <?php //if (form_error('first_name')): ?>
+                                        <div class="help-block text-danger"><?php echo form_error('withrawal_type') ?></div>
+                                    <?php //endif ?>
+                                </div>
+                                <div class="col-md-6  account_number_div d-none">
+                                    <div class="input-icon">
+                                        <i class="lni-envelope"></i>
+                                        <input type="text"class="form-control" required="" id="account_number" value="<?php echo $user['account_number'] ?>" name="account_number" data-inputmask="'mask': '9999-9999999999'" placeholder="Account Number*">
+                                    </div>
+                                    <?php //if (form_error('last_name')): ?>
+                                        <div class="help-block text-danger"><?php echo form_error('account_number') ?></div>
+                                    <?php //endif ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-icon">
                                         <i class="lni-envelope"></i>
                                         <input type="text" class="form-control" name="email" readonly="" placeholder="Email" value="<?php echo $user['email'] ?>">
                                     </div>
@@ -132,4 +159,23 @@
 </section>
 <script>
     $(":input").inputmask();
+    var withrawal_type = $('#withrawal_type').val();
+    show_account(withrawal_type);
+    $('#withrawal_type').on('change', function(event) {
+        var withrawal_type = $(this).val();
+        show_account(withrawal_type);
+    });
+
+    function show_account(withrawal_type) {
+        if (withrawal_type == 'Meezan Bank') 
+        {
+            $('#account_number').attr('required');
+            $('.account_number_div').removeClass('d-none');
+
+        }
+        else{
+            $('#account_number').removeAttr('required');
+            $('.account_number_div').addClass('d-none');
+        }
+    }
 </script>
