@@ -145,13 +145,41 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="siteDown" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="font-size: 14px">
+                    9 10 Muhaarram pe signals ki waja say site 2 din k liye working off hainye 2 din ap k pacKages mai barha diye jain gay  
+                    <br>
+                    11 september 4:30am site users k lye dubara open kar di jaegi 
+                    <br>
+                    Regards,<br>
+                    <!-- <a href="<?php echo base_url('front_assets/img/ntn.jpeg') ?>" target="__blank">(National Tax Certificate NTN)</a><br> -->
+                    Muhammad Suleman<br>
+                    Owner Click Pay Earn
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function() {
-        if (document.cookie.indexOf("popupNotify=true") == -1) {
-            document.cookie = "popupNotify=true; max-age=7200"; // 86400: seconds in a day
-        // make the popup show here
-            $('#modalShow').modal('show');
-        }
+        // if (document.cookie.indexOf("popupNotify=true") == -1) {
+        //     document.cookie = "popupNotify=true; max-age=7200"; // 86400: seconds in a day
+        // // make the popup show here
+        //     $('#modalShow').modal('show');
+        // }
+            $('#siteDown').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#siteDown').modal('show');
     });
 </script>
 
