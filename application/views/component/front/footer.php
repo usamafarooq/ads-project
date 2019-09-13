@@ -170,16 +170,16 @@
 
 <script>
     $(document).ready(function() {
-        // if (document.cookie.indexOf("popupNotify=true") == -1) {
-        //     document.cookie = "popupNotify=true; max-age=7200"; // 86400: seconds in a day
-        // // make the popup show here
-        //     $('#modalShow').modal('show');
-        // }
-            $('#siteDown').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-            $('#siteDown').modal('show');
+        if (document.cookie.indexOf("popupNotify=true") == -1) {
+            document.cookie = "popupNotify=true; max-age=7200"; // 86400: seconds in a day
+        // make the popup show here
+            $('#modalShow').modal('show');
+        }
+            // $('#siteDown').modal({
+            //     backdrop: 'static',
+            //     keyboard: false
+            // });
+            // $('#siteDown').modal('show');
     });
 </script>
 
