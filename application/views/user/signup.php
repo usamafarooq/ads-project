@@ -179,7 +179,7 @@
                                 <div class="col-md-6">
                                     <div class="input-icon">
                                         <i class="lni-phone-handset"></i>
-                                        <input type="text" class="form-control" id="jazz_no" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazz/Warid Cash No*">
+                                        <input type="text" class="form-control" id="jazz_no" required="" name="jazz_no" data-inputmask="'mask': '0399-9999999'" placeholder="Jazzcash/ Easypaisa No*">
                                     </div>
                                     <?php //if (form_error('jazz_no')): ?>
                                         <div class="help-block text-danger"><?php echo form_error('jazz_no') ?></div>

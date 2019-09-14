@@ -17,7 +17,7 @@
 <section id="content" class="section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
                 <h2 class="contact-title">Send Message Us</h2>
 
                 <form id="contactForm" class="contact-form" method="POST" data-toggle="validator" novalidate="true">
@@ -62,26 +62,16 @@
                     </div>
                 </form>
             </div>
-            <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                 <h2 class="contact-title">Get In Touch</h2>
                 <div class="information">
-                    <p>Lorem Ipsum Is simply dummy text of the printing and typesetting Industry. Lorem Ipsum has been the Industry's</p>
                     <div class="contact-datails">
                         <div class="icon">
                             <i class="lni-map-marker icon-radius"></i>
                         </div>
                         <div class="info">
                             <h3>Address</h3>
-                            <span class="detail">Level 13, 2 Ellzabeth St, <br> Lorem Ipsum Is simply dummy text</span>
-                        </div>
-                    </div>
-                    <div class="contact-datails">
-                        <div class="icon">
-                            <i class="lni-pointer icon-radius"></i>
-                        </div>
-                        <div class="info">
-                            <h3>Have any Questions?</h3>
-                            <span class="detail">Support@mail.com</span>
+                            <span class="detail">Office # 108 Anum Empire <br>Shahra-e-faisal, Karachi</span>
                         </div>
                     </div>
                     <div class="contact-datails">
@@ -89,21 +79,30 @@
                             <i class="lni-phone-handset icon-radius"></i>
                         </div>
                         <div class="info">
-                            <h3>Call Us &amp; Hire us</h3>
-                            <span class="detail">Main Office: +880 123 456 789</span>
+                            <h3>Withdrawal Issues</h3>
+                            <span class="detail">03030900542</span>
                         </div>
                     </div>
                     <div class="contact-datails">
                         <div class="icon">
-                            <i class="lni-phone icon-radius"></i>
+                            <i class="lni-phone-handset icon-radius"></i>
                         </div>
                         <div class="info">
-                            <h3>Telephone</h3>
-                            <span class="detail">(+88) 112345678 912</span>
+                            <h3>New Registration</h3>
+                            <span class="detail">03433173314</span>
+                        </div>
+                    </div>
+                    <div class="contact-datails">
+                        <div class="icon">
+                            <i class="lni-phone-handset icon-radius"></i>
+                        </div>
+                        <div class="info">
+                            <h3>Tech support</h3>
+                            <span class="detail">03433230864</span>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>

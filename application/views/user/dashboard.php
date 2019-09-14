@@ -47,13 +47,21 @@
                                                     <td>A/C num</td>
                                                     <td>9922 0103888288</td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>jazz cash/easy paisa num :</td>
                                                     <td>03030900542</td>
+                                                </tr> -->
+                                                <tr>
+                                                    <td>Whatsapp num (Syed Shahrique Saeein): </td>
+                                                    <td>03030900542 for withdrawal issues</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Whatsapp num :</td>
-                                                    <td>03030900542</td>
+                                                    <td>Whatsapp num (Khalid Irshad): </td>
+                                                    <td>03433173314 for New Registration</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Whatsapp num (M Suleman Memon): </td>
+                                                    <td>03433230864 for Tech support</td>
                                                 </tr>
                                             </table>
                                         </div>
