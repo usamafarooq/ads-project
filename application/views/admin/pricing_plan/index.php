@@ -63,7 +63,7 @@
 														<?php 
 															if ($permission["deleted"] == "1") {
 														?>
-		                                                <a href="<?php echo base_url() ?>admin/pricing_plan/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
+		                                                <a href="<?php echo base_url() ?>admin/pricing_plan/delete/<?php echo $module["id"] ?>" onclick="return confirm('are you sure you want to delete')"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
 		                                                <?php } ?>
 	                                                </td>
 	                                                <?php } ?>

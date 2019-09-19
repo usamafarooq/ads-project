@@ -57,46 +57,72 @@ class User extends Front_Controller {
         }
 		$this->data['title'] = 'Login';
 		if ($this->input->post()) {
-			$user = $this->User_model->get_row_single('users', ['email' => $this->input->post('email')]);
-			if (empty($user)) {
-				$message = 'Incorrect Email address';
-				$this->session->set_flashdata('error', $message);
-				redirect('user/login','refresh');
-			}
-			if ($user['status'] == 'Pending'){
-				$created_at = date_create(date('Y-m-d', strtotime($user['created_at'])));
-				$today = date_create(date('Y-m-d'));
 
-				if (date_diff($created_at, $today)->days > 5 ) {
-					$message = 'Your account will be active when admin will approve your account';
-				}
-			} 
-			if ($user['status'] == 'Inactive') $message = 'Your account is Inactive please contact admin to active your account';
-			if ($user['password'] != md5($this->input->post('password'))) $message = 'Incorrect Password';
+			$recaptchaResponse = trim($this->input->post('g-recaptcha-response'));
+ 
+	        $userIp=$this->input->ip_address();
+	     
+	        $secret = $this->config->item('google_secret');
+	   
+	        $url="https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$recaptchaResponse."&remoteip=".$userIp;
+	 
+	        $ch = curl_init(); 
+	        curl_setopt($ch, CURLOPT_URL, $url); 
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+	        $output = curl_exec($ch); 
+	        curl_close($ch);      
+	         
+	        $status= json_decode($output, true);
+	 
+	        if ($status['success']) {
+
+	        	$user = $this->User_model->get_row_single('users', ['email' => $this->input->post('email')]);
+	        	if (empty($user)) {
+	        		$message = 'Incorrect Email address';
+	        		$this->session->set_flashdata('error', $message);
+	        		redirect('user/login','refresh');
+	        	}
+	        	if ($user['status'] == 'Pending'){
+	        		$created_at = date_create(date('Y-m-d', strtotime($user['created_at'])));
+	        		$today = date_create(date('Y-m-d'));
+
+	        		if (date_diff($created_at, $today)->days > 5 ) {
+	        			$message = 'Your account will be active when admin will approve your account';
+	        		}
+	        	} 
+	        	if ($user['status'] == 'Inactive') $message = 'Your account is Inactive please contact admin to active your account';
+	        	if ($user['password'] != md5($this->input->post('password'))) $message = 'Incorrect Password';
+	        	
+
+	        	$plan = $this->db->select()
+	        	->from('plan_user pu')
+	        	->join('pricing_plan pp', 'pp.id = pu.pricing_plan_id')
+	        	->where('pu.user_id', $user['id'])
+	        	->get()->row_array();
+
+	        	$plan_duration = date_create(date('Y-m-d', strtotime($user['created_at'].' +'.$plan['Duration'].' month')));
+	        	$created_at = date_create($user['created_at']);
+
+	        	$date_diff = date_diff($created_at, $plan_duration);
+
+	        	if ($date_diff->days == 0 || $date_diff->invert == 1) 
+	        		$message = 'Your account is Expire please contact admin';
+
+	        	if (!empty($message)) {
+	        		$this->session->set_flashdata('error', $message);
+	        		redirect('user/login','refresh');
+	        	}
+
+
+	        	$this->session->set_userdata($user);
+	        	// redirect('user/dashboard','refresh');
+	         //    print_r('Google Recaptcha Successful');
+	         //    exit;
+	        }else{
+	            $this->session->set_flashdata('error', 'Sorry Google Recaptcha Unsuccessful!!');
+	            redirect('user/login','refresh');
+	        }
 			
-
-			// $plan = $this->db->select()
-			// ->from('plan_user pu')
-			// ->join('pricing_plan pp', 'pp.id = pu.pricing_plan_id')
-			// ->where('pu.user_id', $user['id'])
-			// ->get()->row_array();
-
-			// $plan_duration = date_create(date('Y-m-d', strtotime($user['created_at'].' +'.$plan['Duration'].' month')));
-			// $created_at = date_create($user['created_at']);
-
-			// $date_diff = date_diff($created_at, $plan_duration);
-
-			// if ($date_diff->days == 0 || $date_diff->invert == 1) 
-			// 	$message = 'Your account is Expire please contact admin';
-
-			if (!empty($message)) {
-				$this->session->set_flashdata('error', $message);
-				redirect('user/login','refresh');
-			}
-
-
-			$this->session->set_userdata($user);
-			redirect('user/dashboard','refresh');
 		}
 		$this->load->front_template('user/login',$this->data);
 	}
@@ -214,19 +240,6 @@ class User extends Front_Controller {
 		        ->where('created_at >=', date('Y-m-d'))
 		        ->where('created_at <=', date('Y-m-d 23:59:59'));
 		$query = $this->db->get()->result();
-
-
-		$plan_expiry_date = date_create(date('Y-m-d', strtotime($user['user_plan_created'].' +'.$user['duration'].' month')));
-		$today = date_create(date('Y-m-d'));
-
-		$this->data['expiry_date'] = date_format($plan_expiry_date,"Y-m-d");
-		$this->data['is_expire'] = 0;
-
-		$date_diff = date_diff($today, $plan_expiry_date);
-
-		if ($date_diff->days == 0 || $date_diff->invert == 1) {
-			$this->data['is_expire'] = 1;
-		}
 
 		$limit = $user['Daily_Ads'] - count($query);
 		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;

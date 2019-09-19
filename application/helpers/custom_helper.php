@@ -67,4 +67,20 @@ if (!function_exists('convertToBase64'))
         }
         return $output;
     }
+
+
+    function is_open()
+    {
+    	$current_time = date('H:i a');
+		$sunrise = "05:30 am";
+		$sunset = "4:00 pm";
+		$date1 = DateTime::createFromFormat('H:i a', $current_time);
+		$date2 = DateTime::createFromFormat('H:i a', $sunrise);
+		$date3 = DateTime::createFromFormat('H:i a', $sunset);
+		if ($date1 > $date2 && $date1 < $date3)
+		{
+		 	return true;  
+		}
+		return false;
+    }
 }

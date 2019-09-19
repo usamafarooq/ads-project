@@ -89,6 +89,9 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <?php if ($is_expire == 0): ?>
+                                                
+                                            
                                             <div class="dashboardbox" id="watch-ads">
                                                 <div class="icon"><i class="lni-write"></i></div>
                                                 <div class="contentbox">
@@ -96,6 +99,15 @@
                                                     <h3>Click here to watch ads Ad</h3>
                                                 </div>
                                             </div>
+                                            <?php else: ?>
+                                            <div class="dashboardbox">
+                                                <div class="icon"><i class="lni-write"></i></div>
+                                                <div class="contentbox">
+                                                    <h2><a href="#">Account Expired</a></h2>
+                                                    <h3>Your account is expired</h3>
+                                                </div>
+                                            </div>
+                                            <?php endif ?>
                                         </div>
                                         <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                             <div class="dashboardbox">
@@ -109,13 +121,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <?php $withdraw_limit = $user['withdraw_limit'] ?>
                                             <div class="about-wrapper" style="margin-top: 20px">
                                                 <h5>MY ACCOUNT - WITHDRAW / CASH YOUR EARNINGS</h5>
                                                 <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
-                                                <p>Get CASH. You must earn at least Rs.500</p><br>
+                                                <p>Get CASH. You must earn at least Rs.<?php echo $withdraw_limit ?></p><br>
                                                 <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>
-                                                <?php if($user['amount'] >= 500): ?>
-                                                <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
+                                                <?php if($user['amount'] >= $withdraw_limit): ?>
+                                                    <?php if (is_open()): ?>
+                                                        <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
+                                                        <?php else: ?>
+                                                            <p>withdrawal time is 10:30 am to 9:00 pm</p> 
+                                                    <?php endif ?>
                                             <?php endif; ?>
                                             </div>
                                         </div>

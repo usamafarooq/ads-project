@@ -66,7 +66,18 @@
 <?php $Amount = explode(",", $pricing_plan["Amount"]) ?>
                                         <input class="form-control" name="Amount" type="text" value="<?php echo $pricing_plan["Amount"] ?>" id="example-text-input" placeholder="" required=""></div>
 
-                                    </div><div class="form-group row">
+                                    </div>
+
+                                    <div class="form-group row">
+
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Withdrawal limit<span class="required">*</span></label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" name="withdraw_limit" type="number" value="<?php echo $pricing_plan["withdraw_limit"] ?>" id="example-text-input" placeholder="" required="">
+                                            </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Duration<span class="required">*</span></label>
                                         <div class="col-sm-9">
