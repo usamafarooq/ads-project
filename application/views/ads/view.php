@@ -34,8 +34,31 @@
 
 
 <script>
+		var myInterval;
+		window.addEventListener('focus', startTimer);
+		window.addEventListener('blur', stopTimer);
+
+		time = 30; 
+		function adstimeHandler(){
+			time -= 1;
+			if ( time < 0 ) {
+				time = 0;
+			}
+			$('.timeLimit').text('00:'+parseInt(time));
+		} 
+		
+		// Start timer
+		myInterval = window.setInterval(adstimeHandler, 1000);
+
+		 function startTimer() {
+			  myInterval = window.setInterval(adstimeHandler, 1000);
+		 }
+		// Stop timer
+		 function stopTimer() {
+		  window.clearInterval(myInterval);
+		 }
 	$(document).ready(function() {
-		setTimeout(function(){
+		function adsCallback(){
 			$.ajax({
 			 	url: '<?php echo base_url() ?>clickads/save_view',
 			 	type: 'GET',
@@ -48,16 +71,12 @@
 			 			window.top.close();
 			 		}
 			 	}
-			 })
-			  
-		}, 30000);
-		time = 30; 
-		// console.log(time);
-		window.setInterval(function(){
-			time -= 1;
-			if ( time < 0 ) time = 0;
-			$('.timeLimit').text('00:'+parseInt(time));
-
-		}, 1000)
+			 }) 
+		}
+		setInterval(function(){
+			if(time == 0){
+				setTimeout(adsCallback, 100);
+			}
+		},1000)
 	});
 </script>

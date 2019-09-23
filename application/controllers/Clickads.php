@@ -38,6 +38,13 @@ class Clickads extends Front_Controller {
 
 	public function view($id)
 	{
+		$user_id = $this->session->userdata('id');
+		$plan_user = $this->User_model->get_row_single("plan_user",["user_id" => $user_id]);
+		if(date('Y-m-d') > $plan_user['expire_at']){
+			$this->session->set_flashdata('error', 'Your account is not approved');
+			redirect('/clickads');
+		}
+
 		if ($this->session->userdata('status') != 'Approved') {
 			$this->session->set_flashdata('error', 'Your account is not approved');
 			redirect('/clickads');

@@ -186,7 +186,6 @@
 
     <script>
         $('#watch-ads').on('click', function(e) {
-        
             var adsItemm = $('.item');
             currentAd = adsItemm[Math.floor(Math.random() * adsItemm.length)];
             if (currentAd == undefined) return;

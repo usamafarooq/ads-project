@@ -23,9 +23,11 @@ class User extends Front_Controller {
 		$this->data['title'] = 'Signup';
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 		$this->form_validation->set_rules('username', 'Username', 'is_unique[users.username]');
-		$this->form_validation->set_rules('email', 'Email', 'is_unique[users.email]');
+		$this->form_validation->set_rules('email', 'Email', 'is_unique[users.email]'); 
+		$this->form_validation->set_rules('referrer', 'Referral Email', 'is_unique[users.email]'); 
+
 		if ($this->form_validation->run()) {
-		
+			
 			if ($this->input->post()) {
 				$package = $this->input->post('package');
 				$data = $this->input->post();
@@ -215,8 +217,9 @@ class User extends Front_Controller {
 		        ->where('created_at <=', date('Y-m-d 23:59:59'));
 		$query = $this->db->get()->result();
 
-
-		$plan_expiry_date = date_create(date('Y-m-d', strtotime($user['user_plan_created'].' +'.$user['duration'].' month')));
+		$get_planUser = $this->User_model->get_row_single('plan_user', ['user_id'=>$user_id]);			
+		// $plan_expiry_date = date_create(date('Y-m-d', strtotime($user['user_plan_created'].' +'.$user['duration'].' month')));
+		$plan_expiry_date = date_create(date('Y-m-d', strtotime($get_planUser['expire_at'])));
 		$today = date_create(date('Y-m-d'));
 
 		$this->data['expiry_date'] = date_format($plan_expiry_date,"Y-m-d");
