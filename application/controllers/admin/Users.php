@@ -116,9 +116,43 @@ class Users extends MY_Controller {
         $this->session->set_flashdata('success', 'Successfully updated');
         if ($status == 'approved') {
             $user = $this->User_model->get_row_single('users', ['id' => $user_id]);
+            
+            $planuser = $this->User_model->get_row_single('plan_user', ['user_id' => $user_id]);
+            
+            if($planuser['expire_at'] == 0){
+                $plan = $this->User_model->get_row_single('pricing_plan', ['id' => $planuser['pricing_plan_id']]);
+                print_r($plan['Duration']);
+
+                $expirydate = ['expire_at' => date('Y-m-d', strtotime("+".$plan['Duration']." months", strtotime($planuser['created_at'])))];
+                $this->User_model->update('plan_user', $expirydate, ['user_id' => $user_id]);
+            }
             $template = $this->load->view('email/approved', $user, TRUE);
             send_mail(NULL, $user['email'], 'Account Confirmation', $template);
         }
         redirect('admin/users');
+    }
+
+    // Database Expiry Date Of All Approved Users has been updated
+    public function updateExpiryDateAllApprovedUsers(){
+        $aproved_users = $this->User_model->all_rows('users');
+
+        for($i = 0; $i < sizeof($aproved_users); $i++){
+            $user_id = $aproved_users[$i]['id'];
+
+            $planuser = $this->User_model->get_row_single('plan_user', ['user_id' => $user_id]);
+            
+            if($planuser['expire_at'] == 0){
+
+                $plan = $this->User_model->get_row_single('pricing_plan', ['id' => $planuser['pricing_plan_id']]);
+
+                $expirydate = ['expire_at' => date('Y-m-d', strtotime("+".$plan['Duration']." months", strtotime($planuser['created_at'])))];
+
+                $this->User_model->update('plan_user', $expirydate, ['user_id' => $user_id]);
+
+            }
+        }
+        
+
+
     }
 }

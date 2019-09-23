@@ -74,7 +74,7 @@
 				send_mail(NULL, $user['email'], 'Withdrawal Request Approval', $template);
 				
 				$this->session->set_flashdata('success', 'Record updated');
-				redirect('admin/withdraw');
+				//redirect('admin/withdraw');
 			}
 		}
 		public function delete($id)

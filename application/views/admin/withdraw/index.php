@@ -78,19 +78,20 @@
 														<?php echo ($module[$prefix.'withrawal_type'] == 'Meezan Bank') ? '('.$module[$prefix.'account_number'].')' : '' ?>
 													</td>
 													<td><?php echo date('d-M-Y', strtotime($module['created_at'])) ?></td>
-													<td><?php echo ($module['approve_date'] != '0000-00-00 00:00:00')  ? date('d-M-Y', strtotime($module['approve_date'])) : '-' ?></td>
-													<td><?php echo $module["Status"] ?></td>
+													<td id="approve-<?php echo $module["id"] ?>"><?php echo ($module['approve_date'] != '0000-00-00 00:00:00')  ? date('d-M-Y', strtotime($module['approve_date'])) : '-' ?></td>
+													<td id="status-<?php echo $module["id"] ?>"><?php echo $module["Status"] ?></td>
 
 
 													<?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
-													<td>
+													<td id="action-<?php echo $module["id"] ?>">
 														<?php 
 															if ($permission["edit"] == "1") {
 														?>
 														<?php if($module['Status'] == 'Pending'): ?>
-														<a href="<?php echo base_url() ?>admin/withdraw/approve/<?php echo $module["id"] ?>">Approve</a>
+														<!-- <a href="<?php // echo base_url() ?>admin/withdraw/approve/<?php //echo $module["id"] ?>">Approve</a> -->
+														<a class="withdraw_action" href="javascript:void()" data-url="<?php echo base_url() ?>admin/withdraw/approve/" data-withdrawId="<?php echo $module["id"] ?>">Approve</a>
 														<?php else: ?>
 															-
 													<?php endif; ?>
@@ -118,6 +119,12 @@
 				</div> <!-- /.main content -->
 			</div><!-- /#page-wrapper -->
 		</div><!-- /#wrapper -->
+
+		<div class="ajax-loader">
+			<div class="ajax-spinner">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+		</div>
 		<!-- START CORE PLUGINS -->
 
 

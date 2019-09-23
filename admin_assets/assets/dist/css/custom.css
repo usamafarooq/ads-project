@@ -10,3 +10,23 @@ and open the template in the editor.
 
 
 /*YOUR CUSTOM STYLE STARTED IN HERE*/
+.ajax-loader{
+	background-color: rgba(200,200,200,0.5);
+	position: fixed;
+	top: 0;
+	display: none; 
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1;
+}
+.ajax-loader .ajax-spinner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+.ajax-loader .ajax-spinner i{
+	font-size: 40px;
+}

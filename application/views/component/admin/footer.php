@@ -205,34 +205,37 @@
 
 $(document).ready(function() {
 
-$(function(){
+    $(function(){
 
-new Morris.Line({
-  // ID of the element in which to draw the chart.
-  element: 'myfirstchart',
-  // Chart data records -- each entry in this array corresponds to a point on
-  // the chart.
-  data: [
-    { year: '2008', value: 20 },
-    { year: '2009', value: 10 },
-    { year: '2010', value: 5 },
-    { year: '2011', value: 5 },
-    { year: '2012', value: 20 }
-  ],
-  // The name of the data record attribute that contains x-values.
-  xkey: 'year',
-  // A list of names of data record attributes that contain y-values.
-  ykeys: ['value'],
-  // Labels for the ykeys -- will be displayed when you hover over the
-  // chart.
-  labels: ['Value']
+        new Morris.Line({
+          // ID of the element in which to draw the chart.
+          element: 'myfirstchart',
+          // Chart data records -- each entry in this array corresponds to a point on
+          // the chart.
+          data: [
+            { year: '2008', value: 20 },
+            { year: '2009', value: 10 },
+            { year: '2010', value: 5 },
+            { year: '2011', value: 5 },
+            { year: '2012', value: 20 }
+          ],
+          // The name of the data record attribute that contains x-values.
+          xkey: 'year',
+          // A list of names of data record attributes that contain y-values.
+          ykeys: ['value'],
+          // Labels for the ykeys -- will be displayed when you hover over the
+          // chart.
+          labels: ['Value']
+        });
+
+
+        
+    });
+
 });
 
-});
 
-});
-
-        	$('#insert_lead').click(function(){
+    $('#insert_lead').click(function(){
 
 
         var formData = new FormData( $("#lead_form")[0] );
@@ -273,7 +276,27 @@ new Morris.Line({
 
     });
 
-
+            $("a.withdraw_action").click(function(){
+                var withdraw_id = $(this).attr('data-withdrawId');
+                var withdraw_link = $(this).attr('data-url');
+                var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var currentDate = new Date();
+                var currentMonth = months[currentDate.getMonth()];
+                var fulldate = currentDate.getDate() + '-' + currentMonth + '-' + currentDate.getFullYear();
+                
+                // Set Withdraw Approval action on ajax
+                $('.ajax-loader').show();
+                $.ajax({
+                    url: withdraw_link + withdraw_id,
+                    success: function(approve){
+                        $('#action-' + withdraw_id).html('-');
+                        $('#status-' + withdraw_id).html('Approve');
+                        $('#approve-' + withdraw_id).html(fulldate);
+                        $('.ajax-loader').hide();
+                    }
+                });
+            });
+    
 
 
         </script>
