@@ -24,10 +24,8 @@ class User extends Front_Controller {
 		$this->data['pricing_plan'] = $this->User_model->all_rows('pricing_plan');
 		$this->form_validation->set_rules('username', 'Username', 'is_unique[users.username]');
 		$this->form_validation->set_rules('email', 'Email', 'is_unique[users.email]'); 
-		$this->form_validation->set_rules('referrer', 'Referral Email', 'is_unique[users.email]'); 
-
+		$this->form_validation->set_rules('referrer', 'Referrer Email	', 'callback_referrer_check');
 		if ($this->form_validation->run()) {
-			
 			if ($this->input->post()) {
 				$package = $this->input->post('package');
 				$data = $this->input->post();
@@ -51,7 +49,31 @@ class User extends Front_Controller {
 		$this->load->front_template('user/signup',$this->data);
 	}
 
+	function referrer_check($str)
+	{
+		$field_value = $str; 
 
+		$getReferrerUser = $this->User_model->get_row_single('users', ['email'=>$field_value, 'status'=> 'Approved']);
+
+		if(count($getReferrerUser) > 0){
+			$checkExpiry = $this->User_model->get_row_single('plan_user', ['user_id'=>$getReferrerUser['id']]);
+
+			$plan_expiry_date = date_create(date('Y-m-d', strtotime($checkExpiry['expire_at'])));
+			$today = date_create(date('Y-m-d'));
+
+			$expiry = date_format($plan_expiry_date,"Y-m-d");
+			$date_diff = date_diff($today, $plan_expiry_date);
+			if ($date_diff->days == 0 || $date_diff->invert == 1) {
+				$this->form_validation->set_message('referrer_check','{field} is Expired!');
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		} else {
+			$this->form_validation->set_message('referrer_check','{field} is Not Exist!');
+			return FALSE;
+		}
+	}
 	public function login()
 	{
 		if ($this->session->userdata('role') == 2) {

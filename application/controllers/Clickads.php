@@ -97,9 +97,16 @@ class Clickads extends Front_Controller {
 		$this->db->update('users');
 
 		if (!empty($user[0]['referrer'])) {
-			$this->db->set('amount', 'amount+'.$referrer_amount, FALSE);
-			$this->db->where('email', $user[0]['referrer']);
-			$this->db->update('users');
+			$referrer_user = $this->User_model->get_row_single('users', ['email'=>$user[0]['referrer']]);
+			if($referrer_user['status'] == 'Approved'){
+				$ref_user_id = $referrer_user['id'];
+				$ref_plan_exp = $this->User_model->get_row_single('plan_user', ['user_id'=>$ref_user_id]);
+				if(date('Y-m-d') <= $ref_plan_exp['expire_at']){
+					$this->db->set('amount', 'amount+'.$referrer_amount, FALSE);
+					$this->db->where('email', $user[0]['referrer']);
+					$this->db->update('users');
+				}
+			}
 		}
 
 		$this->User_model->insert('user_ads_view', $data);
