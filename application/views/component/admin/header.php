@@ -52,7 +52,8 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+        <link rel="stylesheet" href="<?php echo base_url() ?>admin_assets/assets/dist/css/datepicker-min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>admin_assets/assets/dist/css/daterangepicker.css">
     <link href="<?php echo base_url() ?>admin_assets/assets/dist/button/css/bootstrap-toggle.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

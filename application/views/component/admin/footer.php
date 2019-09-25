@@ -38,10 +38,32 @@
 
      <!-- STRAT PAGE LABEL PLUGINS -->
         <script src="<?php echo base_url() ?>admin_assets/assets/plugins/datatables/dataTables.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url() ?>admin_assets/assets/dist/js/daterangepicker.js"></script>  
+        <script src="<?php echo base_url() ?>admin_assets/assets/dist/js/datepicker-min.js"></script>   
+        <script>
+            //Date picker
+         $('#expire_at').datepicker({format: "yyyy-mm-dd"}); 
+        </script>
         <!-- START THEME LABEL SCRIPT -->
         <!-- <script src="<?php echo base_url() ?>admin_assets/assets/dist/js/app.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>admin_assets/assets/dist/js/jQuery.style.switcher.min.js" type="text/javascript"></script> -->
         <script>
+            $(document).ready(function(){
+                $('select[name="package"]').change(function(){
+                        var oldExpiry = $('#oldExpiry').val();
+                    if($(this).val() == 'continue'){
+                        $('#expire_at').val(oldExpiry);
+                    } else if($(this).val() == 'extend') {
+                        var currentDate = new Date();
+                        var getDuration = Number($('#expire_at').attr('data-duration'));
+                        var setd = new Date(currentDate.setMonth(currentDate.getMonth() + getDuration));
+                        var expMonth = setd.getMonth();
+                        var getDates = setd.getFullYear() + "-" + Number(expMonth+1) + "-" + setd.getDate();
+                        $('#expire_at').val(getDates);
+                    }
+
+                });
+            })
             $(document).ready(function () {
 
                 "use strict"; // Start of use strict
