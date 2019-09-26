@@ -196,7 +196,7 @@
         $.ajax({
             url: base_url+'clickads/checkViewedAds',
             type: 'GET',
-            dataType: 'json',
+            dataType: 'jsonp',
             success:function(res){
                 if (res.status == 200 && res.data.length > 0) {
                     $('.ads_limit').text(res.available_limit+' ads available');
