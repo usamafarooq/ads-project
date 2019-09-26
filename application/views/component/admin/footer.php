@@ -55,10 +55,47 @@
                         $('#expire_at').val(oldExpiry);
                     } else if($(this).val() == 'extend') {
                         var currentDate = new Date();
-                        var getDuration = Number($('#expire_at').attr('data-duration'));
+                        var getDuration = Number($('#pricing_plan_id').children("option:selected").attr('data-duration'));
                         var setd = new Date(currentDate.setMonth(currentDate.getMonth() + getDuration));
                         var expMonth = setd.getMonth();
-                        var getDates = setd.getFullYear() + "-" + Number(expMonth+1) + "-" + setd.getDate();
+                        expMonth = Number(expMonth+1);
+                        var expYear = setd.getFullYear();
+                        var expDate = setd.getDate();
+                        if(expMonth < 10){
+                            expMonth = "0" + expMonth;
+                        }
+                        if(expYear < 10){
+                            expYear = "0" + expYear;
+                        }
+                        if(expDate < 10){
+                            expDate = "0" + expDate;
+                        }
+                        var getDates = expYear + "-" + expMonth  + "-" + expDate;
+                        $('#expire_at').val(getDates);
+                    }
+
+                });
+
+                $('select[name="pricing_plan_id"]').change(function(){
+                    var selectedPackage = $('select[name="package"]');
+                    if(selectedPackage.val() == 'extend') {
+                        var currentDate = new Date();
+                        var getDuration = Number($(this).children("option:selected").attr('data-duration'));
+                        var setd = new Date(currentDate.setMonth(currentDate.getMonth() + getDuration));
+                        var expMonth = setd.getMonth();
+                        expMonth = Number(expMonth+1);
+                        var expYear = setd.getFullYear();
+                        var expDate = setd.getDate();
+                        if(expMonth < 10){
+                            expMonth = "0" + expMonth;
+                        }
+                        if(expYear < 10){
+                            expYear = "0" + expYear;
+                        }
+                        if(expDate < 10){
+                            expDate = "0" + expDate;
+                        }
+                        var getDates = expYear + "-" + expMonth  + "-" + expDate;
                         $('#expire_at').val(getDates);
                     }
 

@@ -120,8 +120,28 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-3 col-form-label">Package<span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        
+                                        <select class="form-control" name="pricing_plan_id" id="pricing_plan_id" required="">
+                                            <?php foreach ($packages as $package): ?>
+                                                <?php 
+                                                    if($package['id'] == $plan_user['pricing_plan_id']){
+                                                        $selected = "selected";
+                                                    } else {
+                                                        $selected = "";
+                                                    }
+                                                 ?>
+                                            <option data-duration="<?php echo $package['Duration'] ?>" value="<?php echo $package['id'] ?>" <?php echo $selected ?>><?php echo $package['Name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-sm-3 col-form-label">Package Duration<span class="required">*</span></label>
                                     <div class="col-sm-9">
                                         
                                         <select class="form-control" data-ext-duration="<?php echo $pricing_plan['Duration'] ?>" data-user-id="<?php echo $plan_user['user_id'] ?>" id="package" name="package">
@@ -130,11 +150,13 @@
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <input type="hidden" id="oldExpiry" value="<?php echo $plan_user['expire_at']; ?>">
+
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-3 col-form-label">Expiry Date<span class="required">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" name="expire_at" data-duration="<?php echo $pricing_plan['Duration'] ?>" type="text" value="<?php echo $plan_user['expire_at'] ?>" id="expire_at" placeholder="" required="">
+                                        <input class="form-control" name="expire_at" type="text" value="<?php echo $plan_user['expire_at'] ?>" id="expire_at" placeholder="" required="">
                                     </div>
 
                                 </div>

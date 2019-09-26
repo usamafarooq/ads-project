@@ -77,6 +77,7 @@ class Users extends MY_Controller {
         $this->data['user'] = $this->User_model->get_row_single('users',array('id'=>$id));
         $this->data['role'] = $this->User_model->all_rows('user_type');
         $this->data['cities'] = $this->User_model->all_rows('cities');
+        $this->data['packages'] = $this->User_model->all_rows('pricing_plan');
         $this->data['plan_user'] = $this->User_model->get_row_single('plan_user', array('user_id'=>$id));
         $this->data['pricing_plan'] = $this->User_model->get_row_single('pricing_plan', array('id'=> $this->data['plan_user']['pricing_plan_id']));
         $this->load->template('admin/user/edit',$this->data);
@@ -116,10 +117,10 @@ class Users extends MY_Controller {
 			if ($this->form_validation->run() == false) {
 				$this->edit($data['id']);
 			} else {
-				$expire_at = ['expire_at'=>$data['expire_at']];
-				// echo $data['expire_at'];
-	        	$this->User_model->update('plan_user',$expire_at, ['user_id'=>$data['id']]);
+                $plan_user_packages = ['expire_at'=>$data['expire_at'], 'pricing_plan_id'=>$data['pricing_plan_id']];
+				$this->User_model->update('plan_user',$plan_user_packages, ['user_id'=>$data['id']]);
 	        	unset($data['expire_at']);
+                unset($data['pricing_plan_id']);
 	        	$this->User_model->update('users',$data, ['id'=>$data['id']]);
 	        }
 	        redirect('admin/users');
