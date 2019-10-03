@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-wrapper">
-                        <h2 class="product-title">Dashbord</h2>
+                        <h2 class="product-title">Dashboard</h2>
                         <ol class="breadcrumb">
                             <li><a href="#">Home /</a></li>
                             <li class="current">Dashboard</li>
@@ -29,7 +29,8 @@
                     <div class="page-content">
                         <div class="inner-box">
                             <div class="dashboard-box">
-                                <h2 class="dashbord-title">Dashboard</h2>
+                                <h2 class="dashbord-title">Dashboard </h2>
+                                <h2 class="dashbord-title float-right">Expiry date- <?php echo date('d-M-Y', strtotime($expiry_date)) ?></h2>
                             </div>
                             <div class="dashboard-wrapper">
                                 <div class="dashboard-sections">
@@ -185,32 +186,61 @@
 
 
     <script>
+        var click_time = 0;
         $('#watch-ads').on('click', function(e) {
-            var adsItemm = $('.item');
-            currentAd = adsItemm[Math.floor(Math.random() * adsItemm.length)];
-            if (currentAd == undefined) return;
-            var href = $(currentAd).find('a').attr('href');
-            window.open(href, '_blank');
-        });
-        window.setInterval(function() {
-        $.ajax({
-            url: base_url+'clickads/checkViewedAds',
-            type: 'GET',
-            dataType: 'jsonp',
-            success:function(res){
-                if (res.status == 200 && res.data.length > 0) {
-                    $('.ads_limit').text(res.available_limit+' ads available');
-                    $.each(res.data, function(i, v) {
-                        $this = $('div [data-id='+v.ad_id+']');
-                        if ($this.length > 0) 
-                        {
-                            $($this).remove();
-                            
-                        }
-                    });
-                }
+            if (click_time <= 0) 
+            {
+                var adsItemm = $('.item');
+                currentAd = adsItemm[Math.floor(Math.random() * adsItemm.length)];
+                if (currentAd == undefined) return;
+                var href = $(currentAd).find('a').attr('href');
+                window.open(href, '_blank');
+                click_time = 30;
+                stop_click();
+            }
+            else{
+                return false;
             }
         });
-        
-    }, 3000);
+        // window.setInterval(function() {
+        //     check_view_ads();
+        // }, 30000);
+        $(window).on('focus', function() { check_view_ads() });
+
+            function check_view_ads() {
+                
+                $.ajax({
+                    url: base_url+'clickads/checkViewedAds',
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    success:function(res){
+                        if (res.status == 200 && res.data.length > 0) {
+                            $('.ads_limit').text(res.available_limit+' ads available');
+                            $.each(res.data, function(i, v) {
+                                $this = $('div [data-id='+v.ad_id+']');
+                                if ($this.length > 0) 
+                                {
+                                    $($this).remove();
+                                    
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+
+
+    function stop_click() {
+        timer = window.setInterval(function() {
+            click_time = click_time -1;
+        }, 1000);
+
+        if (click_time == 0) 
+        {
+            clearInterval(timer);
+        }
+
+    }
+
+
     </script>

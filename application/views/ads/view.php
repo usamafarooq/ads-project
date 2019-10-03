@@ -38,11 +38,21 @@
 		window.addEventListener('focus', startTimer);
 		window.addEventListener('blur', stopTimer);
 
-		time = 30; 
+		time = 30;
+		request_send = 0; 
 		function adstimeHandler(){
 			time -= 1;
 			if ( time < 0 ) {
 				time = 0;
+			}
+
+			if (time == 0) 
+			{
+				if (request_send == 0) 
+				{
+					request_send = 1;
+					adsCallback();
+				}
 			}
 			$('.timeLimit').text('00:'+parseInt(time));
 		} 
@@ -57,12 +67,13 @@
 		 function stopTimer() {
 		  window.clearInterval(myInterval);
 		 }
-	$(document).ready(function() {
+	// $(document).ready(function() {
 		function adsCallback(){
 			$.ajax({
 			 	url: '<?php echo base_url() ?>clickads/save_view',
 			 	type: 'GET',
 			 	dataType: 'jsonp',
+			 	async: false,
 			 	data: {id: '<?php echo $ads["id"] ?>'},
 			 	success: function(res){
 			 		// console.log(res)
@@ -73,10 +84,10 @@
 			 	}
 			 }) 
 		}
-		setInterval(function(){
-			if(time == 0){
-				setTimeout(adsCallback, 100);
-			}
-		},1000)
-	});
+		// setInterval(function(){
+		// 	if(time == 0){
+		// 		setTimeout(adsCallback, 100);
+		// 	}
+		// },1000)
+	// });
 </script>

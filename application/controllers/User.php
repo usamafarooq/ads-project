@@ -51,7 +51,11 @@ class User extends Front_Controller {
 
 	function referrer_check($str)
 	{
-		$field_value = $str; 
+		$field_value = $str;
+
+		if (empty($field_value)) {
+			return TRUE;
+		}
 
 		$getReferrerUser = $this->User_model->get_row_single('users', ['email'=>$field_value, 'status'=> 'Approved']);
 

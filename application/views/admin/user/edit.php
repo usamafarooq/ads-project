@@ -97,7 +97,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-3 col-form-label">Referrer Email<span class="required">*</span></label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" name="referrer" type="text" value="<?php echo $user['referrer'] ?>" id="example-text-input" placeholder="" required="">
+                                        <input class="form-control" name="referrer" type="text" value="<?php echo $user['referrer'] ?>" id="example-text-input" placeholder="" >
                                         <div class="help-block text-danger"><?php echo form_error('referrer') ?></div>
                                     </div>
 

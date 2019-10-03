@@ -35,4 +35,12 @@ class Ads_model extends MY_Model{
 		$result = $this->db->get()->result_array();
 		return $result;
 	}
+
+
+	public function remove_view_logs()
+	{
+		        $this->db->where('DATE(created_at) <', date('Y-m-d'))
+		        ->delete('user_ads_view');
+		        return $this->db->affected_rows();
+	}
 }

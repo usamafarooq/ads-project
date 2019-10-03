@@ -71,16 +71,37 @@ if (!function_exists('convertToBase64'))
 
     function is_open()
     {
+    	$return = false;
     	$current_time = date('H:i a');
-		$sunrise = "05:30 am";
-		$sunset = "4:00 pm";
-		$date1 = DateTime::createFromFormat('H:i a', $current_time);
-		$date2 = DateTime::createFromFormat('H:i a', $sunrise);
-		$date3 = DateTime::createFromFormat('H:i a', $sunset);
-		if ($date1 > $date2 && $date1 < $date3)
+		$current_time = DateTime::createFromFormat('H:i a', $current_time);
+		
+		$first_time_start = date('H:i a', strtotime("07:00 am"));
+		$first_time_end = date('H:i a', strtotime("09:00 am"));
+		$first_time_start = DateTime::createFromFormat('H:i a', $first_time_start);
+		$first_time_end = DateTime::createFromFormat('H:i a', $first_time_end);
+		if ($current_time > $first_time_start && $current_time < $first_time_end)
 		{
-		 	return true;  
+		 	$return = true;  
 		}
-		return false;
+
+
+		$second_time_start = date('H:i a', strtotime("12:00 pm"));
+		$second_time_end = date('H:i a', strtotime("02:00 pm"));
+		$second_time_start = DateTime::createFromFormat('H:i a', $second_time_start);
+		$second_time_end = DateTime::createFromFormat('H:i a', $second_time_end);
+		if ($current_time > $second_time_start && $current_time < $second_time_end)
+		{
+		 	$return = true;  
+		}
+
+		$third_time_start = date('H:i a', strtotime("04:00 pm"));
+		$third_time_end = date('H:i a', strtotime("06:00 pm"));
+		$third_time_start = DateTime::createFromFormat('H:i a', $third_time_start);
+		$third_time_end = DateTime::createFromFormat('H:i a', $third_time_end);
+		if ($current_time > $third_time_start && $current_time < $third_time_end)
+		{
+		 	$return = true;  
+		}
+		return $return;
     }
 }

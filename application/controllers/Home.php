@@ -8,6 +8,7 @@ class Home extends Front_Controller {
         parent::__construct();
         $this->load->model('Home_model');
         $this->load->model('Pricing_plan_model');
+        $this->load->model('Ads_model');
     }
 
 	public function index()
@@ -25,6 +26,13 @@ class Home extends Front_Controller {
 		$email = $this->input->post('email');
 		$this->Home_model->insert('newsletter', ['email' => $email]);
 		echo json_encode(['status' => 200]);
+	}
+
+
+	public function remove_view_logs()
+	{
+		$affected = $this->Ads_model->remove_view_logs();
+		echo $affected.' rows deleted';
 	}
 
 }

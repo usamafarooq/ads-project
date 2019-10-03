@@ -2,7 +2,7 @@
 
 class User_model extends MY_Model
 {
-	public function get_users($id = null)
+	public function get_users($id = null, $status = null)
 	{
 		$this->db->select('u.*,ut.name as role, pp.name as package, pp.Amount as package_amount, pu.pricing_plan_id, pp.Click_Price, pp.Refer_Click_Price, pp.Daily_Ads, approve_amount, pending_amount, pu.created_at as user_plan_created, pp.Duration as duration, pp.withdraw_limit')
 				 ->from('users u')
@@ -12,6 +12,14 @@ class User_model extends MY_Model
 				 ->join('(select User, SUM(CASE WHEN status = "Approve" THEN Amount ELSE 0 END) AS approve_amount, SUM(CASE WHEN status = "Pending" THEN Amount ELSE 0 END) AS pending_amount from withdraw group by User) w', 'w.User = u.id', 'left');
 		if ($id != null) {
 			$this->db->where('u.id', $id);
+		}
+		if (!empty($status) ) {
+			if ($status == 'Approved') {
+				$this->db->where('u.status', 'Approved');
+			}
+			else{
+				$this->db->where('u.status !=', 'Approved');
+			}
 		}
 		return $this->db->get()->result_array();
 	}

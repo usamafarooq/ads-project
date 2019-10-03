@@ -104,7 +104,7 @@
 														<?php 
 															if ($permission['edit'] == '1') {
 														?>
-														<a href="<?php echo base_url() ?>admin/users/edit/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" onclick="return confirm('are you sure you want to delete this user?')" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>admin/users/edit/<?php echo $user['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="Edit User" alt="View Order" width="35" height="35"></a>
 														<?php } ?>
 
 														<?php 

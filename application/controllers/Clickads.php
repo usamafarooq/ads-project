@@ -67,7 +67,7 @@ class Clickads extends Front_Controller {
 		        ->where('created_at >=', date('Y-m-d'))
 		        ->where('created_at <=', date('Y-m-d 23:59:59'))->get()->row();
 		if (!empty($ad)) {
-			echo json_encode(['status' => 200]); die();
+			echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')'; die();
 		}
 
 		$user = $this->User_model->get_users($user_id);
@@ -111,7 +111,7 @@ class Clickads extends Front_Controller {
 
 		$this->User_model->insert('user_ads_view', $data);
 		// echo json_encode(['status' => 200]);
-		echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')';
+		echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')'; die();
 	}
 
 

@@ -22,7 +22,7 @@ class Users extends MY_Controller {
         }
         $this->data['title'] = 'Users';
         if ( $this->permission['view_all'] == '1'){
-            $this->data['users'] = $this->User_model->get_users();
+            $this->data['users'] = $this->User_model->get_users(null, 'pending');
         }
         elseif ($this->permission['view'] == '1') {
             $this->data['users'] = $this->User_model->get_users($this->id);
@@ -122,14 +122,17 @@ class Users extends MY_Controller {
 	        	unset($data['expire_at']);
                 unset($data['pricing_plan_id']);
 	        	$this->User_model->update('users',$data, ['id'=>$data['id']]);
+	            redirect('admin/users');
 	        }
-	        redirect('admin/users');
         }
 
     }
     function referrer_check($str)
 	{
 		$field_value = $str; 
+        if (empty($field_value)) {
+            return TRUE;
+        }
 
 		$getReferrerUser = $this->User_model->get_row_single('users', ['email'=>$field_value, 'status'=> 'Approved']);
 
@@ -186,25 +189,86 @@ class Users extends MY_Controller {
         redirect('admin/users');
     }
 
+
+
+    public function approved()
+    {
+        if ( $this->permission['view'] == '0' && $this->permission['view_all'] == '0' ) 
+        {
+            redirect('admin/home');
+        }
+        $this->data['title'] = 'Users';
+        if ( $this->permission['view_all'] == '1'){
+            $this->data['users'] = $this->User_model->get_users(null, $status = 'Approved');
+        }
+        // elseif ($this->permission['view'] == '1') {
+        //     $this->data['users'] = $this->User_model->get_users($this->id);
+        // }
+
+        $this->data['permission'] = $this->permission;
+        $this->load->template('admin/user/index',$this->data);
+    }
+
     // Database Expiry Date Of All Approved Users has been updated
     public function updateExpiryDateAllApprovedUsers(){
-        $aproved_users = $this->User_model->all_rows('users');
+        $users_list = $this->User_model->all_rows('users');
 
-        for($i = 0; $i < sizeof($aproved_users); $i++){
-            $user_id = $aproved_users[$i]['id'];
+        for($i = 0; $i < sizeof($users_list); $i++){
 
-            $planuser = $this->User_model->get_row_single('plan_user', ['user_id' => $user_id]);
-            
-            if($planuser['expire_at'] == 0){
+            if ($users_list[$i]['status'] == 'Approved') {
+                $user_id = $users_list[$i]['id'];
 
-                $plan = $this->User_model->get_row_single('pricing_plan', ['id' => $planuser['pricing_plan_id']]);
+                $planuser = $this->User_model->get_row_single('plan_user', ['user_id' => $user_id]);
+                
+                if($planuser['expire_at'] == 0){
 
-                $expirydate = ['expire_at' => date('Y-m-d', strtotime("+".$plan['Duration']." months", strtotime($planuser['created_at'])))];
+                    $plan = $this->User_model->get_row_single('pricing_plan', ['id' => $planuser['pricing_plan_id']]);
 
-                $this->User_model->update('plan_user', $expirydate, ['user_id' => $user_id]);
+                    $expirydate = ['expire_at' => date('Y-m-d', strtotime("+".$plan['Duration']." months", strtotime($planuser['created_at'])))];
+
+                    $this->User_model->update('plan_user', $expirydate, ['user_id' => $user_id]);
+
+                }
 
             }
         }
+        
+
+
+    }
+
+
+    public function update_expiry_date($day){
+
+        if (empty($day)) {
+            die('no days defined');
+        }
+
+        $users_list = $this->User_model->all_rows('users');
+
+        $affected = 0;
+        for($i = 0; $i < sizeof($users_list); $i++){
+            if ($users_list[$i]['status'] == 'Approved') {
+
+                $user_id = $users_list[$i]['id'];
+
+                $planuser = $this->User_model->get_row_single('plan_user', ['user_id' => $user_id]);
+                
+                // if($planuser['expire_at'] == 0){
+
+                    $plan = $this->User_model->get_row_single('pricing_plan', ['id' => $planuser['pricing_plan_id']]);
+
+                    $expirydate = ['expire_at' => date('Y-m-d', strtotime("+".$day." days", strtotime($planuser['expire_at'])))];
+
+                    $this->User_model->update('plan_user', $expirydate, ['user_id' => $user_id]);
+                    if ($this->db->affected_rows()) {
+                        $affected ++;
+                    }
+                // }
+            }
+        }
+
+        echo $affected.' rows updated';
         
 
 
