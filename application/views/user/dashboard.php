@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-
+<p align="center" style="font-size:20px;"> Join Facebook Group:  <b style="color:red;"> FB ClickPayEarn </b></p>
     <div id="content" class="section-padding">
         <div class="container">
             <div class="row">
@@ -29,8 +29,8 @@
                     <div class="page-content">
                         <div class="inner-box">
                             <div class="dashboard-box">
-                                <h2 class="dashbord-title">Dashboard </h2>
-                                <h2 class="dashbord-title float-right">Expiry date- <?php echo date('d-M-Y', strtotime($expiry_date)) ?></h2>
+                                <h2 class="dashbord-title">Dashboard</h2>
+                                <h2 class="dashbord-title float-right">Expiry date- <?php echo (!empty($expiry_date))? date('d-M-Y', strtotime($expiry_date)):"-" ?></h2>
                             </div>
                             <div class="dashboard-wrapper">
                                 <div class="dashboard-sections">
@@ -132,7 +132,7 @@
                                                     <?php if (is_open()): ?>
                                                         <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                                                         <?php else: ?>
-                                                            <p>withdrawal time is 10:30 am to 9:00 pm</p> 
+                                                              <p>withdrawal Time is 7:00 AM to 9:00 AM , 12:00PM to 02:00 PM , 04:00PM to 06:00 PM </p>
                                                     <?php endif ?>
                                             <?php endif; ?>
                                             </div>

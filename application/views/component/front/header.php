@@ -35,6 +35,16 @@
     <script src="<?php echo base_url('front_assets/js/jquery-min.js') ?>"></script>
     <script src="<?php echo base_url('front_assets/js/jquery.inputmask.min.js') ?>"></script>
     <!-- <script src="https://raw.githubusercontent.com/RobinHerbots/Inputmask/5.x/dist/inputmask.js"></script> -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148959575-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-148959575-1');
+    </script>
 </head>
 
 <body>

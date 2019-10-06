@@ -42,7 +42,7 @@
                         <?php if (is_open() == true): ?>
                         <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                     <?php else: ?>
-                        <p>withdrawal time is 10:30 am to 9:00 pm</p> 
+                        <p>withdrawal Time is 7:00 AM to 9:00 AM , 12:00PM to 02:00 PM , 04:00PM to 06:00 PM </p> 
                     <?php endif ?>
                 <?php endif; ?>
                 </div>
