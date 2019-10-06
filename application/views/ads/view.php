@@ -77,10 +77,10 @@
 			 	data: {id: '<?php echo $ads["id"] ?>'},
 			 	success: function(res){
 			 		// console.log(res)
-			 		if (res.status == 200) 
-			 		{
+			 		// if (res.status == 200) 
+			 		// {
 			 			window.top.close();
-			 		}
+			 		// }
 			 	}
 			 }) 
 		}

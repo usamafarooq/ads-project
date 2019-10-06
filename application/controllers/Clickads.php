@@ -16,23 +16,23 @@ class Clickads extends Front_Controller {
 	public function index()
 	{
 		redirect('user/dashboard','refresh');
-		$user_id = $this->session->userdata('id');
-		$user = $this->User_model->get_users($user_id)[0];
-		$this->db->select('ad_id')
-		        ->from('user_ads_view')
-		        ->where('user_id', $user['id'])
-		        ->where('created_at >=', date('Y-m-d'))
-		        ->where('created_at <=', date('Y-m-d 23:59:59'));
-		$query = $this->db->get()->result();
+		// $user_id = $this->session->userdata('id');
+		// $user = $this->User_model->get_users($user_id)[0];
+		// $this->db->select('ad_id')
+		//         ->from('user_ads_view')
+		//         ->where('user_id', $user['id'])
+		//         ->where('created_at >=', date('Y-m-d'))
+		//         ->where('created_at <=', date('Y-m-d 23:59:59'));
+		// $query = $this->db->get()->result();
 
-		$limit = $user['Daily_Ads'] - count($query);
-		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
+		// $limit = $user['Daily_Ads'] - count($query);
+		// $this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
 
 
-		$this->data['user'] = $user;
-		$this->data['title'] = 'Ads List';
-		$this->data['ads'] = $this->Ads_model->get_available_for_user($user, $this->data['limit']);
-		$this->load->front_template('ads/index',$this->data);
+		// $this->data['user'] = $user;
+		// $this->data['title'] = 'Ads List';
+		// $this->data['ads'] = $this->Ads_model->get_available_for_user($user, $this->data['limit']);
+		// $this->load->front_template('ads/index',$this->data);
 
 	}
 
@@ -71,11 +71,10 @@ class Clickads extends Front_Controller {
 			echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')'; die;
 		}
 
-		$user = $this->User_model->get_users($user_id);
-		$this->db->set('total_clicked', 'total_clicked+1', FALSE);
-		$this->db->where('id', $id);
-		$this->db->update('ads');
-		$referrer_amount = $user[0]['Refer_Click_Price'];
+		// $user = $this->User_model->get_users($user_id);
+		// $this->db->set('total_clicked', 'total_clicked+1', FALSE);
+		// $this->db->where('id', $id);
+		// $this->db->update('ads');
 		// $referrer_amount = 0;
 		// if (!empty($user[0]['referrer'])) {
 		// 	$referrer = $this->User_model->get_referer_user_data( $user[0]['referrer'] );
@@ -84,27 +83,38 @@ class Clickads extends Front_Controller {
 		// 	}
 		// }
 
+		$available_limit = $this->session->userdata('available_limit');
+
+
+		if ($available_limit <= 0) {
+			echo $_GET['callback'] . '(' . json_encode(['status' => 200]) . ')'; die;
+		}
+
 		
+		$referrer_amount = $this->session->userdata('Refer_Click_Price');
 		$data = [
 			'user_id' => $user_id,
 			'ad_id' => $id,
-			'amount' => $user[0]['Click_Price'],
+			'amount' => $this->session->userdata('Click_Price'),
 			'referrer_amount' => $referrer_amount,
 			'created_at' => date('Y-m-d H:i:s')
 		];
+
 		
-		$this->db->set('amount', 'amount+'.$user[0]['Click_Price'], FALSE);
+		$this->db->set('amount', 'amount+'.$this->session->userdata('Click_Price'), FALSE);
 		$this->db->where('id', $user_id);
 		$this->db->update('users');
+		$this->session->set_userdata(['available_limit' => $available_limit-1 ]);
+		$this->session->set_userdata(['amount' => $this->session->userdata('amount')+$this->session->userdata('Click_Price') ]);
 
-		if (!empty($user[0]['referrer'])) {
-			$referrer_user = $this->User_model->get_row_single('users', ['email'=>$user[0]['referrer']]);
+		if (!empty($this->session->userdata('referrer'))) {
+			$referrer_user = $this->User_model->get_row_single('users', ['email'=>$this->session->userdata('referrer')]);
 			if($referrer_user['status'] == 'Approved'){
 				$ref_user_id = $referrer_user['id'];
 				$ref_plan_exp = $this->User_model->get_row_single('plan_user', ['user_id'=>$ref_user_id]);
 				if(date('Y-m-d') <= $ref_plan_exp['expire_at']){
 					$this->db->set('amount', 'amount+'.$referrer_amount, FALSE);
-					$this->db->where('email', $user[0]['referrer']);
+					$this->db->where('email', $this->session->userdata('referrer'));
 					$this->db->update('users');
 				}
 			}
@@ -119,13 +129,12 @@ class Clickads extends Front_Controller {
 	public function checkViewedAds()
 	{
 		$user_id = $this->session->userdata('id');
-		$user = $this->User_model->get_users($user_id)[0];
-		$this->session->set_userdata('status', $user['status']);
-		$response = $this->Ads_model->checkViewedAds($user_id, date('Y-m-d'));
-		$available_limit = $user['Daily_Ads'] - count($response);
+		$response = $this->Ads_model->checkViewedAds($user_id);
+		$available_limit = $this->session->userdata('Daily_Ads') - count($response);
 		if ($available_limit <= 0) {
 			$available_limit = 0;
 		}
+		$this->session->set_userdata(['available_limit' => $available_limit]);
 		echo $_GET['callback'] . '(' . json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]) . ')';
 		// echo json_encode(['status' => 200, 'data' => $response, 'available_limit' => $available_limit]);
 		

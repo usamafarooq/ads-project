@@ -122,7 +122,39 @@ class User extends Front_Controller {
 				redirect('user/login','refresh');
 			}
 
+			$role = $user['role'];
+			$user = $this->User_model->get_users($user['id'])[0];
 
+			$response = $this->Ads_model->checkViewedAds($user['id']);
+			$available_limit = $user['Daily_Ads'] - count($response);
+			if ($available_limit <= 0) {
+				$available_limit = 0;
+			}
+			$user = [
+				'id' 			=> $user['id'],
+	            'first_name' 	=> $user['first_name'],
+	            'last_name' 	=> $user['last_name'],
+	            'username' 		=> $user['username'],
+	            'phone' 		=> $user['phone'],
+	            'email' 		=> $user['email'],
+	            'role' 			=> $role,
+	            'cnic' 			=> $user['cnic'],
+	            'jazz_no' 		=> $user['jazz_no'],
+	            'city_id' 		=> $user['city_id'],
+	            'referrer' 		=> $user['referrer'],
+	            'amount' 		=> $user['amount'],
+	            'withrawal_type'=> $user['withrawal_type'],
+	        	'status' 		=> $user['status'],
+	        	'package' 		=> $user['package'],
+	        	'Click_Price' 	=> $user['Click_Price'],
+	        	'Daily_Ads' 	=> $user['Daily_Ads'],
+	        	'withdraw_limit' => $user['withdraw_limit'],
+	        	'expire_at' 	=> $user['expire_at'],
+	        	'amount' 		=> $user['amount'],
+	        	'Refer_Click_Price' => $user['Refer_Click_Price'],
+	        	'available_limit' => $available_limit,
+
+			];
 			$this->session->set_userdata($user);
 			redirect('user/dashboard','refresh');
 		}
@@ -235,17 +267,19 @@ class User extends Front_Controller {
         	redirect('/','refresh');
         }
 		$user_id = $this->session->userdata('id');
-		$user = $this->User_model->get_users($user_id)[0];
-		$this->db->select('ad_id')
-		        ->from('user_ads_view')
-		        ->where('user_id', $user['id'])
-		        ->where('created_at >=', date('Y-m-d'))
-		        ->where('created_at <=', date('Y-m-d 23:59:59'));
-		$query = $this->db->get()->result();
+		$user = $this->User_model->get_row_single('users', ['id' => $user_id]);
+		$this->session->set_userdata($user);
+		// $user = $this->User_model->get_users($user_id)[0];
+		// $this->db->select('ad_id')
+		//         ->from('user_ads_view')
+		//         ->where('user_id', $user['id'])
+		//         ->where('created_at >=', date('Y-m-d'))
+		//         ->where('created_at <=', date('Y-m-d 23:59:59'));
+		// $query = $this->db->get()->result();
 
-		$get_planUser = $this->User_model->get_row_single('plan_user', ['user_id'=>$user_id]);			
+		// $get_planUser = $this->User_model->get_row_single('plan_user', ['user_id'=>$user_id]);			
 		// $plan_expiry_date = date_create(date('Y-m-d', strtotime($user['user_plan_created'].' +'.$user['duration'].' month')));
-		$plan_expiry_date = date_create(date('Y-m-d', strtotime($get_planUser['expire_at'])));
+		$plan_expiry_date = date_create(date('Y-m-d', strtotime($this->session->userdata('expire_at'))));
 		$today = date_create(date('Y-m-d'));
 
 		$this->data['expiry_date'] = date_format($plan_expiry_date,"Y-m-d");
@@ -257,10 +291,10 @@ class User extends Front_Controller {
 			$this->data['is_expire'] = 1;
 		}
 
-		$limit = $user['Daily_Ads'] - count($query);
-		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
+		// $limit = $user['Daily_Ads'] - count($query);
+		// $this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
 		$this->data['user'] = $user;
-		$this->data['ads'] = $this->Ads_model->get_available_for_user($user, $this->data['limit']);
+		$this->data['ads'] = $this->Ads_model->get_available_for_user($user_id, $this->session->userdata('available_limit'));
 
 		$this->data['title'] = 'dashboard';
 		$this->load->front_template('user/dashboard',  $this->data);

@@ -33,12 +33,12 @@
                 <div class="col-sm-12 col-md-8 col-lg-9">
             <!-- <div class="col-md-12 col-lg-12 col-xs-12"> -->
                 <div class="about-wrapper">
-                    <?php $withdraw_limit = $user['withdraw_limit'] ?>
+                    <?php $withdraw_limit = $this->session->userdata('withdraw_limit') ?>
                     <h2 class="intro-title">MY ACCOUNT - WITHDRAW / CASH YOUR EARNINGS</h2>
                     <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
                     <p>Get CASH. You must earn at least Rs.<?php echo $withdraw_limit ?></p><br>
-                    <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>
-                    <?php if($user['amount'] >= $withdraw_limit): ?>
+                    <p>Your current amount is Rs.<?php echo number_format($this->session->userdata('amount'), 2) ?></p><br>
+                    <?php if($this->session->userdata('amount') >= $withdraw_limit): ?>
                         <?php if (is_open() == true): ?>
                         <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                     <?php else: ?>

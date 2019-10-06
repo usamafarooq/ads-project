@@ -14,7 +14,7 @@ class Withdraw extends Front_Controller {
 		$this->data['title'] = 'Withdraw Cash';
 		$id = $this->session->userdata('id');
 		// $this->data['user'] = $this->User_model->get_row_single('users',array('id'=>$id));
-		$this->data['user'] = $user = $this->User_model->get_users($id)[0];
+		// $this->data['user'] = $user = $this->User_model->get_users($id)[0];
 		$this->load->front_template('withdraw',$this->data);
 	}
 
@@ -37,12 +37,14 @@ class Withdraw extends Front_Controller {
 			$withdraw_id = $this->User_model->insert('withdraw', $data);
 			$this->User_model->update('users',array('amount'=>0),array('id'=>$id));
 
+			$this->session->set_userdata(['amount' => 0]);
+
 			$template = $this->load->view('email/withdraw_request', $user, TRUE);
 			send_mail(NULL, $user['email'], 'Withdrawal Request', $template);
 			$this->session->set_flashdata('success', 'Your withdraw request generated successfully');
 		}
 		else{
-			$this->session->set_flashdata('error', 'you cannot withdraw because Your amount is lower then Rs.'.$user['withdraw_limit'] );	
+			$this->session->set_flashdata('error', 'you cannot withdraw because Your amount is lower then Rs.'.$this->session->userdata('withdraw_limit') );	
 		}
 		redirect('withdraw');
 	}

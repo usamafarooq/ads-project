@@ -30,7 +30,7 @@
                         <div class="inner-box">
                             <div class="dashboard-box">
                                 <h2 class="dashbord-title">Dashboard</h2>
-                                <h2 class="dashbord-title float-right">Expiry date- <?php echo (!empty($expiry_date))? date('d-M-Y', strtotime($expiry_date)):"-" ?></h2>
+                                <h2 class="dashbord-title float-right">Expiry date : <?php echo (!empty($this->session->userdata('expire_at')))? date('d-M-Y', strtotime($this->session->userdata('expire_at'))):"-" ?></h2>
                             </div>
                             <div class="dashboard-wrapper">
                                 <div class="dashboard-sections">
@@ -73,7 +73,7 @@
                                                 <div class="icon"><i class="lni-write"></i></div>
                                                 <div class="contentbox">
                                                     <h2><a href="#">Total Ad</a></h2>
-                                                    <h3><?php echo $user['Daily_Ads'] ?> Ad</h3>
+                                                    <h3><?php echo $this->session->userdata('Daily_Ads') ?> Ad</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                                 <div class="icon"><i class="lni-add-files"></i></div>
                                                 <div class="contentbox">
                                                     <h2><a href="#">Available Limit</a></h2>
-                                                    <h3 class="ads_limit"><?php echo $limit ?> ads available</h3>
+                                                    <h3 class="ads_limit"><?php echo $this->session->userdata('available_limit') ?> ads available</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,13 +122,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <?php $withdraw_limit = $user['withdraw_limit'] ?>
+                                            <?php $withdraw_limit = $this->session->userdata('withdraw_limit') ?>
                                             <div class="about-wrapper" style="margin-top: 20px">
                                                 <h5>MY ACCOUNT - WITHDRAW / CASH YOUR EARNINGS</h5>
                                                 <p class="intro-desc">WITHDRAW YOUR AMOUNT</p>
                                                 <p>Get CASH. You must earn at least Rs.<?php echo $withdraw_limit ?></p><br>
-                                                <p>Your current amount is Rs.<?php echo number_format($user['amount'], 2) ?></p><br>
-                                                <?php if($user['amount'] >= $withdraw_limit): ?>
+                                                <p>Your current amount is Rs.<?php echo number_format($this->session->userdata('amount'), 2) ?></p><br>
+                                                <?php if($this->session->userdata('amount') >= $withdraw_limit): ?>
                                                     <?php if (is_open()): ?>
                                                         <a class="tg-btn" href="<?php echo base_url('withdraw/cash') ?>">Withdraw Cash</a>
                                                         <?php else: ?>
