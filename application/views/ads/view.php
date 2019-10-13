@@ -35,8 +35,8 @@
 
 <script>
 		var myInterval;
-		window.addEventListener('focus', startTimer);
-		window.addEventListener('blur', stopTimer);
+		// window.addEventListener('focus', startTimer);
+		// window.addEventListener('blur', stopTimer);
 
 		time = 30;
 		request_send = 0; 
@@ -58,8 +58,8 @@
 		} 
 		
 		// Start timer
-		myInterval = window.setInterval(adstimeHandler, 1000);
-
+		// myInterval = window.setInterval(adstimeHandler, 1000);
+		
 		 function startTimer() {
 			  myInterval = window.setInterval(adstimeHandler, 1000);
 		 }
@@ -67,7 +67,6 @@
 		 function stopTimer() {
 		  window.clearInterval(myInterval);
 		 }
-	// $(document).ready(function() {
 		function adsCallback(){
 			$.ajax({
 			 	url: '<?php echo base_url() ?>clickads/save_view',
@@ -76,18 +75,61 @@
 			 	async: false,
 			 	data: {id: '<?php echo $ads["id"] ?>'},
 			 	success: function(res){
-			 		// console.log(res)
-			 		// if (res.status == 200) 
-			 		// {
 			 			window.top.close();
-			 		// }
 			 	}
 			 }) 
 		}
-		// setInterval(function(){
-		// 	if(time == 0){
-		// 		setTimeout(adsCallback, 100);
-		// 	}
-		// },1000)
-	// });
+
+        // check the visiblility of the page
+        var hidden, visibilityState, visibilityChange;
+
+        if (typeof document.hidden !== "undefined") {
+            hidden = "hidden", visibilityChange = "visibilitychange", visibilityState = "visibilityState";
+        }
+        else if (typeof document.mozHidden !== "undefined") {
+            hidden = "mozHidden", visibilityChange = "mozvisibilitychange", visibilityState = "mozVisibilityState";
+        }
+        else if (typeof document.msHidden !== "undefined") {
+            hidden = "msHidden", visibilityChange = "msvisibilitychange", visibilityState = "msVisibilityState";
+        }
+        else if (typeof document.webkitHidden !== "undefined") {
+            hidden = "webkitHidden", visibilityChange = "webkitvisibilitychange", visibilityState = "webkitVisibilityState";
+        }
+
+
+        if (typeof document.addEventListener === "undefined" || typeof hidden === "undefined") {
+            $(window).on("blur focus", function(e) {
+			    var prevType = $(this).data("prevType");
+
+			    if (prevType != e.type) {   //  reduce double fire issues
+			        switch (e.type) {
+			            case "blur":
+			                stopTimer()
+			                break;
+			            case "focus":
+			                startTimer()
+			                break;
+			        }
+			    }
+
+			    $(this).data("prevType", e.type);
+			})
+        }
+        else {
+            document.addEventListener(visibilityChange, function() {
+
+                switch (document[visibilityState]) {
+                case "visible":
+                    	startTimer();
+                    break;
+                case "hidden":
+                    	stopTimer();
+                    break;
+                }
+            }, false);
+        }
+
+        if (document[visibilityState] === "visible") {
+            startTimer();
+        }
 </script>

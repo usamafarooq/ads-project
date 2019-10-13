@@ -291,10 +291,12 @@ class User extends Front_Controller {
 			$this->data['is_expire'] = 1;
 		}
 
-		// $limit = $user['Daily_Ads'] - count($query);
-		// $this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
+		$viewed = $this->Ads_model->checkViewedAds($user_id);
+		$limit = $this->session->userdata('Daily_Ads') - count($viewed);
+		$this->data['limit'] = ($limit <= 0 ) ? 0 : $limit;
 		$this->data['user'] = $user;
-		$this->data['ads'] = $this->Ads_model->get_available_for_user($user_id, $this->session->userdata('available_limit'));
+		$this->data['ads'] = $this->Ads_model->get_available_for_user($user_id, $this->data['limit']);
+		$this->session->set_userdata(['available_limit' => $this->data['limit']]);
 
 		$this->data['title'] = 'dashboard';
 		$this->load->front_template('user/dashboard',  $this->data);
